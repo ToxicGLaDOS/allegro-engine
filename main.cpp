@@ -5,12 +5,6 @@
 #include"sprite.h"
 
 
-
-
-
-
-
-
 int main(int argc, char **argv){
 	al_init();
 	al_init_image_addon();
@@ -37,9 +31,13 @@ int main(int argc, char **argv){
 	bool running = true;
 
 	
-	Sprite sprite = Sprite(0,0,image);
-
-
+	Sprite * sprite = new Sprite(0,0,"sprite1",image);
+	Sprite * sprite2 = new Sprite(100,100,"sprite2",image);
+	sprite->get_location();
+	sprite2->attach(sprite);
+	
+	std::vector<Object*> children = sprite->get_children();
+	
 
 	while(running){
 		al_clear_to_color(al_map_rgb(100,0,0));	
@@ -49,9 +47,13 @@ int main(int argc, char **argv){
 				if(event.keyboard.keycode == ALLEGRO_KEY_ESCAPE){
 					running = false;
 				}
+				else if(event.keyboard.keycode == ALLEGRO_KEY_DOWN){
+					sprite->move_by(0, 5);
+				}
 			} 
 		}
-		sprite.draw();	
+		sprite->draw();	
+		sprite2->draw();
 		al_flip_display();
 	}
 	al_destroy_display(display);

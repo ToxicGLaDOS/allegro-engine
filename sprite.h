@@ -5,12 +5,12 @@
 #include<allegro5/allegro_image.h>
 #include "object.h"
 
-class Sprite : Object{
+class Sprite : public Object{
 	public:
 		
-		ALLEGRO_BITMAP * img;	
+		ALLEGRO_BITMAP * _img;	
 
-		Sprite(int x_pos, int y_pos, ALLEGRO_BITMAP* image);		
+		Sprite(int x_pos, int y_pos, std::string name, ALLEGRO_BITMAP* image);		
 		void draw();
 	private:
 		

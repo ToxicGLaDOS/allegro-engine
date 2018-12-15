@@ -1,13 +1,16 @@
 #include<allegro5/allegro.h>
 #include<allegro5/allegro_image.h>
+#include<allegro5/allegro_primitives.h>
 #include<stdio.h>
 #include"object.h"
 #include"sprite.h"
-
+#include"square_collider.h"
 
 int main(int argc, char **argv){
 	al_init();
 	al_init_image_addon();
+	al_init_primitives_addon();
+
 	if(!al_install_keyboard()){
 		printf("Keyboard installation failed\n");
 	}
@@ -31,11 +34,14 @@ int main(int argc, char **argv){
 	ALLEGRO_EVENT event;
 	bool running = true;
 
-	
+	SquareCollider coll = SquareCollider(Vector2(100,100),Vector2(400,400), "collider1");
+	SquareCollider coll2 = SquareCollider(Vector2(450,50), Vector2(150,150), "collider2");
 	Sprite * sprite = new Sprite(0,0,"sprite1",image);
 	Sprite * sprite2 = new Sprite(100,100,"sprite2",image2);
 	sprite2->attach(sprite);
-	
+	coll.attach(sprite);
+	coll2.attach(sprite);
+	printf(coll.collides(coll2) ? "true\n" : "false\n");
 	std::vector<Object*> children = sprite->get_children();
 	
 
@@ -54,6 +60,8 @@ int main(int argc, char **argv){
 		}
 		sprite->draw();	
 		sprite2->draw();
+		coll.draw();
+		coll2.draw();
 		al_flip_display();
 	}
 	al_destroy_display(display);

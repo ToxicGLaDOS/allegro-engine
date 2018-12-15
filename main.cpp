@@ -14,6 +14,7 @@ int main(int argc, char **argv){
 	ALLEGRO_DISPLAY * display = al_create_display(640,560);
 	
 	ALLEGRO_BITMAP * image = al_load_bitmap("cat.png");
+	ALLEGRO_BITMAP * image2 = al_load_bitmap("cat2.png");
 	ALLEGRO_EVENT_QUEUE * event_queue = al_create_event_queue();
 	ALLEGRO_EVENT_SOURCE * keyboard_source = al_get_keyboard_event_source();
 	al_register_event_source(event_queue, keyboard_source);
@@ -32,8 +33,7 @@ int main(int argc, char **argv){
 
 	
 	Sprite * sprite = new Sprite(0,0,"sprite1",image);
-	Sprite * sprite2 = new Sprite(100,100,"sprite2",image);
-	sprite->get_location();
+	Sprite * sprite2 = new Sprite(100,100,"sprite2",image2);
 	sprite2->attach(sprite);
 	
 	std::vector<Object*> children = sprite->get_children();
@@ -48,7 +48,7 @@ int main(int argc, char **argv){
 					running = false;
 				}
 				else if(event.keyboard.keycode == ALLEGRO_KEY_DOWN){
-					sprite->move_by(0, 5);
+					sprite->move_by(Vector2(0,5));
 				}
 			} 
 		}

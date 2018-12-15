@@ -1,27 +1,32 @@
 #include "object.h"
 #include<iostream>
+#include "vector2.h"
 
-Object::Object(int x_pos, int y_pos, std::string name){
-	_x = x_pos;
-	_y = y_pos;
-	_name = name;
+
+Object::Object(int x_pos, int y_pos, std::string name)
+	: _name(name)
+	, _position(Vector2(x_pos, y_pos)){}
+
+Object::Object(Vector2 position, std::string name)
+	: _name(name)
+	, _position(position){}
+
+Vector2 Object::get_position(){
+	return _position;
 }
 
-int* Object::get_location(){
-	return new int[2] {_x,_y};
-}
-
-void Object::move_to(int x_pos, int y_pos){
-	int x_delta = x_pos - _x;
-	int y_delta = y_pos - _y;
+void Object::move_to(Vector2 position){
 	
-	move_by(x_delta, y_delta);
+	int x_delta = position.x() - _position.x();
+	int y_delta = position.y() - _position.y();
+
+	
+	move_by(Vector2(x_delta, y_delta));
 }
 
-void Object::move_by(int x_by, int y_by){
-	_x += x_by;
-	_y += y_by;
-	propagate_movement(x_by, y_by);
+void Object::move_by(Vector2 by){
+	_position = _position + by;
+	propagate_movement(by);
 }
 
 void Object::attach(Object *parent){
@@ -38,9 +43,9 @@ std::vector<Object*> Object::get_children(){
 }
 
 
-void Object::propagate_movement(int x_by, int y_by){
+void Object::propagate_movement(Vector2 by){
 	for(Object * child : _children){
-		child->move_by(x_by, y_by);
+		child->move_by(by);
 	}	
 }
 

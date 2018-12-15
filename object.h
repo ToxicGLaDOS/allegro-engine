@@ -4,23 +4,26 @@
 
 #include<vector>
 #include<string>
+#include "vector2.h"
+
 class Object{
 	public:
 		Object(int x_pos, int y_pos, std::string name);
-		int * get_location();
-		void move_to(int x_pos, int y_pos);	
-		void move_by(int x_by, int y_by);
+		Object(Vector2 pos, std::string name);
+		Vector2 get_position();
+		void move_to(Vector2 pos);	
+		void move_by(Vector2 by);
 		void attach(Object * parent);
 		std::string get_name();	
 		std::vector <Object*> get_children();
 
 	protected:
-		int _x,_y;
+		Vector2  _position;
 		std::vector <Object*> _children;
 		Object* _parent;
 		std::string _name;	
 	private:
-		void propagate_movement(int x_by, int y_by);	
+		void propagate_movement(Vector2 by);	
 };
 
 #endif

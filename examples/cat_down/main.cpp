@@ -16,8 +16,16 @@ int main(int argc, char **argv){
 	}
 	ALLEGRO_DISPLAY * display = al_create_display(640,560);
 	
-	ALLEGRO_BITMAP * image = al_load_bitmap("cat.png");
-	ALLEGRO_BITMAP * image2 = al_load_bitmap("cat2.png");
+	ALLEGRO_PATH *path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
+	al_append_path_component(path, "resources");
+
+	al_set_path_filename(path, "cat.png");
+	ALLEGRO_BITMAP * image = al_load_bitmap(al_path_cstr(path, '/'));
+
+	al_set_path_filename(path, "cat2.png");
+	ALLEGRO_BITMAP * image2 = al_load_bitmap(al_path_cstr(path, '/'));
+
+
 	ALLEGRO_EVENT_QUEUE * event_queue = al_create_event_queue();
 	ALLEGRO_EVENT_SOURCE * keyboard_source = al_get_keyboard_event_source();
 	al_register_event_source(event_queue, keyboard_source);

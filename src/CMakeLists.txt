@@ -1,6 +1,8 @@
 add_library(engine 
 	object.h object.cpp
 	sprite.h sprite.cpp
+	collider.h collider.cpp
+	engine.h
 	square_collider.h square_collider.cpp
 	vector2.h vector2.cpp)
 

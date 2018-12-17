@@ -2,14 +2,14 @@
 #define SQUARE_COLLIDER_H
 
 #include "vector2.h"
-#include "object.h"
+#include "collider.h"
 #include <allegro5/allegro.h>
 
-class SquareCollider : public Object{
+class SquareCollider : public Collider{
 	public:
 		SquareCollider();
 		SquareCollider(Vector2 position, Vector2 size, std::string name);
-		bool collides(SquareCollider other);
+		bool collides(Collider * other);
 		void draw();
 
 	private:

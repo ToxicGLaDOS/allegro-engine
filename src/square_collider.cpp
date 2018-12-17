@@ -3,14 +3,15 @@
 
 
 SquareCollider::SquareCollider()
-	: Object(Vector2(0,0), "NULL")
+	: Collider(Vector2(0,0), "NULL")
 	,_size(Vector2(0,0)){}
 
 SquareCollider::SquareCollider(Vector2 position, Vector2 size, std::string name)
-	: Object(position, name)
+	: Collider(position, name)
 	, _size(size){}
 
-bool SquareCollider::collides(SquareCollider other){
+bool SquareCollider::collides(Collider * oth){
+	SquareCollider other = *(SquareCollider*)oth;
 	SquareCollider left, right, top, bottom;
 	if(_position.x() < other._position.x()){
 		left = *this;

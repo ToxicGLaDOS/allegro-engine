@@ -49,7 +49,7 @@ int main(int argc, char **argv){
 	sprite2->attach(sprite);
 	coll.attach(sprite);
 	coll2.attach(sprite);
-	printf(coll.collides(coll2) ? "true\n" : "false\n");
+	printf(coll.collides(&coll2) ? "true\n" : "false\n");
 	std::vector<Object*> children = sprite->get_children();
 	
 

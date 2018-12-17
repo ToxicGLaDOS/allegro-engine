@@ -3,15 +3,18 @@
 
 class Vector2{
 	public:
-		Vector2(int x, int y);
+		Vector2(double x, double y);
 		void operator=(const Vector2& other);
 		Vector2 operator-(const Vector2& other);
 		Vector2 operator+(const Vector2& other);
-		const int x() const;
-		const int y() const;
+		Vector2 operator*(const double & scalar) const;
+		const double dot(Vector2 other) const;
+		const Vector2 projectOnto(Vector2 other) const;
+		const double x() const;
+		const double y() const;
 		
 	private:
-		int _x, _y;
+		double _x, _y;
 
 };
 

@@ -3,6 +3,7 @@ add_library(engine
 	sprite.h sprite.cpp
 	collider.h collider.cpp
 	engine.h
+	geometry.h geometry.cpp
 	square_collider.h square_collider.cpp
 	vector2.h vector2.cpp)
 

@@ -62,7 +62,7 @@ int main(int argc, char **argv){
 	Vector2 p_h1 = Vector2(0, 0);
 	Vector2 p_h2 = Vector2(-20, 20);
 
-	Vector2 r_pos = Vector2(400,400);
+	Vector2 r_pos = Vector2(20,20);
 	Vector2 r_size = Vector2(50,50);
 	
 	Vector2 c_pos = Vector2(100, 100);
@@ -162,8 +162,16 @@ int main(int argc, char **argv){
 		else{
 			al_draw_line(p_h1.x() + offset.x(), p_h1.y() + offset.y(), p_h2.x() + offset.x(), p_h2.y() + offset.y(), green, 1);
 		}
+
+		if(rectCircleIntersection(r_pos + offset, r_size, c_pos, radius)){
+			al_draw_rectangle(r_pos.x() + offset.x(), r_pos.y() + offset.y(), r_pos.x() + offset.x() + r_size.x(), r_pos.y() + offset.y() + r_size.y(), red, 1);
+		}
+		else{	
+			al_draw_rectangle(r_pos.x() + offset.x(), r_pos.y() + offset.y(), r_pos.x() + offset.x() + r_size.x(), r_pos.y() + offset.y() + r_size.y(), green, 1);
+		}	
+	
+	
 		al_draw_circle(c_pos.x(), c_pos.y(), radius, al_map_rgb(0, 200, 0), 1);	
-		al_draw_rectangle(r_pos.x(), r_pos.y(), r_pos.x() + r_size.x(), r_pos.y() + r_size.y(), al_map_rgb(0,200,0), 1);
 		
 		al_flip_display();
 	}

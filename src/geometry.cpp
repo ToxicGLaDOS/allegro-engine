@@ -114,7 +114,6 @@ bool rectCircleIntersection(Vector2 r_pos, Vector2 r_size, Vector2 c_pos, double
 
 
 	if(pointInRect(c_pos, r_pos, r_size)){
-		printf("Center of circle in rect\n");
 		return true;
 	}
 	else if(   lineCircleIntersection(a, b, c_pos, radius)

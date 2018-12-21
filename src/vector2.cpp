@@ -2,6 +2,10 @@
 #include "geometry.h"
 #include<math.h>
 
+Vector2::Vector2()
+	: _x(0)
+	, _y(0){}
+
 Vector2::Vector2(double x, double y)
 	: _x(x)
 	, _y(y){}
@@ -34,7 +38,7 @@ const double Vector2::dot(Vector2 other) const{
 
 const Vector2 Vector2::projectOnto(Vector2 other) const{
 	double dotProd = dot(other);
-	return (dotProd / pow(length(Vector2(0,0),other),2)) * other;
+	return (dotProd / pow(distance(Vector2(0,0),other),2)) * other;
 }
 
 const double Vector2::x() const{

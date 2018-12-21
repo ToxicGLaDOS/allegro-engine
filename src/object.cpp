@@ -11,7 +11,7 @@ Object::Object(Vector2 position, std::string name)
 	: _name(name)
 	, _position(position){}
 
-Vector2 Object::get_position(){
+Vector2 Object::position(){
 	return _position;
 }
 

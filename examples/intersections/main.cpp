@@ -5,6 +5,7 @@
 #include"object.h"
 #include"sprite.h"
 #include"square_collider.h"
+#include"circle_collider.h"
 #include"geometry.h"
 
 
@@ -64,10 +65,14 @@ int main(int argc, char **argv){
 
 	Vector2 r_pos = Vector2(20,20);
 	Vector2 r_size = Vector2(50,50);
-	
+	SquareCollider square = SquareCollider(r_pos, r_size, "square collider");
+	SquareCollider square2 = SquareCollider(Vector2(150, 50), Vector2(50, 50), "square collider2");	
+
 	Vector2 c_pos = Vector2(100, 100);
 	double radius = 50;
-	
+	CircleCollider circle = CircleCollider(c_pos, radius, "circle collider");
+
+
 	Vector2 v = p_g2 - p_g1;
 	Vector2 pointToCircle = c_pos - p_g1;
 	Vector2 projection = pointToCircle.projectOnto(v);
@@ -75,21 +80,12 @@ int main(int argc, char **argv){
 	Vector2 offset = Vector2(0,0);
 	int speed = 5;
 
-	printf("p_g1 = (%f, %f)\n", p_g1.x(), p_g1.y());
-	printf("p_g2 = (%f, %f)\n", p_g2.x(), p_g2.y());
-	printf("p_g1.dot(p_g2) = %f\n", p_g1.dot(p_g2));
-	printf("p_g2.dot(p_g1) = %f\n", p_g2.dot(p_g1));
-	printf("||p_g1|| = %f\n", length(Vector2(0,0), p_g1));
-	printf("||p_g2|| = %f\n", length(Vector2(0,0), p_g2));
-	printf("p_g1.projectOnto(p_g2) = (%f,%f)\n", p_g1.projectOnto(p_g2).x(), p_g1.projectOnto(p_g2).y());
-	printf("v = (%f, %f)\n", v.x(), v.y());
-	printf("pointToCircle = (%f, %f)\n", pointToCircle.x(), pointToCircle.y());
-	printf("black projection vector = (%f, %f)\n", projection.x(), projection.y());
-	
-	printf("rect collides with circle = ");
-	printf(rectCircleIntersection(r_pos, r_size, c_pos, radius) ? "true\n" : "false\n");
 	ALLEGRO_COLOR green = al_map_rgb(0, 200, 0);
 	ALLEGRO_COLOR red = al_map_rgb(200, 0, 0);
+	ALLEGRO_COLOR blue = al_map_rgb(0, 0, 200);
+	ALLEGRO_COLOR purple = al_map_rgb(200, 0, 200);
+
+
 
 	while(running){
 		al_clear_to_color(al_map_rgb(100,0,0));	
@@ -100,16 +96,20 @@ int main(int argc, char **argv){
 					running = false;
 				}
 				else if(event.keyboard.keycode == ALLEGRO_KEY_DOWN){
+					square.move_by(Vector2(0, speed));
 					offset = offset + Vector2(0, speed);
 				}
 				else if(event.keyboard.keycode == ALLEGRO_KEY_UP){
+					square.move_by(Vector2(0, -speed));
 					offset = offset + Vector2(0, -speed);
 				}
 				else if(event.keyboard.keycode == ALLEGRO_KEY_LEFT){
+					square.move_by(Vector2(-speed, 0));
 					offset = offset + Vector2(-speed, 0);
 				}
 
 				else if(event.keyboard.keycode == ALLEGRO_KEY_RIGHT){
+					square.move_by(Vector2(speed, 0));
 					offset = offset + Vector2(speed, 0);
 				}
 			} 
@@ -162,15 +162,20 @@ int main(int argc, char **argv){
 		else{
 			al_draw_line(p_h1.x() + offset.x(), p_h1.y() + offset.y(), p_h2.x() + offset.x(), p_h2.y() + offset.y(), green, 1);
 		}
-
-		if(rectCircleIntersection(r_pos + offset, r_size, c_pos, radius)){
-			al_draw_rectangle(r_pos.x() + offset.x(), r_pos.y() + offset.y(), r_pos.x() + offset.x() + r_size.x(), r_pos.y() + offset.y() + r_size.y(), red, 1);
+		
+		if(square.collides(&circle) && square.collides(&square2)){
+			square.draw(purple, 1);
+		}
+		else if(square.collides(&circle)){
+			square.draw(red, 1);
+		}
+		else if(square.collides(&square2)){
+			square.draw(blue, 1);
 		}
 		else{	
-			al_draw_rectangle(r_pos.x() + offset.x(), r_pos.y() + offset.y(), r_pos.x() + offset.x() + r_size.x(), r_pos.y() + offset.y() + r_size.y(), green, 1);
+			square.draw(green, 1);
 		}	
-	
-	
+		square2.draw(green, 1);	
 		al_draw_circle(c_pos.x(), c_pos.y(), radius, al_map_rgb(0, 200, 0), 1);	
 		
 		al_flip_display();

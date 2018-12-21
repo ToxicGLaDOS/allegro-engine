@@ -10,7 +10,7 @@ class Object{
 	public:
 		Object(int x_pos, int y_pos, std::string name);
 		Object(Vector2 pos, std::string name);
-		Vector2 get_position();
+		Vector2 position();
 		void move_to(Vector2 pos);	
 		void move_by(Vector2 by);
 		void attach(Object * parent);

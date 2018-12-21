@@ -51,7 +51,7 @@ int main(int argc, char **argv){
 	coll2.attach(sprite);
 	printf(coll.collides(&coll2) ? "true\n" : "false\n");
 	std::vector<Object*> children = sprite->get_children();
-	
+	ALLEGRO_COLOR green = al_map_rgb(0, 200, 0);	
 
 	while(running){
 		al_clear_to_color(al_map_rgb(100,0,0));	
@@ -68,8 +68,8 @@ int main(int argc, char **argv){
 		}
 		sprite->draw();	
 		sprite2->draw();
-		coll.draw();
-		coll2.draw();
+		coll.draw(green, 1);
+		coll2.draw(green, 1);
 		al_flip_display();
 	}
 	al_destroy_display(display);

@@ -17,12 +17,12 @@ bool pointInRect(Vector2 point, Vector2 rect_pos, Vector2 rect_size){
 	}
 }
 
-double length(Vector2 v1, Vector2 v2){
+double distance(Vector2 v1, Vector2 v2){
 	return std::sqrt(pow(v2.x() - v1.x(), 2) + pow(v2.y() - v1.y(), 2));
 }
 
 bool pointInCircle(Vector2 point, Vector2 c_pos, double radius){
-	if(length(point, c_pos) < radius){
+	if(distance(point, c_pos) < radius){
 		return true;
 	}
 	else{
@@ -50,7 +50,7 @@ bool lineCircleIntersection(Vector2 p1, Vector2 p2, Vector2 c_pos, double radius
 	if(sign(v.x()) == sign(projection.x()) && sign(v.y()) == sign(projection.y())){	
 		// If the projection is longer than the vector then
 		// the project is further than the line segment
-		if(pointInCircle(p1 + projection, c_pos, radius) && length(Vector2(0,0), projection) < length(p1, p2)){
+		if(pointInCircle(p1 + projection, c_pos, radius) && distance(Vector2(0,0), projection) < distance(p1, p2)){
 			#ifdef DEBUG
 			// Draw line
 			al_draw_line(p1.x(), p1.y(), p2.x(), p2.y(), al_map_rgb(200,0,0), 3);
@@ -126,6 +126,48 @@ bool rectCircleIntersection(Vector2 r_pos, Vector2 r_size, Vector2 c_pos, double
 	return false;
 }
 
+bool rectRectIntersection(Vector2 r1_pos, Vector2 r1_size, Vector2 r2_pos, Vector2 r2_size){
+	Vector2 left_pos, right_pos, top_pos, bottom_pos, left_size, top_size;
+
+
+	if(r1_pos.x() < r2_pos.x()){
+		left_pos = r1_pos;
+		left_size = r1_size;
+		right_pos = r2_pos;
+	}
+	else{
+		left_pos = r2_pos;
+		left_size = r2_size;
+		right_pos = r1_pos;
+	}
+	if(r1_pos.y() < r2_pos.y()){
+		top_pos = r1_pos;
+		top_size = r1_size;
+		bottom_pos = r2_pos;
+	}
+	else{
+		top_pos = r2_pos;
+		top_size = r2_size;
+		bottom_pos = r1_pos;
+	}
+
+	if(left_pos.x() + left_size.x() > right_pos.x() && top_pos.y() + top_size.y() > bottom_pos.y()){
+		return true;
+	}
+	else{
+		return false;
+	}
+} 
+
+bool circleCircleIntersection(Vector2 c1_pos, double r1, Vector2 c2_pos, double r2){
+	if(distance(c1_pos, c2_pos) < r1 + r2){
+		return true;
+	}
+	else{
+		return false;
+	}
+
+} 
 
 
 

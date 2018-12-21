@@ -1,4 +1,6 @@
 #include "square_collider.h"
+#include "circle_collider.h"
+#include "geometry.h"
 #include <allegro5/allegro_primitives.h>
 
 
@@ -10,38 +12,29 @@ SquareCollider::SquareCollider(Vector2 position, Vector2 size, std::string name)
 	: Collider(position, name)
 	, _size(size){}
 
-bool SquareCollider::collides(Collider * oth){
-	SquareCollider other = *(SquareCollider*)oth;
-	SquareCollider left, right, top, bottom;
-	if(_position.x() < other._position.x()){
-		left = *this;
-		right = other;
+bool SquareCollider::collides(Collider * other){	
+	SquareCollider* square_ptr = dynamic_cast<SquareCollider*>(other);
+	CircleCollider* circle_ptr = dynamic_cast<CircleCollider*>(other);	
+	if(square_ptr != NULL){
+		SquareCollider square = *square_ptr;
+		return rectRectIntersection(_position, _size, square.position(), square.size());
 	}
-	else{
-		left = other;
-		right = *this;
-	}
-	if(_position.y() < other._position.y()){
-		top = *this;
-		bottom = other;
-	}
-	else{
-		top = other;
-		bottom = *this;
-	}
-
-	if(left._position.x() + left._size.x() > right._position.x() && top._position.y() + top._size.y() > bottom._position.y()){
-		return true;
-	}
-	else{
-		return false;
+	if(circle_ptr != NULL){
+		CircleCollider circle = *circle_ptr;
+		return rectCircleIntersection(_position, _size, circle.position(), circle.radius());
 	}
 
 }
 
-void SquareCollider::draw(){
-	al_draw_line(_position.x(),           _position.y(),           _position.x()+_size.x(), _position.y(),           draw_color, 1);
-	al_draw_line(_position.x(),           _position.y(),           _position.x(),           _position.y()+_size.y(), draw_color, 1);
-	al_draw_line(_position.x()+_size.x(), _position.y(),           _position.x()+_size.x(), _position.y()+_size.y(), draw_color, 1);
-	al_draw_line(_position.x(),           _position.y()+_size.y(), _position.x()+_size.x(), _position.y()+_size.y(), draw_color, 1);
+void SquareCollider::draw(ALLEGRO_COLOR draw_color, int width){
+	al_draw_line(_position.x(),           _position.y(),           _position.x()+_size.x(), _position.y(),           draw_color, width);
+	al_draw_line(_position.x(),           _position.y(),           _position.x(),           _position.y()+_size.y(), draw_color, width);
+	al_draw_line(_position.x()+_size.x(), _position.y(),           _position.x()+_size.x(), _position.y()+_size.y(), draw_color, width);
+	al_draw_line(_position.x(),           _position.y()+_size.y(), _position.x()+_size.x(), _position.y()+_size.y(), draw_color, width);
 }
+
+Vector2 SquareCollider::size(){
+	return _size;
+}
+
+

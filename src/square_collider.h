@@ -10,10 +10,10 @@ class SquareCollider : public Collider{
 		SquareCollider();
 		SquareCollider(Vector2 position, Vector2 size, std::string name);
 		bool collides(Collider * other);
-		void draw();
+		void draw(ALLEGRO_COLOR color, int width);
+		Vector2 size();
 
 	private:
-		ALLEGRO_COLOR draw_color = al_map_rgb(0,255,0);
 		bool _draw = false;
 		Vector2  _size;
 };

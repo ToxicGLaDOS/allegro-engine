@@ -5,6 +5,7 @@ add_library(engine
 	engine.h
 	geometry.h geometry.cpp
 	square_collider.h square_collider.cpp
+	circle_collider.h circle_collider.cpp
 	vector2.h vector2.cpp)
 
 target_link_libraries(engine allegro allegro_image allegro_primitives)

@@ -1,7 +1,9 @@
 #include"vector2.h"
 #include<math.h>
 #include<stdio.h>
-
+#include<allegro5/allegro.h>
+#include<allegro5/allegro_image.h>
+#include<allegro5/allegro_primitives.h>
 
 bool pointInRect(Vector2 point, Vector2 rect_pos, Vector2 rect_size){
 	if(rect_pos.x() < point.x() 
@@ -28,21 +30,77 @@ bool pointInCircle(Vector2 point, Vector2 c_pos, double radius){
 	}
 }
 
+
+int sign(double a){
+	if(a > 0)
+		return 1;
+	else if(a < 0)
+		return -1;
+	else
+		return 0;
+}
+
 bool lineCircleIntersection(Vector2 p1, Vector2 p2, Vector2 c_pos, double radius){
 	Vector2 v = p2 - p1;
 	Vector2 pointToCircle = c_pos - p1;
 	Vector2 projection = pointToCircle.projectOnto(v);
-	// If the projection is longer than the vector then
-	// the project is further than the line segment
-	if(pointInCircle(p1 + projection, c_pos, radius) && length(Vector2(0,0), projection) < length(p1, p2)){
-		return true;
+
+	// The sign of the projection vector must match the sign of the vector v
+	// this is because if it doesn't it means the vector is going in the opposite direction (off of the line segment)	
+	if(sign(v.x()) == sign(projection.x()) && sign(v.y()) == sign(projection.y())){	
+		// If the projection is longer than the vector then
+		// the project is further than the line segment
+		if(pointInCircle(p1 + projection, c_pos, radius) && length(Vector2(0,0), projection) < length(p1, p2)){
+			#ifdef DEBUG
+			// Draw line
+			al_draw_line(p1.x(), p1.y(), p2.x(), p2.y(), al_map_rgb(200,0,0), 3);
+			
+			// Draw point to circle
+			al_draw_line(p1.x(), p1.y(), (p1+pointToCircle).x(), (p1+pointToCircle).y(), al_map_rgb(200, 0, 200), 1);
+
+			// Draw projection
+			al_draw_line(p1.x(), p1.y(), (p1+projection).x(), (p1+projection).y(), al_map_rgb(0, 0, 0), 1);	
+			#endif
+			return true;
+		}
 	}
-	else if(pointInCircle(p1, c_pos, radius)){
+	if(pointInCircle(p1, c_pos, radius)){
+		#ifdef DEBUG
+		// Draw line
+		al_draw_line(p1.x(), p1.y(), p2.x(), p2.y(), al_map_rgb(0,0,200), 3);
+		
+		// Draw point to circle
+		al_draw_line(p1.x(), p1.y(), (p1+pointToCircle).x(), (p1+pointToCircle).y(), al_map_rgb(200, 0, 200), 1);
+
+		// Draw projection
+		al_draw_line(p1.x(), p1.y(), (p1+projection).x(), (p1+projection).y(), al_map_rgb(0, 0, 0), 1);
+		#endif
 		return true;		
 	}
 	else if(pointInCircle(p2, c_pos,radius)){
+		#ifdef DEBUG
+		// Draw line
+		al_draw_line(p1.x(), p1.y(), p2.x(), p2.y(), al_map_rgb(0,0,200), 3);
+		
+		// Draw point to circle
+		al_draw_line(p1.x(), p1.y(), (p1+pointToCircle).x(), (p1+pointToCircle).y(), al_map_rgb(200, 0, 200), 1);
+
+		// Draw projection
+		al_draw_line(p1.x(), p1.y(), (p1+projection).x(), (p1+projection).y(), al_map_rgb(0, 0, 0), 1);
+		#endif
 		return true;
 	}
+	#ifdef DEBUG
+	// Draw line
+	al_draw_line(p1.x(), p1.y(), p2.x(), p2.y(), al_map_rgb(0,200,0), 3);
+	
+	// Draw point to circle
+	al_draw_line(p1.x(), p1.y(), (p1+pointToCircle).x(), (p1+pointToCircle).y(), al_map_rgb(200, 0, 200), 1);
+
+	// Draw projection
+	al_draw_line(p1.x(), p1.y(), (p1+projection).x(), (p1+projection).y(), al_map_rgb(0, 0, 0), 1);
+	#endif
+
 
 	return false;
 }

@@ -31,6 +31,17 @@ void CircleCollider::draw(ALLEGRO_COLOR draw_color, int width){
 	al_draw_circle(_position.x(), _position.y(), _radius, draw_color, width);	
 }
 
+
+ALLEGRO_BITMAP * CircleCollider::makeBitmap(){
+	ALLEGRO_BITMAP * bitmap = al_create_bitmap(_radius*2, _radius*2);
+	al_set_target_bitmap(bitmap);
+	al_clear_to_color(al_map_rgba(0,0,0,0));
+	al_draw_circle(_radius, _radius, _radius, al_map_rgb(0, 200, 0), 1);
+	return bitmap;
+
+
+}
+
 double CircleCollider::radius(){
 	return _radius;
 }

@@ -16,7 +16,8 @@ class Object{
 		void attach(Object * parent);
 		std::string get_name();	
 		std::vector <Object*> get_children();
-
+		
+		virtual void update();
 	protected:
 		Vector2  _position;
 		std::vector <Object*> _children;

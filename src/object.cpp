@@ -49,21 +49,7 @@ void Object::propagate_movement(Vector2 by){
 	}	
 }
 
-/*
-int main(){
-	Object obj = Object(100,100);
-
-	int x,y;
-
-	int* pos;
-	pos = obj.get_location();
-
-
-	x = pos[0];
-	y = pos[1];
-
-	printf("X is %d, Y is %d\n", x, y);
-
-	return 0;
+void Object::update(){
+	// To be overridden
 }
-*/
+

@@ -2,7 +2,9 @@
 #include<allegro5/allegro5.h>
 #include<stdio.h>
 
-Engine::Engine(int width, int height){
+Engine::Engine(int width, int height)
+	: _width(width)
+	, _height(height){
 	_display = al_create_display(width, height);
 }
 
@@ -10,11 +12,9 @@ Engine::Engine(int width, int height){
 
 void Engine::draw(){
 	for(Collider * collider : _colliders){
-		ALLEGRO_BITMAP * bitmap = collider->makeBitmap();
-		if(bitmap != NULL){
-			al_set_target_bitmap(al_get_backbuffer(_display));
-			al_draw_bitmap(bitmap, collider->position().x() - _camera->position().x(), collider->position().y() + _camera->position().y(), 0);
-		}
+		_camera->draw(collider);
+		al_set_target_bitmap(al_get_backbuffer(_display));
+		al_draw_scaled_bitmap(_camera->bitmap(), 0, 0, _camera->size().x(), _camera->size().y(), 0, 0, _width, _height, 0);
 	}
 }
 

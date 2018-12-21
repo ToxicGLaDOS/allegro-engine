@@ -41,8 +41,8 @@ int main(int argc, char **argv){
 	bool running = true;
 	
 
-	Camera camera = Camera(Vector2(0,0), Vector2(500,500), "main camera");
-	Engine engine = Engine(640, 560);	
+	Camera camera = Camera(Vector2(0,0), Vector2(100, 100), "main camera");
+	Engine engine = Engine(500, 500);	
 	engine.register_camera(&camera);
 	
 

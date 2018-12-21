@@ -15,6 +15,7 @@ class Engine{
 		void register_object(Object * object);
 		void register_collider(Collider * coll);
 	private:
+		int _width, _height;
 		ALLEGRO_DISPLAY * _display; 
 		std::vector<Object*> _objects;
 		std::vector<Collider*> _colliders;

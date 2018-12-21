@@ -1,5 +1,6 @@
 add_library(engine 
 	object.cpp
+	drawable.cpp
 	sprite.cpp
 	collider.cpp
 	engine.h engine.cpp

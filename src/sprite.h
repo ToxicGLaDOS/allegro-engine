@@ -3,17 +3,15 @@
 
 #include<allegro5/allegro.h>
 #include<allegro5/allegro_image.h>
-#include "object.h"
+#include "drawable.h"
 
-class Sprite : public Object{
+class Sprite : public Drawable{
 	public:
-		
-		ALLEGRO_BITMAP * _img;	
-
 		Sprite(int x_pos, int y_pos, std::string name, ALLEGRO_BITMAP* image);		
 		void draw();
-	private:
-		
+		ALLEGRO_BITMAP * makeBitmap();	
+	protected:
+		ALLEGRO_BITMAP * _img;	
 };
 
 

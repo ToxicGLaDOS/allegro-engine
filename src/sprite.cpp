@@ -3,11 +3,15 @@
 #include<allegro5/allegro_image.h>
 
 Sprite::Sprite(int x_pos, int y_pos, std::string name, ALLEGRO_BITMAP * image)
-	: Object(x_pos, y_pos, name)
+	: Drawable(Vector2(x_pos, y_pos), name)
 	, _img(image){}
 
 
 void Sprite::draw(){
 	al_draw_bitmap(_img, _position.x(), _position.y(), 0);
+}
+
+ALLEGRO_BITMAP * Sprite::makeBitmap(){
+	return _img;
 }
 

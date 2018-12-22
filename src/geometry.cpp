@@ -141,7 +141,7 @@ bool rectRectIntersection(Vector2 r1_pos, Vector2 r1_size, Vector2 r2_pos, Vecto
 		left_size = r2_size;
 		right_pos = r1_pos;
 	}
-	if(r1_pos.y() < r2_pos.y()){
+	if(r1_pos.y() > r2_pos.y()){
 		top_pos = r1_pos;
 		top_size = r1_size;
 		bottom_pos = r2_pos;
@@ -152,7 +152,7 @@ bool rectRectIntersection(Vector2 r1_pos, Vector2 r1_size, Vector2 r2_pos, Vecto
 		bottom_pos = r1_pos;
 	}
 
-	if(left_pos.x() + left_size.x() > right_pos.x() && top_pos.y() + top_size.y() > bottom_pos.y()){
+	if(left_pos.x() + left_size.x() > right_pos.x() && top_pos.y() - top_size.y() < bottom_pos.y()){
 		return true;
 	}
 	else{

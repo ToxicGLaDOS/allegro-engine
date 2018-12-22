@@ -10,7 +10,6 @@ class Engine{
 	public:
 		Engine(int width, int height);
 		void update();
-		ALLEGRO_BITMAP* load_png(std::string path);
 		void register_drawable(Drawable * drawable);
 		void register_camera(Camera * camera);
 		void register_object(Object * object);

@@ -8,7 +8,9 @@ add_library(engine
 	geometry.cpp
 	square_collider.cpp
 	circle_collider.cpp
-	vector2.cpp)
+	vector2.cpp
+	image_resource.cpp
+	)
 
 target_link_libraries(engine allegro allegro_image allegro_primitives)
 

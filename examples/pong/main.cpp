@@ -10,6 +10,8 @@
 #include"engine.h"
 #include"camera.h"
 #include"ball_motion.h"
+#include"image_resource.h"
+
 
 #define COLLIDER_DEBUG
 
@@ -70,9 +72,9 @@ int main(int argc, char **argv){
 		return -1;
 	}
 	
-	ALLEGRO_BITMAP * paddle_image = engine.load_png("paddle.png");
-	ALLEGRO_BITMAP * ball_image = engine.load_png("ball.png");
-	
+	ImageResource paddle_image = ImageResource("paddle.png");
+	ImageResource ball_image = ImageResource("ball.png");
+
 	ALLEGRO_EVENT event;
 	bool running = true;
 	double ball_speed = 7;
@@ -110,9 +112,6 @@ int main(int argc, char **argv){
 	p2_collider.attach(&paddle2);
 	ball_collider.attach(&ball);
 	ball_motion.attach(&ball);
-
-	engine.load_png("ball.png");
-
 
 	engine.register_camera(&camera);
 	

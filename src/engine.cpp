@@ -1,10 +1,15 @@
 #include"engine.h"
 #include<allegro5/allegro5.h>
+#include<allegro5/allegro_image.h>
+#include<allegro5/allegro_primitives.h>
 #include<stdio.h>
 
 Engine::Engine(int width, int height)
 	: _width(width)
 	, _height(height){
+	al_init();
+	al_init_image_addon();
+	al_init_primitives_addon();
 	_display = al_create_display(width, height);
 }
 
@@ -38,6 +43,18 @@ void Engine::update(){
 	}
 	checkCollisions();
 	draw();
+}
+
+
+// Expects a relative path from resources
+ALLEGRO_BITMAP* Engine::load_png(std::string path){
+	ALLEGRO_PATH *body = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
+	al_append_path_component(body, "resources");
+	
+	ALLEGRO_PATH *tail = al_create_path(path.c_str());
+	al_join_paths(body, tail);
+	
+	return al_load_bitmap(al_path_cstr(body, '/'));
 }
 
 void Engine::register_camera(Camera * camera){

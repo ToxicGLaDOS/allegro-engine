@@ -49,22 +49,13 @@ void reset_collision(Collider * other){
 
 
 int main(int argc, char **argv){
-	al_init();
-	al_init_image_addon();
-	al_init_primitives_addon();
+	Engine engine = Engine(width, height);	
+	Camera camera = Camera(Vector2(0,0), Vector2(width, height), "main camera");
+
 	bool key[8] = {false, false, false, false};
 	if(!al_install_keyboard()){
 		printf("Keyboard installation failed\n");
 	}
-	
-	ALLEGRO_PATH *path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
-	al_append_path_component(path, "resources");
-	
-	al_set_path_filename(path, "paddle.png");
-	ALLEGRO_BITMAP * paddle_image = al_load_bitmap(al_path_cstr(path, '/'));
-
-	al_set_path_filename(path, "ball.png");
-	ALLEGRO_BITMAP * ball_image = al_load_bitmap(al_path_cstr(path, '/'));
 	
 	ALLEGRO_EVENT_QUEUE * event_queue = al_create_event_queue();
 	ALLEGRO_EVENT_SOURCE * keyboard_source = al_get_keyboard_event_source();
@@ -78,7 +69,10 @@ int main(int argc, char **argv){
 		printf("Keyboard subsystem not installed?\n");
 		return -1;
 	}
-
+	
+	ALLEGRO_BITMAP * paddle_image = engine.load_png("paddle.png");
+	ALLEGRO_BITMAP * ball_image = engine.load_png("ball.png");
+	
 	ALLEGRO_EVENT event;
 	bool running = true;
 	double ball_speed = 7;
@@ -117,8 +111,9 @@ int main(int argc, char **argv){
 	ball_collider.attach(&ball);
 	ball_motion.attach(&ball);
 
-	Camera camera = Camera(Vector2(0,0), Vector2(width, height), "main camera");
-	Engine engine = Engine(width, height);	
+	engine.load_png("ball.png");
+
+
 	engine.register_camera(&camera);
 	
 	engine.register_drawable(&paddle1);

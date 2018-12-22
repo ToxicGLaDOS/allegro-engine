@@ -54,14 +54,19 @@ int main(int argc, char **argv){
 	Vector2 r_size = Vector2(50,50);
 	SquareCollider square = SquareCollider(r_pos, r_size, "square collider");
 	SquareCollider square2 = SquareCollider(Vector2(175, -50), Vector2(50, 50), "square collider2");	
+	SquareCollider rect = SquareCollider(Vector2(50, 50), Vector2(300, 10), "rect collider");
 	engine.register_collider(&square, onCollision);
 	engine.register_collider(&square2, onCollision);
+	engine.register_collider(&rect, onCollision);
+	square.setDraw(true);
+	square2.setDraw(true);
+	rect.setDraw(true);
 
 	Vector2 c_pos = Vector2(100, -100);
 	double radius = 50;
 	CircleCollider circle = CircleCollider(c_pos, radius, "circle collider");
 	engine.register_collider(&circle, onCollision);
-
+	circle.setDraw(true);
 	int speed = 5;
 
 	while(running){

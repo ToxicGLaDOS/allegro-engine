@@ -7,7 +7,7 @@
 
 class Sprite : public Drawable{
 	public:
-		Sprite(int x_pos, int y_pos, std::string name, ALLEGRO_BITMAP* image);		
+		Sprite(Vector2 pos, ALLEGRO_BITMAP* image, std::string name);		
 		void draw();
 		Vector2 topLeft();
 		ALLEGRO_BITMAP * makeBitmap();	

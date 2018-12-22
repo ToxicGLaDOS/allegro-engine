@@ -5,3 +5,11 @@ Collider::Collider(Vector2 pos, std::string name)
 
 
 
+void Collider::setDraw(bool draw){
+	_draw = draw;
+}
+
+bool Collider::draw(){
+	return _draw;
+}
+

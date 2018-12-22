@@ -13,7 +13,6 @@ class CircleCollider : public Collider{
 		CircleCollider(Vector2 position, double radius, std::string name);
 		double radius();
 		bool collides(Collider * other);
-		void draw(ALLEGRO_COLOR color, int width);
 		Vector2 topLeft();
 		ALLEGRO_BITMAP * makeBitmap();
 	private:

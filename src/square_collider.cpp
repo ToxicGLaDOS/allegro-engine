@@ -26,13 +26,6 @@ bool SquareCollider::collides(Collider * other){
 
 }
 
-void SquareCollider::draw(ALLEGRO_COLOR draw_color, int width){
-	al_draw_line(_position.x(),           _position.y(),           _position.x()+_size.x(), _position.y(),           draw_color, width);
-	al_draw_line(_position.x(),           _position.y(),           _position.x(),           _position.y()+_size.y(), draw_color, width);
-	al_draw_line(_position.x()+_size.x(), _position.y(),           _position.x()+_size.x(), _position.y()+_size.y(), draw_color, width);
-	al_draw_line(_position.x(),           _position.y()+_size.y(), _position.x()+_size.x(), _position.y()+_size.y(), draw_color, width);
-}
-
 Vector2 SquareCollider::topLeft(){
 	return _position;
 }

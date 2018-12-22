@@ -13,6 +13,7 @@ class Camera : public Object{
 	public:
 		Camera(Vector2 pos, Vector2 size, std::string name);
 		void draw(Drawable* drawable);
+		void clearBitmap();
 		Vector2 size();
 		ALLEGRO_BITMAP * bitmap();
 	protected:

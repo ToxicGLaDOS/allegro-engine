@@ -15,6 +15,10 @@ Vector2 Object::position(){
 	return _position;
 }
 
+Object* Object::parent(){
+	return _parent;
+}
+
 void Object::move_to(Vector2 position){
 	
 	int x_delta = position.x() - _position.x();
@@ -32,6 +36,15 @@ void Object::move_by(Vector2 by){
 void Object::attach(Object *parent){
 	_parent = parent;
 	parent->_children.push_back(this);
+}
+
+Object* Object::findChildWithName(std::string name){
+	for(Object* child : _children){
+		if(child->name() == name){
+			return child;
+		}
+	}
+	return NULL;
 }
 
 std::string Object::name(){

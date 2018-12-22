@@ -10,7 +10,6 @@ class SquareCollider : public Collider{
 		SquareCollider();
 		SquareCollider(Vector2 position, Vector2 size, std::string name);
 		bool collides(Collider * other);
-		void draw(ALLEGRO_COLOR color, int width);
 		Vector2 topLeft();
 		ALLEGRO_BITMAP * makeBitmap();
 		Vector2 size();

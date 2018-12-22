@@ -2,8 +2,8 @@
 #include<allegro5/allegro.h>
 #include<allegro5/allegro_image.h>
 
-Sprite::Sprite(int x_pos, int y_pos, std::string name, ALLEGRO_BITMAP * image)
-	: Drawable(Vector2(x_pos, y_pos), name)
+Sprite::Sprite(Vector2 pos, ALLEGRO_BITMAP * image, std::string name)
+	: Drawable(pos, name)
 	, _img(image){}
 
 

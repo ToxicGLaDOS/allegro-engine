@@ -34,7 +34,7 @@ void Object::attach(Object *parent){
 	parent->_children.push_back(this);
 }
 
-std::string Object::get_name(){
+std::string Object::name(){
 	return _name;
 }
 

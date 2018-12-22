@@ -14,6 +14,7 @@ class CircleCollider : public Collider{
 		double radius();
 		bool collides(Collider * other);
 		void draw(ALLEGRO_COLOR color, int width);
+		Vector2 topLeft();
 		ALLEGRO_BITMAP * makeBitmap();
 	private:
 		double _radius;

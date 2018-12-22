@@ -14,7 +14,7 @@ class Object{
 		void move_to(Vector2 pos);	
 		void move_by(Vector2 by);
 		void attach(Object * parent);
-		std::string get_name();	
+		std::string name();	
 		std::vector <Object*> get_children();
 		
 		virtual void update();

@@ -12,6 +12,10 @@
 #include"camera.h"
 
 
+void onCollision(Collider* other){
+	printf((other->name() + "\n").c_str());
+}
+
 int main(int argc, char **argv){
 	al_init();
 	al_init_image_addon();
@@ -41,22 +45,22 @@ int main(int argc, char **argv){
 	bool running = true;
 	
 
-	Camera camera = Camera(Vector2(0,0), Vector2(100, 100), "main camera");
+	Camera camera = Camera(Vector2(-100, 300), Vector2(500, 500), "main camera");
 	Engine engine = Engine(500, 500);	
 	engine.register_camera(&camera);
 	
 
-	Vector2 r_pos = Vector2(20,20);
+	Vector2 r_pos = Vector2(0, 0);
 	Vector2 r_size = Vector2(50,50);
 	SquareCollider square = SquareCollider(r_pos, r_size, "square collider");
-	SquareCollider square2 = SquareCollider(Vector2(150, 50), Vector2(50, 50), "square collider2");	
-	engine.register_collider(&square);
-	engine.register_collider(&square2);
+	SquareCollider square2 = SquareCollider(Vector2(175, -50), Vector2(50, 50), "square collider2");	
+	engine.register_collider(&square, onCollision);
+	engine.register_collider(&square2, onCollision);
 
-	Vector2 c_pos = Vector2(100, 100);
+	Vector2 c_pos = Vector2(100, -100);
 	double radius = 50;
 	CircleCollider circle = CircleCollider(c_pos, radius, "circle collider");
-	engine.register_collider(&circle);
+	engine.register_collider(&circle, onCollision);
 
 	int speed = 5;
 
@@ -69,21 +73,20 @@ int main(int argc, char **argv){
 					running = false;
 				}
 				else if(event.keyboard.keycode == ALLEGRO_KEY_DOWN){
-					camera.move_by(Vector2(0, -speed));
+					square.move_by(Vector2(0, -speed));
 				}
 				else if(event.keyboard.keycode == ALLEGRO_KEY_UP){
-					camera.move_by(Vector2(0, speed));
+					square.move_by(Vector2(0, speed));
 				}
 				else if(event.keyboard.keycode == ALLEGRO_KEY_LEFT){
-					camera.move_by(Vector2(-speed, 0));
+					square.move_by(Vector2(-speed, 0));
 				}
-
 				else if(event.keyboard.keycode == ALLEGRO_KEY_RIGHT){
-					camera.move_by(Vector2(speed, 0));
+					square.move_by(Vector2(speed, 0));
 				}
 			} 
 		}
-		engine.draw();
+		engine.update();
 		al_flip_display();
 	}
 	return 0;

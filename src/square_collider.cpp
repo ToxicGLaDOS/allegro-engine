@@ -33,6 +33,10 @@ void SquareCollider::draw(ALLEGRO_COLOR draw_color, int width){
 	al_draw_line(_position.x(),           _position.y()+_size.y(), _position.x()+_size.x(), _position.y()+_size.y(), draw_color, width);
 }
 
+Vector2 SquareCollider::topLeft(){
+	return _position;
+}
+
 ALLEGRO_BITMAP * SquareCollider::makeBitmap(){
 	ALLEGRO_BITMAP * bitmap = al_create_bitmap(_size.x(),_size.y());
 	al_set_target_bitmap(bitmap);

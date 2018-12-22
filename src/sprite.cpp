@@ -11,6 +11,10 @@ void Sprite::draw(){
 	al_draw_bitmap(_img, _position.x(), _position.y(), 0);
 }
 
+Vector2 Sprite::topLeft(){
+	return _position;
+}
+
 ALLEGRO_BITMAP * Sprite::makeBitmap(){
 	return _img;
 }

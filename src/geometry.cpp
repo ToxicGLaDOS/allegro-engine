@@ -40,11 +40,12 @@ int sign(double a){
 		return 0;
 }
 
+
 bool lineCircleIntersection(Vector2 p1, Vector2 p2, Vector2 c_pos, double radius){
 	Vector2 v = p2 - p1;
 	Vector2 pointToCircle = c_pos - p1;
 	Vector2 projection = pointToCircle.projectOnto(v);
-
+	
 	// The sign of the projection vector must match the sign of the vector v
 	// this is because if it doesn't it means the vector is going in the opposite direction (off of the line segment)	
 	if(sign(v.x()) == sign(projection.x()) && sign(v.y()) == sign(projection.y())){	
@@ -53,13 +54,13 @@ bool lineCircleIntersection(Vector2 p1, Vector2 p2, Vector2 c_pos, double radius
 		if(pointInCircle(p1 + projection, c_pos, radius) && distance(Vector2(0,0), projection) < distance(p1, p2)){
 			#ifdef DEBUG
 			// Draw line
-			al_draw_line(p1.x(), p1.y(), p2.x(), p2.y(), al_map_rgb(200,0,0), 3);
+			al_draw_line(p1.x(), -p1.y(), p2.x(), -p2.y(), al_map_rgb(200,0,0), 3);
 			
 			// Draw point to circle
-			al_draw_line(p1.x(), p1.y(), (p1+pointToCircle).x(), (p1+pointToCircle).y(), al_map_rgb(200, 0, 200), 1);
+			al_draw_line(p1.x(), -p1.y(), (p1+pointToCircle).x(), -(p1+pointToCircle).y(), al_map_rgb(200, 0, 200), 1);
 
 			// Draw projection
-			al_draw_line(p1.x(), p1.y(), (p1+projection).x(), (p1+projection).y(), al_map_rgb(0, 0, 0), 1);	
+			al_draw_line(p1.x(), -p1.y(), (p1+projection).x(), -(p1+projection).y(), al_map_rgb(0, 0, 0), 1);	
 			#endif
 			return true;
 		}
@@ -67,38 +68,38 @@ bool lineCircleIntersection(Vector2 p1, Vector2 p2, Vector2 c_pos, double radius
 	if(pointInCircle(p1, c_pos, radius)){
 		#ifdef DEBUG
 		// Draw line
-		al_draw_line(p1.x(), p1.y(), p2.x(), p2.y(), al_map_rgb(0,0,200), 3);
+		al_draw_line(p1.x(), -p1.y(), p2.x(), -p2.y(), al_map_rgb(0,0,200), 3);
 		
 		// Draw point to circle
-		al_draw_line(p1.x(), p1.y(), (p1+pointToCircle).x(), (p1+pointToCircle).y(), al_map_rgb(200, 0, 200), 1);
+		al_draw_line(p1.x(), -p1.y(), (p1+pointToCircle).x(), -(p1+pointToCircle).y(), al_map_rgb(200, 0, 200), 1);
 
 		// Draw projection
-		al_draw_line(p1.x(), p1.y(), (p1+projection).x(), (p1+projection).y(), al_map_rgb(0, 0, 0), 1);
+		al_draw_line(p1.x(), -p1.y(), (p1+projection).x(), -(p1+projection).y(), al_map_rgb(0, 0, 0), 1);
 		#endif
 		return true;		
 	}
 	else if(pointInCircle(p2, c_pos,radius)){
 		#ifdef DEBUG
 		// Draw line
-		al_draw_line(p1.x(), p1.y(), p2.x(), p2.y(), al_map_rgb(0,0,200), 3);
+		al_draw_line(p1.x(), -p1.y(), p2.x(), -p2.y(), al_map_rgb(0,0,200), 3);
 		
 		// Draw point to circle
-		al_draw_line(p1.x(), p1.y(), (p1+pointToCircle).x(), (p1+pointToCircle).y(), al_map_rgb(200, 0, 200), 1);
+		al_draw_line(p1.x(), -p1.y(), (p1+pointToCircle).x(), -(p1+pointToCircle).y(), al_map_rgb(200, 0, 200), 1);
 
 		// Draw projection
-		al_draw_line(p1.x(), p1.y(), (p1+projection).x(), (p1+projection).y(), al_map_rgb(0, 0, 0), 1);
+		al_draw_line(p1.x(), -p1.y(), (p1+projection).x(), -(p1+projection).y(), al_map_rgb(0, 0, 0), 1);
 		#endif
 		return true;
 	}
 	#ifdef DEBUG
 	// Draw line
-	al_draw_line(p1.x(), p1.y(), p2.x(), p2.y(), al_map_rgb(0,200,0), 3);
+	al_draw_line(p1.x(), -p1.y(), p2.x(), -p2.y(), al_map_rgb(0,200,0), 3);
 	
 	// Draw point to circle
-	al_draw_line(p1.x(), p1.y(), (p1+pointToCircle).x(), (p1+pointToCircle).y(), al_map_rgb(200, 0, 200), 1);
+	al_draw_line(p1.x(), -p1.y(), (p1+pointToCircle).x(), -(p1+pointToCircle).y(), al_map_rgb(200, 0, 200), 1);
 
 	// Draw projection
-	al_draw_line(p1.x(), p1.y(), (p1+projection).x(), (p1+projection).y(), al_map_rgb(0, 0, 0), 1);
+	al_draw_line(p1.x(), -p1.y(), (p1+projection).x(), -(p1+projection).y(), al_map_rgb(0, 0, 0), 1);
 	#endif
 
 
@@ -107,9 +108,9 @@ bool lineCircleIntersection(Vector2 p1, Vector2 p2, Vector2 c_pos, double radius
 
 bool rectCircleIntersection(Vector2 r_pos, Vector2 r_size, Vector2 c_pos, double radius){
 	
-	Vector2 a = r_pos;
-	Vector2 b = Vector2(r_pos.x(),              r_pos.y() + r_size.y());
-	Vector2 c = Vector2(r_pos.x() + r_size.x(), r_pos.y() + r_size.y());
+	Vector2 a = Vector2(r_pos.x(),              r_pos.y());
+	Vector2 b = Vector2(r_pos.x(),              r_pos.y() - r_size.y());
+	Vector2 c = Vector2(r_pos.x() + r_size.x(), r_pos.y() - r_size.y());
 	Vector2 d = Vector2(r_pos.x() + r_size.x(), r_pos.y());
 
 

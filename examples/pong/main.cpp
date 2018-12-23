@@ -55,27 +55,10 @@ int main(int argc, char **argv){
 	Camera camera = Camera(Vector2(0,0), Vector2(width, height), "main camera");
 
 	bool key[8] = {false, false, false, false};
-	if(!al_install_keyboard()){
-		printf("Keyboard installation failed\n");
-	}
-	
-	ALLEGRO_EVENT_QUEUE * event_queue = al_create_event_queue();
-	ALLEGRO_EVENT_SOURCE * keyboard_source = al_get_keyboard_event_source();
-	al_register_event_source(event_queue, keyboard_source);
-	
-	if(event_queue == NULL){
-		printf("Queue creation error\n");
-		return -1;
-	}
-	if(keyboard_source == NULL){
-		printf("Keyboard subsystem not installed?\n");
-		return -1;
-	}
 	
 	ImageResource paddle_image = ImageResource("paddle.png");
 	ImageResource ball_image = ImageResource("ball.png");
 
-	ALLEGRO_EVENT event;
 	bool running = true;
 	double ball_speed = 7;
 
@@ -137,57 +120,30 @@ int main(int argc, char **argv){
 
 	while(running){
 		al_clear_to_color(background);
-		while(!al_is_event_queue_empty(event_queue)){
-			if (al_get_next_event(event_queue, &event)){
-				if(event.type == ALLEGRO_EVENT_KEY_DOWN){
-					if(event.keyboard.keycode == ALLEGRO_KEY_ESCAPE){
-						running = false;
-					}
-					else if(event.keyboard.keycode == ALLEGRO_KEY_UP){
-						key[KEY_UP] = true;
-					}
-					else if(event.keyboard.keycode == ALLEGRO_KEY_DOWN){
-						key[KEY_DOWN] = true;
-					}
-					else if(event.keyboard.keycode == ALLEGRO_KEY_W){
-						key[KEY_W] = true;
-					}
-					else if(event.keyboard.keycode == ALLEGRO_KEY_S){
-						key[KEY_S] = true;
-					}
-				}
-				else if(event.type == ALLEGRO_EVENT_KEY_UP){
-					if(event.keyboard.keycode == ALLEGRO_KEY_UP){
-						key[KEY_UP] = false;
-					}
-					else if(event.keyboard.keycode == ALLEGRO_KEY_DOWN){
-						key[KEY_DOWN] = false;
-					}
-					else if(event.keyboard.keycode == ALLEGRO_KEY_W){
-						key[KEY_W] = false;
-					}
-					else if(event.keyboard.keycode == ALLEGRO_KEY_S){
-						key[KEY_S] = false;
-					}
-				}	
-			}
-		}
-		if(key[KEY_UP]){
+		Input input = *engine.input();
+		
+		if(input.keyHeld("up")){
 			paddle2.move_by(Vector2(0,speed));
 		}
-		else if(key[KEY_DOWN]){
+		else if(input.keyHeld("down")){
 			paddle2.move_by(Vector2(0,-speed));
 		}
-		if(key[KEY_W]){
+		if(input.keyHeld("w")){
 			paddle1.move_by(Vector2(0, speed));
 		}
-		else if(key[KEY_S]){
+		else if(input.keyHeld("s")){
 			paddle1.move_by(Vector2(0, -speed));
 		}
 
 
 		engine.update();
-		al_flip_display();
+		if(input.keyHeld("escape")){
+			engine.destroy();
+			running = false;
+		}
+	
+
+
 	}
 	return 0;
 

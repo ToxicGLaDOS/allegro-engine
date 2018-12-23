@@ -3,6 +3,7 @@
 
 #include"collider.h"
 #include"camera.h"
+#include"input.h"
 #include<vector>
 
 
@@ -14,9 +15,12 @@ class Engine{
 		void register_camera(Camera * camera);
 		void register_object(Object * object);
 		void register_collider(Collider * coll, void (*onCollision)(Collider * other));
+		void destroy();
+		Input* input();
 	private:
 		int _width, _height;
 		ALLEGRO_DISPLAY * _display; 
+		Input* _input;
 		std::vector<Object*> _objects;
 		std::vector<Collider*> _colliders;
 		std::vector<Drawable*> _drawables;

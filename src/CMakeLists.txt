@@ -9,6 +9,7 @@ add_library(engine
 	square_collider.cpp
 	circle_collider.cpp
 	vector2.cpp
+	input.cpp
 	image_resource.cpp
 	)
 

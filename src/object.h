@@ -6,6 +6,9 @@
 #include<string>
 #include "vector2.h"
 
+// Forward declaration of engine
+class Engine;
+
 class Object{
 	public:
 		Object(int x_pos, int y_pos, std::string name);
@@ -18,9 +21,10 @@ class Object{
 		Object* parent();
 		std::string name();
 		std::vector <Object*> get_children();
-		
+		void setEngine(Engine* engine);
 		virtual void update();
 	protected:
+		Engine* _engine;
 		Vector2  _position;
 		std::vector <Object*> _children;
 		Object* _parent;

@@ -38,6 +38,10 @@ void Object::attach(Object *parent){
 	parent->_children.push_back(this);
 }
 
+void Object::setEngine(Engine* engine){
+	_engine = engine;
+}
+
 Object* Object::findChildWithName(std::string name){
 	for(Object* child : _children){
 		if(child->name() == name){

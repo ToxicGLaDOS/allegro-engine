@@ -115,11 +115,8 @@ int main(int argc, char **argv){
 	engine.register_collider(&bottom_wall, flipdy_collision);
 
 	int speed = 5;
-	
-	ALLEGRO_COLOR background = al_map_rgb(0,0,0);
-
+	camera.setBackgroundColor(50,50,50);
 	while(running){
-		al_clear_to_color(background);
 		Input input = *engine.input();
 		
 		if(input.keyHeld("up")){

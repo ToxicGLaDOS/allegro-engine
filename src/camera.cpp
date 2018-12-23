@@ -19,6 +19,28 @@ void Camera::draw(Drawable* drawable){
 
 }
 
+void Camera::update(){
+	al_clear_to_color(_background);
+}
+
+void Camera::setBackgroundColor(int r, int g, int b){
+	// TODO: bounds checking on r g b
+	_background = al_map_rgb(r,g,b);
+}
+
+unsigned char* Camera::background(){
+	unsigned char r,g,b;
+	al_unmap_rgb(_background, &r, &g, &b);
+	unsigned char* array = new unsigned char(r);
+	array++;
+	*array = g;
+	array++;
+	*array = b;
+	array--;
+	array--;
+	return array;
+}
+
 void Camera::clearBitmap(){
 	al_set_target_bitmap(_bitmap);
 	al_clear_to_color(al_map_rgba(0,0,0,0));

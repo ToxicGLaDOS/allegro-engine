@@ -40,6 +40,7 @@ void Engine::draw(){
 
 void Engine::update(){
 	_input->update();
+	_camera->update();
 	for(Object * object : _objects){
 		object->update();
 	}

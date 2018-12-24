@@ -15,6 +15,7 @@ Engine::Engine(int width, int height)
 }
 
 Engine::~Engine(){
+	_input->destroy();
 	delete _input;
 }
 
@@ -97,11 +98,6 @@ void Engine::checkCollisions(){
 }
 
 void Engine::destroyDisplay(){
-	// TODO: Clean up everything else
-	// bitmaps from ImageResources
-	// camera's bitmap
-	// any allegro cleanup
-	// deallocate pointers
 	al_destroy_display(_display);	
 }
 

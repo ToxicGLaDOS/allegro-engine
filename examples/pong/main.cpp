@@ -53,8 +53,6 @@ void reset_collision(Collider * other){
 int main(int argc, char **argv){
 	Engine engine = Engine(width, height);	
 	Camera camera = Camera(Vector2(0,0), Vector2(width, height), "main camera");
-
-	bool key[8] = {false, false, false, false};
 	
 	ImageResource paddle_image = ImageResource("paddle.png");
 	ImageResource ball_image = ImageResource("ball.png");
@@ -136,11 +134,12 @@ int main(int argc, char **argv){
 		engine.update();
 		if(input.keyHeld("escape")){
 			engine.destroyDisplay();
+			paddle_image.destroy();
+			ball_image.destroy();
 			running = false;
+		
 		}
 	
-
-
 	}
 	return 0;
 

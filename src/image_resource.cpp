@@ -6,8 +6,10 @@ ImageResource::ImageResource(const std::string& path){
 	
 	ALLEGRO_PATH *tail = al_create_path(path.c_str());
 	al_join_paths(body, tail);
-	
+		
 	_bitmap = al_load_bitmap(al_path_cstr(body, '/'));
+	al_destroy_path(body);
+	al_destroy_path(tail);
 }
 
 ImageResource::~ImageResource(){

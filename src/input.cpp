@@ -35,6 +35,8 @@ void Input::update(){
 void Input::destroy(){
 	al_unregister_event_source(_event_queue, _keyboard_source);
 	al_destroy_event_queue(_event_queue);
+	// This could cause a problem if multiple inputs are created
+	al_uninstall_keyboard();
 }
 
 void Input::clear(){

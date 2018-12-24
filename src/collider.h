@@ -9,10 +9,10 @@
 
 class Collider : public Drawable{
 	public:
-		Collider(Vector2 pos, std::string name);
-		virtual bool collides(Collider * other) = 0;
+		Collider(const Vector2& pos, const std::string& name);
+		virtual bool collides(Collider * other) const = 0;
 		void setDraw(bool draw);
-		bool draw();
+		bool draw() const;
 	protected:
 		bool _draw = false;
 };

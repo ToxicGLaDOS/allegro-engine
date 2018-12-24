@@ -1,7 +1,7 @@
 #include"drawable.h"
 
 
-Drawable::Drawable(Vector2 pos, std::string name)
+Drawable::Drawable(const Vector2& pos, const std::string& name)
 	:Object(pos, name){}
 
 

@@ -40,19 +40,19 @@ void Input::clear(){
 	}
 }
 
-bool Input::keyPressed(std::string key){
+bool Input::keyPressed(const std::string& key) const{
 	return _pressed[stringToKey(key)];
 }
 
-bool Input::keyReleased(std::string key){
+bool Input::keyReleased(const std::string& key) const{
 	return _released[stringToKey(key)];
 }
 
-bool Input::keyHeld(std::string key){
+bool Input::keyHeld(const std::string& key) const{
 	return _held[stringToKey(key)];
 }
 
-int Input::stringToKey(std::string keyName){
+int Input::stringToKey(const std::string& keyName) const{
 	//TODO: Error check for bad keyNames
 	return _stringKeyMap.at(keyName);		
 }

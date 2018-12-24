@@ -2,7 +2,7 @@
 #include<string>
 #include<stdio.h>
 
-Camera::Camera(Vector2 pos, Vector2 size, std::string name)
+Camera::Camera(const Vector2& pos, const Vector2& size, const std::string& name)
 	:Object(pos, name)
 	, _size(size){
 	
@@ -28,7 +28,7 @@ void Camera::setBackgroundColor(int r, int g, int b){
 	_background = al_map_rgb(r,g,b);
 }
 
-unsigned char* Camera::background(){
+unsigned char* Camera::background() const{
 	unsigned char r,g,b;
 	al_unmap_rgb(_background, &r, &g, &b);
 	unsigned char* array = new unsigned char(r);
@@ -46,11 +46,11 @@ void Camera::clearBitmap(){
 	al_clear_to_color(al_map_rgba(0,0,0,0));
 }
 
-Vector2 Camera::size(){
+Vector2 Camera::size() const{
 	return _size;
 }
 
-ALLEGRO_BITMAP * Camera::bitmap(){
+ALLEGRO_BITMAP * Camera::bitmap() const{
 	return _bitmap;
 }
 

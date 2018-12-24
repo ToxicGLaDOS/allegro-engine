@@ -10,11 +10,11 @@ class CircleCollider : public Collider{
 
 
 	public:
-		CircleCollider(Vector2 position, double radius, std::string name);
-		double radius();
-		bool collides(Collider * other);
-		Vector2 topLeft();
-		ALLEGRO_BITMAP * makeBitmap();
+		CircleCollider(const Vector2& position, double radius, const std::string& name);
+		double radius() const;
+		bool collides(Collider * other) const;
+		Vector2 topLeft() const;
+		ALLEGRO_BITMAP * makeBitmap() const;
 	private:
 		double _radius;
 

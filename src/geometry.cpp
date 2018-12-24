@@ -5,7 +5,7 @@
 #include<allegro5/allegro_image.h>
 #include<allegro5/allegro_primitives.h>
 
-bool pointInRect(Vector2 point, Vector2 rect_pos, Vector2 rect_size){
+bool pointInRect(const Vector2& point, const Vector2& rect_pos, const Vector2& rect_size){
 	if(rect_pos.x() < point.x() 
 	&& rect_pos.x() + rect_size.x() > point.x() 
 	&& rect_pos.y() < point.y() 
@@ -17,11 +17,11 @@ bool pointInRect(Vector2 point, Vector2 rect_pos, Vector2 rect_size){
 	}
 }
 
-double distance(Vector2 v1, Vector2 v2){
+double distance(const Vector2& v1, const Vector2& v2){
 	return std::sqrt(pow(v2.x() - v1.x(), 2) + pow(v2.y() - v1.y(), 2));
 }
 
-bool pointInCircle(Vector2 point, Vector2 c_pos, double radius){
+bool pointInCircle(const Vector2& point, const Vector2& c_pos, double radius){
 	if(distance(point, c_pos) < radius){
 		return true;
 	}
@@ -41,7 +41,7 @@ int sign(double a){
 }
 
 
-bool lineCircleIntersection(Vector2 p1, Vector2 p2, Vector2 c_pos, double radius){
+bool lineCircleIntersection(const Vector2& p1, const Vector2& p2, const Vector2& c_pos, double radius){
 	Vector2 v = p2 - p1;
 	Vector2 pointToCircle = c_pos - p1;
 	Vector2 projection = pointToCircle.projectOnto(v);
@@ -106,7 +106,7 @@ bool lineCircleIntersection(Vector2 p1, Vector2 p2, Vector2 c_pos, double radius
 	return false;
 }
 
-bool rectCircleIntersection(Vector2 r_pos, Vector2 r_size, Vector2 c_pos, double radius){
+bool rectCircleIntersection(const Vector2& r_pos, const Vector2& r_size, const Vector2& c_pos, double radius){
 	
 	Vector2 a = Vector2(r_pos.x(),              r_pos.y());
 	Vector2 b = Vector2(r_pos.x(),              r_pos.y() - r_size.y());
@@ -127,7 +127,7 @@ bool rectCircleIntersection(Vector2 r_pos, Vector2 r_size, Vector2 c_pos, double
 	return false;
 }
 
-bool rectRectIntersection(Vector2 r1_pos, Vector2 r1_size, Vector2 r2_pos, Vector2 r2_size){
+bool rectRectIntersection(const Vector2& r1_pos, const Vector2& r1_size, const Vector2& r2_pos, const Vector2& r2_size){
 	Vector2 left_pos, right_pos, top_pos, bottom_pos, left_size, top_size;
 
 
@@ -160,7 +160,7 @@ bool rectRectIntersection(Vector2 r1_pos, Vector2 r1_size, Vector2 r2_pos, Vecto
 	}
 } 
 
-bool circleCircleIntersection(Vector2 c1_pos, double r1, Vector2 c2_pos, double r2){
+bool circleCircleIntersection(const Vector2& c1_pos, double r1, const Vector2& c2_pos, double r2){
 	if(distance(c1_pos, c2_pos) < r1 + r2){
 		return true;
 	}

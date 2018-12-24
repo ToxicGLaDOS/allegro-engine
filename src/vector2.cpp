@@ -15,11 +15,11 @@ void Vector2::operator=(const Vector2 & other){
 	_y = other.y();
 }
 
-Vector2 Vector2::operator-(const Vector2 & other){
+Vector2 Vector2::operator-(const Vector2 & other) const{
 	return Vector2(_x - other.x(), _y - other.y());
 }
 
-Vector2 Vector2::operator+(const Vector2 & other){
+Vector2 Vector2::operator+(const Vector2 & other) const{
 	return Vector2(_x + other.x(), _y + other.y());
 }
 
@@ -32,11 +32,11 @@ Vector2 operator*(const double& lhs, const Vector2& rhs){
 	return rhs * lhs;
 }
 
-const double Vector2::dot(Vector2 other) const{
+const double Vector2::dot(const Vector2& other) const{
 	return _x * other.x() + _y * other.y();
 }
 
-const Vector2 Vector2::projectOnto(Vector2 other) const{
+const Vector2 Vector2::projectOnto(const Vector2& other) const{
 	double dotProd = dot(other);
 	return (dotProd / pow(distance(Vector2(0,0),other),2)) * other;
 }

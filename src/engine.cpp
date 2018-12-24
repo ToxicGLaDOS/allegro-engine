@@ -102,6 +102,6 @@ void Engine::destroy(){
 	al_destroy_display(_display);	
 }
 
-Input* Engine::input(){
+Input* Engine::input() const{
 	return _input;
 }

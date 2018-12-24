@@ -11,9 +11,9 @@ class Input{
 		Input();
 		void update();
 		void clear();
-		bool keyPressed(std::string key);
-		bool keyReleased(std::string key);
-		bool keyHeld(std::string key);
+		bool keyPressed(const std::string& key) const;
+		bool keyReleased(const std::string& key) const;
+		bool keyHeld(const std::string& key) const;
 	private:
 		
 		bool _pressed[ALLEGRO_KEY_MAX] = {false};
@@ -23,7 +23,7 @@ class Input{
 		ALLEGRO_EVENT_SOURCE * _keyboard_source; 
 	
 		// Returns an allegro key code
-		int stringToKey(std::string keyName);
+		int stringToKey(const std::string& keyName) const;
 		const std::map<std::string, int> _stringKeyMap = {
 		{ "a", ALLEGRO_KEY_A },
 		{ "b", ALLEGRO_KEY_B },

@@ -16,7 +16,7 @@ class Engine{
 		void register_object(Object * object);
 		void register_collider(Collider * coll, void (*onCollision)(Collider * other));
 		void destroy();
-		Input* input();
+		Input* input() const;
 	private:
 		int _width, _height;
 		ALLEGRO_DISPLAY * _display; 

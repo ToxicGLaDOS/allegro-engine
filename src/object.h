@@ -11,16 +11,16 @@ class Engine;
 
 class Object{
 	public:
-		Object(int x_pos, int y_pos, std::string name);
-		Object(Vector2 pos, std::string name);
-		Vector2 position();
-		void move_to(Vector2 pos);	
-		void move_by(Vector2 by);
-		void attach(Object * parent);
-		Object* findChildWithName(std::string name);
-		Object* parent();
-		std::string name();
-		std::vector <Object*> get_children();
+		Object(int x_pos, int y_pos, const std::string& name);
+		Object(const Vector2& pos, const std::string& name);
+		Vector2 position() const;
+		void move_to(const Vector2& pos);	
+		void move_by(const Vector2& by);
+		void attach(Object* parent);
+		Object* findChildWithName(const std::string& name) const;
+		Object* parent() const;
+		std::string name() const;
+		std::vector <Object*> children() const;
 		void setEngine(Engine* engine);
 		virtual void update();
 	protected:
@@ -30,7 +30,7 @@ class Object{
 		Object* _parent;
 		std::string _name;	
 	private:
-		void propagate_movement(Vector2 by);	
+		void propagate_movement(const Vector2& by);	
 };
 
 #endif

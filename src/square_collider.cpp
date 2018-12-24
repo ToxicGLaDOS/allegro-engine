@@ -8,11 +8,11 @@ SquareCollider::SquareCollider()
 	: Collider(Vector2(0,0), "NULL")
 	,_size(Vector2(0,0)){}
 
-SquareCollider::SquareCollider(Vector2 position, Vector2 size, std::string name)
+SquareCollider::SquareCollider(const Vector2& position, const Vector2& size, const std::string& name)
 	: Collider(position, name)
 	, _size(size){}
 
-bool SquareCollider::collides(Collider * other){	
+bool SquareCollider::collides(Collider * other) const{	
 	SquareCollider* square_ptr = dynamic_cast<SquareCollider*>(other);
 	CircleCollider* circle_ptr = dynamic_cast<CircleCollider*>(other);	
 	if(square_ptr != NULL){
@@ -26,11 +26,11 @@ bool SquareCollider::collides(Collider * other){
 
 }
 
-Vector2 SquareCollider::topLeft(){
+Vector2 SquareCollider::topLeft() const{
 	return _position;
 }
 
-ALLEGRO_BITMAP * SquareCollider::makeBitmap(){
+ALLEGRO_BITMAP * SquareCollider::makeBitmap() const{
 	ALLEGRO_BITMAP * bitmap = al_create_bitmap(_size.x(),_size.y());
 	al_set_target_bitmap(bitmap);
 	al_clear_to_color(al_map_rgba(0,0,0,0));
@@ -46,7 +46,7 @@ ALLEGRO_BITMAP * SquareCollider::makeBitmap(){
 
 }
 
-Vector2 SquareCollider::size(){
+Vector2 SquareCollider::size() const{
 	return _size;
 }
 

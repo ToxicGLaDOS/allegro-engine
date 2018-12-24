@@ -9,9 +9,9 @@
 
 class Drawable : public Object{
 	public:
-		Drawable(Vector2 pos, std::string name);
-		virtual ALLEGRO_BITMAP * makeBitmap() = 0;
-		virtual Vector2 topLeft() = 0;
+		Drawable(const Vector2& pos, const std::string& name);
+		virtual ALLEGRO_BITMAP * makeBitmap() const = 0;
+		virtual Vector2 topLeft() const = 0;
 };
 
 

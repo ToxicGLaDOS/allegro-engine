@@ -11,14 +11,14 @@
 class Camera : public Object{
 
 	public:
-		Camera(Vector2 pos, Vector2 size, std::string name);
+		Camera(const Vector2& pos, const Vector2& size, const std::string& name);
 		void draw(Drawable* drawable);
 		void clearBitmap();
 		void setBackgroundColor(int r, int g, int b);
-		unsigned char* background();
+		unsigned char* background() const;
 		void update();
-		Vector2 size();
-		ALLEGRO_BITMAP * bitmap();
+		Vector2 size() const;
+		ALLEGRO_BITMAP * bitmap() const;
 	protected:
 		ALLEGRO_COLOR _background = al_map_rgb(0,0,0);
 		ALLEGRO_BITMAP * _bitmap;

@@ -1,6 +1,6 @@
 #include"image_resource.h"
 
-ImageResource::ImageResource(std::string path){
+ImageResource::ImageResource(const std::string& path){
 	ALLEGRO_PATH *body = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
 	al_append_path_component(body, "resources");
 	
@@ -11,7 +11,7 @@ ImageResource::ImageResource(std::string path){
 }
 
 
-ALLEGRO_BITMAP* ImageResource::bitmap(){
+ALLEGRO_BITMAP* ImageResource::bitmap() const{
 	return _bitmap;
 }
 

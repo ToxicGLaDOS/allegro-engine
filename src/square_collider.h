@@ -9,6 +9,8 @@ class SquareCollider : public Collider{
 	public:
 		SquareCollider();
 		SquareCollider(const Vector2& position, const Vector2& size, const std::string& name);
+		SquareCollider(const SquareCollider& other);
+		~SquareCollider();
 		bool collides(Collider * other) const;
 		Vector2 topLeft() const;
 		ALLEGRO_BITMAP * makeBitmap() const;
@@ -16,6 +18,7 @@ class SquareCollider : public Collider{
 
 	private:
 		void initBitmap();
+		
 		ALLEGRO_BITMAP* _bitmap;
 		bool _draw = false;
 		Vector2  _size;

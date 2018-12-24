@@ -14,6 +14,9 @@ Engine::Engine(int width, int height)
 	_input = new Input();
 }
 
+Engine::~Engine(){
+	delete _input;
+}
 
 
 void Engine::draw(){
@@ -93,7 +96,7 @@ void Engine::checkCollisions(){
 	}
 }
 
-void Engine::destroy(){
+void Engine::destroyDisplay(){
 	// TODO: Clean up everything else
 	// bitmaps from ImageResources
 	// camera's bitmap

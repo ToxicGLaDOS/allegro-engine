@@ -1,7 +1,6 @@
 #include"input.h"
 
 
-
 Input::Input(){
 	if(!al_install_keyboard()){
 		// TODO: Raise error
@@ -12,6 +11,9 @@ Input::Input(){
 	_keyboard_source = al_get_keyboard_event_source();
 	al_register_event_source(_event_queue, _keyboard_source);
 	
+}
+
+Input::~Input(){
 }
 
 void Input::update(){
@@ -28,6 +30,11 @@ void Input::update(){
 			}
 		}
 	}
+}
+
+void Input::destroy(){
+	al_unregister_event_source(_event_queue, _keyboard_source);
+	al_destroy_event_queue(_event_queue);
 }
 
 void Input::clear(){

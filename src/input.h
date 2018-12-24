@@ -9,7 +9,9 @@
 class Input{
 	public:
 		Input();
+		~Input();
 		void update();
+		void destroy();
 		void clear();
 		bool keyPressed(const std::string& key) const;
 		bool keyReleased(const std::string& key) const;

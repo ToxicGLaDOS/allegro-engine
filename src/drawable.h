@@ -12,6 +12,7 @@ class Drawable : public Object{
 		Drawable(const Vector2& pos, const std::string& name);
 		virtual ALLEGRO_BITMAP * makeBitmap() const = 0;
 		virtual Vector2 topLeft() const = 0;
+	protected:
 };
 
 

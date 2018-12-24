@@ -10,12 +10,13 @@
 class Engine{
 	public:
 		Engine(int width, int height);
+		~Engine();
 		void update();
 		void register_drawable(Drawable * drawable);
 		void register_camera(Camera * camera);
 		void register_object(Object * object);
 		void register_collider(Collider * coll, void (*onCollision)(Collider * other));
-		void destroy();
+		void destroyDisplay();
 		Input* input() const;
 	private:
 		int _width, _height;

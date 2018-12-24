@@ -11,11 +11,10 @@ Camera::Camera(const Vector2& pos, const Vector2& size, const std::string& name)
 }
 
 Camera::~Camera(){
-	
+	al_destroy_bitmap(_bitmap);	
 }
 
 void Camera::draw(Drawable* drawable){
-	// TODO: pretty sure this is a huge memory leak
 	ALLEGRO_BITMAP* drawable_bitmap = drawable->makeBitmap();
 	al_set_target_bitmap(_bitmap);
 	// Negate the y because positive y is down on the screen 

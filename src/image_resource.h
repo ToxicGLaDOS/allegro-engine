@@ -8,6 +8,8 @@
 class ImageResource{
 	public:
 		ImageResource(const std::string& path);
+		~ImageResource();
+		void destroy();
 		ALLEGRO_BITMAP* bitmap() const;
 	private:
 		ALLEGRO_BITMAP* _bitmap;

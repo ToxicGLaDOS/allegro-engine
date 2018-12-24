@@ -11,6 +11,7 @@ class Engine;
 
 class Object{
 	public:
+		// TODO: Detach childen in destructor or destroy children with it
 		Object(int x_pos, int y_pos, const std::string& name);
 		Object(const Vector2& pos, const std::string& name);
 		Vector2 position() const;
@@ -28,7 +29,7 @@ class Object{
 		Vector2  _position;
 		std::vector <Object*> _children;
 		Object* _parent;
-		std::string _name;	
+		std::string _name;
 	private:
 		void propagate_movement(const Vector2& by);	
 };

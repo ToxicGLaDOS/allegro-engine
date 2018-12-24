@@ -70,6 +70,7 @@ int main(int argc, char **argv){
 	Sprite paddle2 = Sprite(Vector2(width - 50, 0), paddle_image, "Player2 paddle");
 	Sprite ball = Sprite(ball_start, ball_image, "Ball");
 
+
 	SquareCollider p1_collider = SquareCollider(Vector2(0,0), paddle_size, "P1 collider");
 	SquareCollider p2_collider = SquareCollider(Vector2(width - 50, 0), paddle_size, "P2 collider");
 	SquareCollider ball_collider = SquareCollider(ball_start, ball_size, "Ball collider");
@@ -134,7 +135,7 @@ int main(int argc, char **argv){
 
 		engine.update();
 		if(input.keyHeld("escape")){
-			engine.destroy();
+			engine.destroyDisplay();
 			running = false;
 		}
 	

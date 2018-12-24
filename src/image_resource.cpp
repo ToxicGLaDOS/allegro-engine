@@ -10,6 +10,12 @@ ImageResource::ImageResource(const std::string& path){
 	_bitmap = al_load_bitmap(al_path_cstr(body, '/'));
 }
 
+ImageResource::~ImageResource(){
+}
+
+void ImageResource::destroy(){
+	al_destroy_bitmap(_bitmap);
+}
 
 ALLEGRO_BITMAP* ImageResource::bitmap() const{
 	return _bitmap;

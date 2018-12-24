@@ -1,14 +1,19 @@
 #include"engine.h"
 #include<allegro5/allegro5.h>
 #include<allegro5/allegro_image.h>
+#include<allegro5/allegro_audio.h>
+#include<allegro5/allegro_acodec.h>
 #include<allegro5/allegro_primitives.h>
 #include<stdio.h>
 
 Engine::Engine(int width, int height)
 	: _width(width)
 	, _height(height){
+	// TODO: Check for errors on these initalizations
 	al_init();
 	al_init_image_addon();
+	al_install_audio();
+	al_init_acodec_addon();
 	al_init_primitives_addon();
 	_display = al_create_display(width, height);
 	_input = new Input();

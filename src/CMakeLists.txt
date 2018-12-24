@@ -11,9 +11,10 @@ add_library(engine
 	vector2.cpp
 	input.cpp
 	image_resource.cpp
+	audio_resource.cpp
 	)
 
-target_link_libraries(engine allegro allegro_image allegro_primitives)
+target_link_libraries(engine allegro allegro_image allegro_primitives allegro_audio allegro_acodec)
 
 target_include_directories(engine PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>"

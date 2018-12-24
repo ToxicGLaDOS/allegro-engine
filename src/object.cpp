@@ -34,9 +34,12 @@ void Object::move_by(const Vector2& by){
 }
 
 void Object::attach(Object* parent){
+	// TODO: make sure we don't have a circular parent structure
 	_parent = parent;
 	parent->_children.push_back(this);
 }
+
+// TODO: make a detach function or accept NULL to attach function to detach
 
 void Object::setEngine(Engine* engine){
 	_engine = engine;

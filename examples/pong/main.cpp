@@ -8,7 +8,7 @@
 #include"camera.h"
 #include"ball_motion.h"
 #include"image_resource.h"
-
+#include"audio_resource.h"
 
 #define COLLIDER_DEBUG
 
@@ -53,6 +53,10 @@ int main(int argc, char **argv){
 	
 	ImageResource paddle_image = ImageResource("paddle.png");
 	ImageResource ball_image = ImageResource("ball.png");
+	
+	AudioResource bounce_sound = AudioResource("ball_hit.wav");
+	AudioResource goal_sound = AudioResource("goal.wav");
+
 
 	bool running = true;
 	double ball_speed = 7;

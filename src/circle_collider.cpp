@@ -9,8 +9,16 @@
 
 CircleCollider::CircleCollider(const Vector2& pos, double radius, const std::string& name)
 	: Collider(pos, name),
-	_radius(radius){}
+	_radius(radius){
+	initBitmap();	
+}
 
+void CircleCollider::initBitmap(){
+	_bitmap = al_create_bitmap(_radius*2, _radius*2);
+	al_set_target_bitmap(_bitmap);
+	al_clear_to_color(al_map_rgba(0,0,0,0));
+	al_draw_circle(_radius, _radius, _radius, al_map_rgb(0, 200, 0), 1);
+}
 
 bool CircleCollider::collides(Collider * other) const{
 	CircleCollider* circle_ptr = dynamic_cast<CircleCollider*>(other);
@@ -24,7 +32,8 @@ bool CircleCollider::collides(Collider * other) const{
 		SquareCollider square = *square_ptr;
 		return rectCircleIntersection(square.position(), square.size(), _position, _radius);
 	}
-
+	delete circle_ptr;
+	delete square_ptr;
 }
 
 Vector2 CircleCollider::topLeft() const{
@@ -32,13 +41,7 @@ Vector2 CircleCollider::topLeft() const{
 }
 
 ALLEGRO_BITMAP * CircleCollider::makeBitmap() const{
-	ALLEGRO_BITMAP * bitmap = al_create_bitmap(_radius*2, _radius*2);
-	al_set_target_bitmap(bitmap);
-	al_clear_to_color(al_map_rgba(0,0,0,0));
-	al_draw_circle(_radius, _radius, _radius, al_map_rgb(0, 200, 0), 1);
-	return bitmap;
-
-
+	return _bitmap;
 }
 
 double CircleCollider::radius() const{

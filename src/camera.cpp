@@ -1,6 +1,7 @@
 #include"camera.h"
 #include<string>
 #include<stdio.h>
+#include<memory>
 
 Camera::Camera(const Vector2& pos, const Vector2& size, const std::string& name)
 	:Object(pos, name)
@@ -9,14 +10,17 @@ Camera::Camera(const Vector2& pos, const Vector2& size, const std::string& name)
 	_bitmap = al_create_bitmap(_size.x(), _size.y());	
 }
 
+Camera::~Camera(){
+	
+}
 
 void Camera::draw(Drawable* drawable){
-	ALLEGRO_BITMAP * drawable_bitmap = drawable->makeBitmap();
+	// TODO: pretty sure this is a huge memory leak
+	ALLEGRO_BITMAP* drawable_bitmap = drawable->makeBitmap();
 	al_set_target_bitmap(_bitmap);
 	// Negate the y because positive y is down on the screen 
 	// but we want a normal coordinate space where up is positive y
 	al_draw_bitmap(drawable_bitmap, drawable->topLeft().x() - _position.x(), -drawable->topLeft().y() + _position.y(), 0);
-
 }
 
 void Camera::update(){

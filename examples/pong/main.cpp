@@ -88,7 +88,6 @@ int main(int argc, char **argv){
 	bottom_wall.setDraw(true);
 	#endif
 
-	
 	BallMotion ball_motion = BallMotion(ball_speed, ball_speed, "Ball motion");
 
 	p1_collider.attach(&paddle1);

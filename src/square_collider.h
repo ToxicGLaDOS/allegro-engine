@@ -15,6 +15,8 @@ class SquareCollider : public Collider{
 		Vector2 size() const;
 
 	private:
+		void initBitmap();
+		ALLEGRO_BITMAP* _bitmap;
 		bool _draw = false;
 		Vector2  _size;
 };

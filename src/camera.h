@@ -15,7 +15,7 @@ class Camera : public Object{
 		~Camera();
 		void draw(Drawable* drawable);
 		void clearBitmap();
-		void setBackgroundColor(int r, int g, int b);
+		void setBackgroundColor(unsigned char r, unsigned char g, unsigned char b);
 		unsigned char* background() const;
 		void update();
 		Vector2 size() const;

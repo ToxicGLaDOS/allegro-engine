@@ -11,9 +11,9 @@ class Engine;
 
 class Object{
 	public:
-		// TODO: Detach childen in destructor or destroy children with it
 		Object(int x_pos, int y_pos, const std::string& name);
 		Object(const Vector2& pos, const std::string& name);
+		~Object();
 		Vector2 position() const;
 		void move_to(const Vector2& pos);	
 		void move_by(const Vector2& by);

@@ -11,6 +11,12 @@ Object::Object(const Vector2& position, const std::string& name)
 	: _name(name)
 	, _position(position){}
 
+Object::~Object(){
+	for(Object * obj : _children){
+		obj->attach(NULL);
+	}
+}
+
 Vector2 Object::position() const{
 	return _position;
 }
@@ -35,11 +41,15 @@ void Object::move_by(const Vector2& by){
 
 void Object::attach(Object* parent){
 	// TODO: make sure we don't have a circular parent structure
-	_parent = parent;
-	parent->_children.push_back(this);
-}
+	if(parent == NULL){
+		_parent = nullptr;
+	}
+	else{
+		_parent = parent;
+		parent->_children.push_back(this);
 
-// TODO: make a detach function or accept NULL to attach function to detach
+	}
+}
 
 void Object::setEngine(Engine* engine){
 	_engine = engine;

@@ -5,7 +5,6 @@
 
 
 AudioResource::AudioResource(std::string path){
-	// TODO: error check to make sure these things load properly
 	ALLEGRO_PATH *body = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
 	al_append_path_component(body, "resources");
 	

@@ -10,7 +10,6 @@
 Engine::Engine(int width, int height)
 	: _width(width)
 	, _height(height){
-	// TODO: Check for errors on these initalizations
 	if(!al_init()){
 		throw AllegroInitException("Allegro failed to initalize!");
 	}

@@ -1,10 +1,10 @@
 #include"input.h"
-
+#include"exceptions.h"
+#include<stdexcept>
 
 Input::Input(){
 	if(!al_install_keyboard()){
-		// TODO: Raise error
-		printf("Keyboard installation failed\n");
+		throw AllegroInitException("Keyboard failed to install!");
 	}
 	
 	_event_queue = al_create_event_queue();
@@ -60,7 +60,12 @@ bool Input::keyHeld(const std::string& key) const{
 }
 
 int Input::stringToKey(const std::string& keyName) const{
-	//TODO: Error check for bad keyNames
+	if(_stringKeyMap.find(keyName) == _stringKeyMap.end()){
+		std::string error = "Key name \"";
+		error.append(keyName);
+		error.append("\" not found");
+		throw std::invalid_argument(error);
+	}
 	return _stringKeyMap.at(keyName);		
 }
 

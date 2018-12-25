@@ -26,8 +26,7 @@ void Camera::update(){
 	al_clear_to_color(_background);
 }
 
-void Camera::setBackgroundColor(int r, int g, int b){
-	// TODO: bounds checking on r g b
+void Camera::setBackgroundColor(unsigned char r, unsigned char g, unsigned char b){
 	_background = al_map_rgb(r,g,b);
 }
 

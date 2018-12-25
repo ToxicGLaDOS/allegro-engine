@@ -76,9 +76,8 @@ void Engine::register_drawable(Drawable * drawable){
 	drawable->setEngine(this);
 }
 
-void Engine::register_collider(Collider * collider, void (*onCollision)(Collider * other)){
+void Engine::register_collider(Collider * collider){
 	_colliders.push_back(collider);
-	_collider_callbacks.push_back(onCollision);
 	collider->setEngine(this);
 }
 
@@ -91,15 +90,19 @@ void Engine::checkCollisions(){
 			Collider * collider2 = _colliders[j];
 			// If we get a collision we call both callbacks
 			if(collider1->collides(collider2)){	
-				if(_collider_callbacks[i] != NULL){
-					(*_collider_callbacks[i])(collider2);				
-				}
-				if(_collider_callbacks[j] != NULL){
-					(*_collider_callbacks[j])(collider1);
-				}
+				collider1->onCollision(collider2);
+				collider2->onCollision(collider1);
 			}
 		}
 	}
+}
+
+int Engine::screenWidth() const{
+	return _width;
+}
+
+int Engine::screenHeight() const{
+	return _height;
 }
 
 void Engine::destroyDisplay(){

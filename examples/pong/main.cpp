@@ -9,6 +9,11 @@
 #include"ball_motion.h"
 #include"image_resource.h"
 #include"audio_resource.h"
+#include"horz_wall_collider.h"
+#include"vert_wall_collider.h"
+#include"paddle_collider.h"
+
+
 
 #define COLLIDER_DEBUG
 
@@ -17,33 +22,6 @@ int width = 1000, height = 1000;
 enum MYKEYS{
 	KEY_UP, KEY_DOWN, KEY_W, KEY_S 
 };
-
-
-void flipdx_collision(Collider * other){
-	if(other->name() == "Ball collider"){
-		Object* sibling = other->parent()->findChildWithName("Ball motion");
-		if(sibling != NULL){
-			BallMotion * ball_motion = (BallMotion*)sibling;
-			ball_motion->flipDx();
-		}
-	}
-}
-
-void flipdy_collision(Collider * other){
-	if(other->name() == "Ball collider"){
-		Object* sibling = other->parent()->findChildWithName("Ball motion");
-		if(sibling != NULL){
-			BallMotion * ball_motion = (BallMotion*)sibling;
-			ball_motion->flipDy();
-		}
-	}
-}
-
-void reset_collision(Collider * other){
-	if(other->name() == "Ball collider"){
-		other->parent()->move_to(Vector2(width/2,-height/2));
-	}
-}
 
 
 
@@ -70,13 +48,13 @@ int main(int argc, char **argv){
 	Sprite ball = Sprite(ball_start, ball_image, "Ball");
 
 
-	SquareCollider p1_collider = SquareCollider(Vector2(0,0), paddle_size, "P1 collider");
-	SquareCollider p2_collider = SquareCollider(Vector2(width - 50, 0), paddle_size, "P2 collider");
+	PaddleCollider p1_collider = PaddleCollider(Vector2(0,0), paddle_size, "P1 collider");
+	PaddleCollider p2_collider = PaddleCollider(Vector2(width - 50, 0), paddle_size, "P2 collider");
 	SquareCollider ball_collider = SquareCollider(ball_start, ball_size, "Ball collider");
-	SquareCollider left_wall = SquareCollider(Vector2(-10,0), Vector2(10, height), "Left wall collider");
-	SquareCollider right_wall = SquareCollider(Vector2(width,0), Vector2(10, height), "Right wall collider");
-	SquareCollider top_wall = SquareCollider(Vector2(0, 10), Vector2(width, 10), "Top wall collider");
-	SquareCollider bottom_wall = SquareCollider(Vector2(0, -height), Vector2(width, 10), "Bottom wall collider");
+	VertWallCollider left_wall = VertWallCollider(Vector2(-10,0), Vector2(10, height), "Left wall collider");
+	VertWallCollider right_wall = VertWallCollider(Vector2(width,0), Vector2(10, height), "Right wall collider");
+	HorzWallCollider top_wall = HorzWallCollider(Vector2(0, 10), Vector2(width, 10), "Top wall collider");
+	HorzWallCollider bottom_wall = HorzWallCollider(Vector2(0, -height), Vector2(width, 10), "Bottom wall collider");
 
 	#ifdef COLLIDER_DEBUG
 	p1_collider.setDraw(true);
@@ -103,15 +81,15 @@ int main(int argc, char **argv){
 	
 	engine.register_object(&ball_motion);
 	
-	engine.register_collider(&ball_collider, NULL);
-	engine.register_collider(&p1_collider, flipdx_collision);
-	engine.register_collider(&p2_collider, flipdx_collision);
+	engine.register_collider(&ball_collider);
+	engine.register_collider(&p1_collider);
+	engine.register_collider(&p2_collider);
 
-	engine.register_collider(&left_wall,   reset_collision);
-	engine.register_collider(&right_wall,  reset_collision);
+	engine.register_collider(&left_wall);
+	engine.register_collider(&right_wall);
 	
-	engine.register_collider(&top_wall,    flipdy_collision);
-	engine.register_collider(&bottom_wall, flipdy_collision);
+	engine.register_collider(&top_wall);
+	engine.register_collider(&bottom_wall);
 
 	int speed = 5;
 	camera.setBackgroundColor(50,50,50);

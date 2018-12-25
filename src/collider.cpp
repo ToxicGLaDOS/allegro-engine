@@ -13,3 +13,7 @@ bool Collider::draw() const{
 	return _draw;
 }
 
+void Collider::onCollision(Collider* other){
+	// To be overridden
+}
+

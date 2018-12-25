@@ -12,6 +12,7 @@ add_library(engine
 	input.cpp
 	image_resource.cpp
 	audio_resource.cpp
+	exceptions.cpp
 	)
 
 target_link_libraries(engine allegro allegro_image allegro_primitives allegro_audio allegro_acodec)

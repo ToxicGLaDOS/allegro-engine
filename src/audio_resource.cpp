@@ -1,4 +1,5 @@
 #include "audio_resource.h"
+#include "exceptions.h"
 #include<allegro5/allegro_audio.h>
 
 
@@ -12,12 +13,35 @@ AudioResource::AudioResource(std::string path){
 	al_join_paths(body, tail);
 		
 	_sample = al_load_sample(al_path_cstr(body, '/'));
+	if(_sample == NULL){
+		std::string err = std::string("Audio with path: ");
+		err.append(al_path_cstr(body, '/'));
+		err.append(" failed to load");
+		throw ResourceLoadException(err);
+	}
 	_voice = al_create_voice(44100, ALLEGRO_AUDIO_DEPTH_INT16, ALLEGRO_CHANNEL_CONF_2);
+	if(_voice == NULL){
+		throw AllegroCreationException("Allegro voice failed to be created");
+	}
 	_mixer = al_create_mixer(44100, ALLEGRO_AUDIO_DEPTH_FLOAT32, ALLEGRO_CHANNEL_CONF_2);
-	al_attach_mixer_to_voice(_mixer, _voice);
+	if(_mixer == NULL){
+		throw AllegroCreationException("Allegro mixer failed to be created");
+	}
+	if(!al_attach_mixer_to_voice(_mixer, _voice)){
+		throw AudioAttachException("Failed to attah mixer to voice");
+	}
 	_sampleInstance = al_create_sample_instance(NULL);
-	al_set_sample(_sampleInstance, _sample);
-	al_attach_sample_instance_to_mixer(_sampleInstance, _mixer);
+	if(_sampleInstance == NULL){
+		throw AllegroCreationException("Allegro sample instance failed to be create");
+	}
+	if(!al_set_sample(_sampleInstance, _sample)){
+		// This might not be the most sensical exception to throw
+		// but I don't want to clutter things with too many kinds of exceptions
+		throw AudioAttachException("Failed to attach sample instance to sample");
+	}
+	if(!al_attach_sample_instance_to_mixer(_sampleInstance, _mixer)){
+		throw AudioAttachException("Failed to attach sample instance to mixer");
+	}
 	al_set_sample_instance_playmode(_sampleInstance, ALLEGRO_PLAYMODE_ONCE);
 	
 	

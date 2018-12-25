@@ -1,4 +1,5 @@
 #include"engine.h"
+#include"exceptions.h"
 #include<allegro5/allegro5.h>
 #include<allegro5/allegro_image.h>
 #include<allegro5/allegro_audio.h>
@@ -10,11 +11,21 @@ Engine::Engine(int width, int height)
 	: _width(width)
 	, _height(height){
 	// TODO: Check for errors on these initalizations
-	al_init();
-	al_init_image_addon();
-	al_install_audio();
-	al_init_acodec_addon();
-	al_init_primitives_addon();
+	if(!al_init()){
+		throw AllegroInitException("Allegro failed to initalize!");
+	}
+	if(!al_init_image_addon()){
+		throw AllegroInitException("Allegro image addon failed to initalize!");
+	}
+	if(!al_install_audio()){
+		throw AllegroInitException("Allegro audio failed to install!");
+	}
+	if(!al_init_acodec_addon()){
+		throw AllegroInitException("Allegro acodec addon failed to initalize!");
+	}
+	if(!al_init_primitives_addon()){
+		throw AllegroInitException("Allegro primitives addon failed to initalize!");
+	}
 	_display = al_create_display(width, height);
 	_input = new Input();
 }

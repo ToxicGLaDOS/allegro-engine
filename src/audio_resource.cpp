@@ -19,11 +19,11 @@ AudioResource::AudioResource(std::string path){
 		err.append(" failed to load");
 		throw ResourceLoadException(err);
 	}
-	_voice = al_create_voice(44100, ALLEGRO_AUDIO_DEPTH_INT16, ALLEGRO_CHANNEL_CONF_2);
+	_voice = al_create_voice(_sampleRate, ALLEGRO_AUDIO_DEPTH_INT16, ALLEGRO_CHANNEL_CONF_2);
 	if(_voice == NULL){
 		throw AllegroCreationException("Allegro voice failed to be created");
 	}
-	_mixer = al_create_mixer(44100, ALLEGRO_AUDIO_DEPTH_FLOAT32, ALLEGRO_CHANNEL_CONF_2);
+	_mixer = al_create_mixer(_sampleRate, ALLEGRO_AUDIO_DEPTH_FLOAT32, ALLEGRO_CHANNEL_CONF_2);
 	if(_mixer == NULL){
 		throw AllegroCreationException("Allegro mixer failed to be created");
 	}
@@ -56,9 +56,19 @@ void AudioResource::play(){
 	al_play_sample_instance(_sampleInstance);
 }
 
-void AudioResource::playFrom(unsigned int position){
-	// TODO: make this by percentage or by seconds in
-	// currently i have no idea what position represents
+void AudioResource::playFromSeconds(unsigned int seconds){
+	unsigned int position = _sampleRate * seconds;
+	al_set_sample_instance_position(_sampleInstance, position);
+	al_play_sample_instance(_sampleInstance);
+}
+
+void AudioResource::playFromPercentage(float percentage){
+	if(percentage > 1)
+		percentage = 1;
+	else if(percentage < 0)
+		percentage = 0;
+	unsigned int length = al_get_sample_instance_length(_sampleInstance);
+	int position = length * percentage;
 	al_set_sample_instance_position(_sampleInstance, position);
 	al_play_sample_instance(_sampleInstance);
 }

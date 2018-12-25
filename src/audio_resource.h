@@ -10,8 +10,9 @@ class AudioResource{
 		AudioResource(std::string path);
 		
 		void play();
-		void playFrom(unsigned int position);
-		
+		void playFromSeconds(unsigned int position);
+		void playFromPercentage(float percentage);
+
 		void setVolume(float volume);
 		void setPan(float pan);
 		void setSpeed(float speed);
@@ -32,6 +33,7 @@ class AudioResource{
 		// A thing that can mix together with other mixers
 		ALLEGRO_MIXER* _mixer;
 
+		unsigned int _sampleRate = 44100;
 		float _volume = 1, _pan = 0, _speed = 1;
 		bool _loop = false;
 

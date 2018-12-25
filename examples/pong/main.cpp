@@ -35,6 +35,7 @@ int main(int argc, char **argv){
 	AudioResource bounce_sound = AudioResource("ball_hit.wav");
 	AudioResource goal_sound = AudioResource("goal.wav");
 
+	bounce_sound.playFromPercentage(.5);
 
 	bool running = true;
 	double ball_speed = 7;

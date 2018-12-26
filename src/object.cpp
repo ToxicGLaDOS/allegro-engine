@@ -48,9 +48,17 @@ void Object::attach(Object* parent){
 		// If we are already the parent of the thing we are attaching to we throw an error
 		// Even if we are grandparents or great grandparents, etc. this still will throw an error
 		// We do this because if there is a cycle in the parent structure any movement will propagate cyclicly forever
-		if(isParentOf(parent))
-			throw AttachToChildException("Can't attach a parent to one of it's children!");
-
+		if(isParentOf(parent)){
+			std::string error = "Failed to attach object with name ";
+			error.append(_name);
+			error.append(" to object with name ");
+			error.append(parent->name());
+			error.append(" because ");
+			error.append(_name);
+			error.append(" is a parent of ");
+			error.append(parent->name());
+			throw AttachToChildException(error);
+		}
 		_parent = parent;
 		parent->_children.push_back(this);
 

@@ -1,6 +1,7 @@
 #include "object.h"
 #include<iostream>
 #include "vector2.h"
+#include "exceptions.h"
 
 
 Object::Object(int x_pos, int y_pos, const std::string& name)
@@ -40,15 +41,33 @@ void Object::move_by(const Vector2& by){
 }
 
 void Object::attach(Object* parent){
-	// TODO: make sure we don't have a circular parent structure
 	if(parent == NULL){
 		_parent = nullptr;
 	}
 	else{
+		// If we are already the parent of the thing we are attaching to we throw an error
+		// Even if we are grandparents or great grandparents, etc. this still will throw an error
+		// We do this because if there is a cycle in the parent structure any movement will propagate cyclicly forever
+		if(isParentOf(parent))
+			throw AttachToChildException("Can't attach a parent to one of it's children!");
+
 		_parent = parent;
 		parent->_children.push_back(this);
 
 	}
+}
+
+bool Object::isParentOf(Object* child){
+	Object* parent = child->parent();
+	while(parent != NULL){
+		if(parent == this){
+			return true;
+		}
+		else{
+			parent = parent->parent();
+		}
+	}
+	return false;
 }
 
 void Object::setEngine(Engine* engine){

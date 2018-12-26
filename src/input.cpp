@@ -60,6 +60,8 @@ bool Input::keyHeld(const std::string& key) const{
 }
 
 int Input::stringToKey(const std::string& keyName) const{
+	// TODO: Check if this can be made more efficent by saving the iterator
+	// when it does find it and then use that instead of at?
 	if(_stringKeyMap.find(keyName) == _stringKeyMap.end()){
 		std::string error = "Key name \"";
 		error.append(keyName);

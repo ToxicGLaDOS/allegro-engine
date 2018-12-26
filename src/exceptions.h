@@ -26,4 +26,9 @@ class AudioAttachException : public std::runtime_error{
 
 };
 
+class AttachToChildException : public std::runtime_error{
+	public:
+		AttachToChildException(std::string error);
+};
+
 #endif

@@ -18,6 +18,7 @@ class Object{
 		void move_to(const Vector2& pos);	
 		void move_by(const Vector2& by);
 		void attach(Object* parent);
+		bool isParentOf(Object* child);
 		Object* findChildWithName(const std::string& name) const;
 		Object* parent() const;
 		std::string name() const;
@@ -25,10 +26,10 @@ class Object{
 		void setEngine(Engine* engine);
 		virtual void update();
 	protected:
-		Engine* _engine;
+		Engine* _engine = NULL;
 		Vector2  _position;
 		std::vector <Object*> _children;
-		Object* _parent;
+		Object* _parent = NULL;
 		std::string _name;
 	private:
 		void propagate_movement(const Vector2& by);	

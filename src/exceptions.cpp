@@ -15,3 +15,9 @@ AllegroCreationException::AllegroCreationException(std::string error)
 
 AudioAttachException::AudioAttachException(std::string error)
 	: std::runtime_error(error){}
+
+AttachToChildException::AttachToChildException(std::string error)
+	: std::runtime_error(error){}
+
+
+

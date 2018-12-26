@@ -1,11 +1,7 @@
 #include<stdio.h>
 #include<string>
-#include"object.h"
-#include"sprite.h"
-#include"square_collider.h"
-#include"circle_collider.h"
 #include"engine.h"
-#include"camera.h"
+#include"sprite.h"
 #include"ball_motion.h"
 #include"image_resource.h"
 #include"audio_resource.h"
@@ -18,11 +14,6 @@
 #define COLLIDER_DEBUG
 
 int width = 1000, height = 1000;
-
-enum MYKEYS{
-	KEY_UP, KEY_DOWN, KEY_W, KEY_S 
-};
-
 
 
 int main(int argc, char **argv){

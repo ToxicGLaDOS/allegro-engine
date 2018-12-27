@@ -9,7 +9,8 @@
 #include"horz_wall_collider.h"
 #include"vert_wall_collider.h"
 #include"paddle_collider.h"
-
+#include"p1_paddle.h"
+#include"p2_paddle.h"
 
 
 #define COLLIDER_DEBUG
@@ -18,7 +19,7 @@ int width = 1000, height = 1000;
 
 
 int main(int argc, char **argv){
-	Engine engine = Engine(width, height);	
+	Engine engine = Engine(width, height, 120);	
 	Camera camera = Camera(Vector2(0,0), Vector2(width, height), "main camera");
 	
 	ImageResource paddle_image = ImageResource("paddle.png");
@@ -37,8 +38,8 @@ int main(int argc, char **argv){
 	Vector2 ball_size = Vector2(50, 50);
 	Vector2 paddle_size = Vector2(50, 250);
 
-	Sprite paddle1 = Sprite(Vector2(0, 0), paddle_image, "Player1 paddle");	
-	Sprite paddle2 = Sprite(Vector2(width - 50, 0), paddle_image, "Player2 paddle");
+	P1Paddle paddle1 = P1Paddle(Vector2(0, 0), 5,  paddle_image, "Player1 paddle");
+	P2Paddle paddle2 = P2Paddle(Vector2(width - 50, 0), 5, paddle_image, "Player2 paddle");
 	Sprite ball = Sprite(ball_start, ball_image, "Ball");
 
 
@@ -88,35 +89,14 @@ int main(int argc, char **argv){
 	engine.register_collider(&top_wall);
 	engine.register_collider(&bottom_wall);
 
-	int speed = 5;
 	camera.setBackgroundColor(50,50,50);
-	while(running){
-		Input input = *engine.input();
-		
-		if(input.keyHeld("up")){
-			paddle2.move_by(Vector2(0,speed));
-		}
-		else if(input.keyHeld("down")){
-			paddle2.move_by(Vector2(0,-speed));
-		}
-		if(input.keyHeld("w")){
-			paddle1.move_by(Vector2(0, speed));
-		}
-		else if(input.keyHeld("s")){
-			paddle1.move_by(Vector2(0, -speed));
-		}
-
-
-		engine.update();
-		if(input.keyHeld("escape")){
-			engine.destroyDisplay();
-			paddle_image.destroy();
-			ball_image.destroy();
-			running = false;
-		
-		}
 	
-	}
+	engine.mainLoop();
+
+
+	paddle_image.destroy();
+	ball_image.destroy();
+
 	return 0;
 
 }

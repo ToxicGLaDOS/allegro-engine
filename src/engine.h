@@ -9,20 +9,19 @@
 
 class Engine{
 	public:
-		Engine(int width, int height);
+		Engine(int width, int height, unsigned int maxFrameRate);
 		~Engine();
-		void update();
+		void mainLoop();
 		void register_drawable(Drawable * drawable);
 		void register_camera(Camera * camera);
 		void register_object(Object * object);
 		void register_collider(Collider * coll);
-		
+
 		int screenWidth() const;
 		int screenHeight() const;
 
-		void destroyDisplay();
 		Input* input() const;
-	private:
+	protected:
 		int _width, _height;
 		ALLEGRO_DISPLAY * _display; 
 		Input* _input;
@@ -30,10 +29,14 @@ class Engine{
 		std::vector<Collider*> _colliders;
 		std::vector<Drawable*> _drawables;
 		Camera * _camera;
-		
+		unsigned int _maxFrameRate;
+		bool _running = true;	
+
 		void draw();
 		void checkCollisions();
-
+		void cleanup();
+		void update();
+		void destroyDisplay();
 
 };
 

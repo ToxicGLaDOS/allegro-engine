@@ -9,9 +9,10 @@
 #include<allegro5/allegro_ttf.h>
 #include<stdio.h>
 
-Engine::Engine(int width, int height)
+Engine::Engine(int width, int height, unsigned int maxFrameRate)
 	: _width(width)
-	, _height(height){
+	, _height(height)
+	, _maxFrameRate(maxFrameRate){
 	if(!al_init()){
 		throw AllegroInitException("Allegro failed to initalize!");
 	}
@@ -43,6 +44,27 @@ Engine::~Engine(){
 	delete _input;
 }
 
+void Engine::mainLoop(){
+	ALLEGRO_TIMER* timer = al_create_timer(1.000 / _maxFrameRate);
+	ALLEGRO_EVENT_QUEUE* timerQueue = al_create_event_queue();
+	al_register_event_source(timerQueue, al_get_timer_event_source(timer));
+	al_start_timer(timer);
+
+	ALLEGRO_EVENT event;
+	while(_running){
+		al_wait_for_event(timerQueue, &event);
+		switch(event.type){
+			case ALLEGRO_EVENT_TIMER:
+				update();
+				if(_input->keyPressed("escape")){	
+					_running = false;
+					destroyDisplay();
+				}
+				cleanup();
+				break;
+		}
+	}
+}
 
 void Engine::draw(){
 	// Clear camera bitmap
@@ -72,13 +94,19 @@ void Engine::update(){
 	for(Object * object : _objects){
 		object->update();
 	}
+	for(Drawable* drawable : _drawables){
+		drawable->update();
+	}
 	checkCollisions();
 	draw();
 
-	_input->clear();
 	al_flip_display();
 }
 
+
+void Engine::cleanup(){
+	_input->clear();
+}
 
 void Engine::register_camera(Camera * camera){
 	_camera = camera;

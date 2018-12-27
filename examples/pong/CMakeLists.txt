@@ -1,6 +1,6 @@
 set(build_name pong)
 
-add_executable(${build_name} main.cpp ball_motion.cpp paddle_collider.cpp horz_wall_collider.cpp vert_wall_collider.cpp)
+add_executable(${build_name} main.cpp ball_motion.cpp paddle_collider.cpp horz_wall_collider.cpp vert_wall_collider.cpp p1_paddle.cpp p2_paddle.cpp)
 
 target_link_libraries(${build_name} engine)
 

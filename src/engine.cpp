@@ -58,6 +58,8 @@ void Engine::mainLoop(){
 				update();
 				if(_input->keyPressed("escape")){	
 					_running = false;
+					al_destroy_timer(timer);
+					al_destroy_event_queue(timerQueue);
 					destroyDisplay();
 				}
 				cleanup();

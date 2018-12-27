@@ -2,8 +2,9 @@
 
 #include"ball_motion.h"
 
-PaddleCollider::PaddleCollider(const Vector2& pos, const Vector2& size, const std::string& name)
-	: SquareCollider(pos, size, name){} 
+PaddleCollider::PaddleCollider(const Vector2& pos, const Vector2& size, const std::string& name, AudioResource* hitSound)
+	: SquareCollider(pos, size, name)
+	, _hitSound(hitSound){} 
 
 
 void PaddleCollider::onCollision(Collider* other){
@@ -12,6 +13,7 @@ void PaddleCollider::onCollision(Collider* other){
 		if(sibling != NULL){
 			BallMotion * ball_motion = (BallMotion*)sibling;
 			ball_motion->flipDx();
+			_hitSound->play();
 		}
 	}
 }

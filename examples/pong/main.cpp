@@ -26,8 +26,6 @@ int main(int argc, char **argv){
 	AudioResource bounce_sound = AudioResource("ball_hit.wav");
 	AudioResource goal_sound = AudioResource("goal.wav");
 
-	bounce_sound.playFromPercentage(.5);
-
 	bool running = true;
 	double ball_speed = 7;
 
@@ -40,11 +38,11 @@ int main(int argc, char **argv){
 	Sprite ball = Sprite(ball_start, ball_image, "Ball");
 
 
-	PaddleCollider p1_collider = PaddleCollider(Vector2(0,0), paddle_size, "P1 collider");
-	PaddleCollider p2_collider = PaddleCollider(Vector2(width - 50, 0), paddle_size, "P2 collider");
+	PaddleCollider p1_collider = PaddleCollider(Vector2(0,0), paddle_size, "P1 collider", &bounce_sound);
+	PaddleCollider p2_collider = PaddleCollider(Vector2(width - 50, 0), paddle_size, "P2 collider", &bounce_sound);
 	SquareCollider ball_collider = SquareCollider(ball_start, ball_size, "Ball collider");
-	VertWallCollider left_wall = VertWallCollider(Vector2(-10,0), Vector2(10, height), "Left wall collider");
-	VertWallCollider right_wall = VertWallCollider(Vector2(width,0), Vector2(10, height), "Right wall collider");
+	VertWallCollider left_wall = VertWallCollider(Vector2(-10,0), Vector2(10, height), "Left wall collider", &goal_sound);
+	VertWallCollider right_wall = VertWallCollider(Vector2(width,0), Vector2(10, height), "Right wall collider", &goal_sound);
 	HorzWallCollider top_wall = HorzWallCollider(Vector2(0, 10), Vector2(width, 10), "Top wall collider");
 	HorzWallCollider bottom_wall = HorzWallCollider(Vector2(0, -height), Vector2(width, 10), "Bottom wall collider");
 

@@ -5,6 +5,8 @@
 #include<allegro5/allegro_audio.h>
 #include<allegro5/allegro_acodec.h>
 #include<allegro5/allegro_primitives.h>
+#include<allegro5/allegro_font.h>
+#include<allegro5/allegro_ttf.h>
 #include<stdio.h>
 
 Engine::Engine(int width, int height)
@@ -25,6 +27,13 @@ Engine::Engine(int width, int height)
 	if(!al_init_primitives_addon()){
 		throw AllegroInitException("Allegro primitives addon failed to initalize!");
 	}
+	if(!al_init_font_addon()){
+		throw AllegroInitException("Allegro font addon failed to initalize!");
+	}
+	if(!al_init_ttf_addon()){
+		throw AllegroInitException("Allegro ttf addon failed to initalize!");
+	}
+	
 	_display = al_create_display(width, height);
 	_input = new Input();
 }
@@ -48,7 +57,7 @@ void Engine::draw(){
 			_camera->draw(collider);
 		}
 	}
-
+	_camera->drawGUI();
 
 
 	// Set target to the display

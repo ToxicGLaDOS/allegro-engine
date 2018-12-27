@@ -16,7 +16,7 @@ class CircleCollider : public Collider{
 		double radius() const;
 		bool collides(Collider * other) const;
 		Vector2 topLeft() const;
-		ALLEGRO_BITMAP * makeBitmap() const;
+		ALLEGRO_BITMAP * getBitmap() const;
 	private:
 		void initBitmap();
 

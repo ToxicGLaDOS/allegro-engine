@@ -4,6 +4,7 @@
 #include"object.h"
 #include"vector2.h"
 #include"drawable.h"
+#include<vector>
 #include<string>
 #include<allegro5/allegro5.h>
 
@@ -14,6 +15,8 @@ class Camera : public Object{
 		Camera(const Vector2& pos, const Vector2& size, const std::string& name);
 		~Camera();
 		void draw(Drawable* drawable);
+		void drawGUI();
+		void attachGUI(Drawable* drawable);
 		void clearBitmap();
 		void setBackgroundColor(unsigned char r, unsigned char g, unsigned char b);
 		unsigned char* background() const;
@@ -24,7 +27,7 @@ class Camera : public Object{
 		ALLEGRO_COLOR _background = al_map_rgb(0,0,0);
 		ALLEGRO_BITMAP * _bitmap;
 		Vector2 _size;
-
+		std::vector<Drawable*> _guis;
 
 };
 

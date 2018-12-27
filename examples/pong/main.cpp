@@ -2,6 +2,7 @@
 #include<string>
 #include"engine.h"
 #include"sprite.h"
+#include"text.h"
 #include"ball_motion.h"
 #include"image_resource.h"
 #include"audio_resource.h"
@@ -26,6 +27,9 @@ int main(int argc, char **argv){
 	AudioResource bounce_sound = AudioResource("ball_hit.wav");
 	AudioResource goal_sound = AudioResource("goal.wav");
 
+	Text p1_score = Text(Vector2(width/4,0)  , "0", "nakula.ttf", 100, 255, 255, 255, "P1 score text");
+	Text p2_score = Text(Vector2(width*3/4,0), "0", "nakula.ttf", 100, 255, 255, 255, "P2 score text");
+
 	bool running = true;
 	double ball_speed = 7;
 
@@ -41,8 +45,8 @@ int main(int argc, char **argv){
 	PaddleCollider p1_collider = PaddleCollider(Vector2(0,0), paddle_size, "P1 collider", &bounce_sound);
 	PaddleCollider p2_collider = PaddleCollider(Vector2(width - 50, 0), paddle_size, "P2 collider", &bounce_sound);
 	SquareCollider ball_collider = SquareCollider(ball_start, ball_size, "Ball collider");
-	VertWallCollider left_wall = VertWallCollider(Vector2(-10,0), Vector2(10, height), "Left wall collider", &goal_sound);
-	VertWallCollider right_wall = VertWallCollider(Vector2(width,0), Vector2(10, height), "Right wall collider", &goal_sound);
+	VertWallCollider left_wall = VertWallCollider(Vector2(-10,0), Vector2(10, height), "Left wall collider", &goal_sound, &p2_score);
+	VertWallCollider right_wall = VertWallCollider(Vector2(width,0), Vector2(10, height), "Right wall collider", &goal_sound, &p1_score);
 	HorzWallCollider top_wall = HorzWallCollider(Vector2(0, 10), Vector2(width, 10), "Top wall collider");
 	HorzWallCollider bottom_wall = HorzWallCollider(Vector2(0, -height), Vector2(width, 10), "Bottom wall collider");
 
@@ -62,6 +66,9 @@ int main(int argc, char **argv){
 	p2_collider.attach(&paddle2);
 	ball_collider.attach(&ball);
 	ball_motion.attach(&ball);
+
+	camera.attachGUI(&p1_score);
+	camera.attachGUI(&p2_score);
 
 	engine.register_camera(&camera);
 	

@@ -1,7 +1,6 @@
 #include"camera.h"
 #include<string>
 #include<stdio.h>
-#include<memory>
 
 Camera::Camera(const Vector2& pos, const Vector2& size, const std::string& name)
 	:Object(pos, name)
@@ -15,12 +14,27 @@ Camera::~Camera(){
 }
 
 void Camera::draw(Drawable* drawable){
-	ALLEGRO_BITMAP* drawable_bitmap = drawable->makeBitmap();
+	ALLEGRO_BITMAP* drawable_bitmap = drawable->getBitmap();
 	al_set_target_bitmap(_bitmap);
 	// Negate the y because positive y is down on the screen 
 	// but we want a normal coordinate space where up is positive y
 	al_draw_bitmap(drawable_bitmap, drawable->topLeft().x() - _position.x(), -drawable->topLeft().y() + _position.y(), 0);
 }
+
+void Camera::drawGUI(){
+	al_set_target_bitmap(_bitmap);
+	for(Drawable* guiElement : _guis){
+		ALLEGRO_BITMAP* gui_bitmap = guiElement->getBitmap();
+		// Draw the gui without regard for the cameras position
+		al_draw_bitmap(gui_bitmap, guiElement->topLeft().x(), -guiElement->topLeft().y(), 0);
+	}
+}
+
+void Camera::attachGUI(Drawable* drawable){
+	_guis.push_back(drawable);
+	drawable->attach(this);
+}
+
 
 void Camera::update(){
 	al_clear_to_color(_background);

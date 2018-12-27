@@ -49,7 +49,7 @@ Vector2 CircleCollider::topLeft() const{
 	return Vector2(_position.x() - _radius, _position.y() + _radius);
 }
 
-ALLEGRO_BITMAP * CircleCollider::makeBitmap() const{
+ALLEGRO_BITMAP * CircleCollider::getBitmap() const{
 	return _bitmap;
 }
 

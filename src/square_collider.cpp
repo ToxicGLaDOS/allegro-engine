@@ -60,7 +60,7 @@ Vector2 SquareCollider::topLeft() const{
 	return _position;
 }
 
-ALLEGRO_BITMAP * SquareCollider::makeBitmap() const{
+ALLEGRO_BITMAP * SquareCollider::getBitmap() const{
 	return _bitmap;
 }
 

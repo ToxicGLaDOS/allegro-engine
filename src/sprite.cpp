@@ -11,7 +11,7 @@ Vector2 Sprite::topLeft() const{
 	return _position;
 }
 
-ALLEGRO_BITMAP * Sprite::makeBitmap() const{
+ALLEGRO_BITMAP * Sprite::getBitmap() const{
 	return _img.bitmap();
 }
 

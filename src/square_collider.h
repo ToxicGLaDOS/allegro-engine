@@ -13,7 +13,7 @@ class SquareCollider : public Collider{
 		~SquareCollider();
 		bool collides(Collider * other) const;
 		Vector2 topLeft() const;
-		ALLEGRO_BITMAP * makeBitmap() const;
+		ALLEGRO_BITMAP * getBitmap() const;
 		Vector2 size() const;
 
 	private:

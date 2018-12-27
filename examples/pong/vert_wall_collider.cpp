@@ -2,9 +2,10 @@
 #include"engine.h"
 
 
-VertWallCollider::VertWallCollider(const Vector2& pos, const Vector2& size, const std::string& name, AudioResource* hitSound)
+VertWallCollider::VertWallCollider(const Vector2& pos, const Vector2& size, const std::string& name, AudioResource* hitSound, Text* score)
 	: SquareCollider(pos, size, name)
-	, _hitSound(hitSound){}
+	, _hitSound(hitSound)
+	, _score(score){}
 
 
 
@@ -14,5 +15,7 @@ void VertWallCollider::onCollision(Collider* other){
 		int height = _engine->screenHeight();
 		other->parent()->move_to(Vector2(width/2,-height/2));
 		_hitSound->play();
+		int score = std::stoi(_score->text());
+		_score->setText(std::to_string(score + 1));
 	}
 }

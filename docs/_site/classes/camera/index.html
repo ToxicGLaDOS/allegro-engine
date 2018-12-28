@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>RectCollider</title>
-  <meta name="description" content="RectCollider is a collider in the shape of a rectangle. It is one of the main ways you can detect collisions between objects in your game. When you create a ...">
+  <title>Camera</title>
+  <meta name="description" content="DescriptionCamera is the class that draws all of the objects in your game. An engine object requires a camera, and trying to call engine.mainLoop without a c...">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/classes/rect-collider/">
+  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/classes/camera/">
   <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
 </head>
 
@@ -62,44 +62,72 @@
 
 
 
-<h1>RectCollider</h1>
+<h1>Camera</h1>
 
-<p>RectCollider is a collider in the shape of a rectangle. It is one of the main ways you can detect collisions between objects in your game. When you create a Collider of any kind be sure to register it with the engine using <code>engine.register_collider(&amp;my_collider)</code>. Once a collider is registered with the engine it will automatically detect collisions between every other collider that has been registered with the engine. When a collision is detected the <code>onCollision</code> method of both colliders will be called.</p>
+<h1>Description</h1>
+
+<p>Camera is the class that draws all of the objects in your game. An engine object requires a camera, and trying to call <code>engine.mainLoop</code> without a camera will result in unexpected behaviour. When you create an <code>Engine</code> object be sure to register the camera using the <code>register_camera</code> method of <code>Engine</code>.</p>
 
 
 
 <h1>Public functions</h1>
 
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="n">collides</span><span class="p">(</span><span class="n">Collider</span> <span class="o">*</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span> 
-<span class="n">RectCollider</span><span class="p">(</span><span class="k">const</span> <span class="n">RectCollider</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> 
-<span class="n">RectCollider</span><span class="p">()</span>
-<span class="n">RectCollider</span><span class="p">(</span><span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">position</span><span class="p">,</span> <span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">size</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span> 
-<span class="n">ALLEGRO_BITMAP</span> <span class="o">*</span> <span class="n">getBitmap</span><span class="p">()</span> <span class="k">const</span> 
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="n">attachGUI</span><span class="p">(</span><span class="n">Drawable</span><span class="o">*</span> <span class="n">drawable</span><span class="p">)</span> 
+<span class="kt">unsigned</span> <span class="kt">char</span><span class="o">*</span> <span class="n">background</span><span class="p">()</span> <span class="k">const</span> 
+<span class="n">ALLEGRO_BITMAP</span> <span class="o">*</span> <span class="n">bitmap</span><span class="p">()</span> <span class="k">const</span> 
+<span class="kt">void</span> <span class="n">clearBitmap</span><span class="p">()</span> 
+<span class="n">Camera</span><span class="p">(</span><span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">pos</span><span class="p">,</span> <span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">size</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span> 
+<span class="kt">void</span> <span class="n">draw</span><span class="p">(</span><span class="n">Drawable</span><span class="o">*</span> <span class="n">drawable</span><span class="p">)</span> 
+<span class="kt">void</span> <span class="n">drawGUI</span><span class="p">()</span> 
+<span class="kt">void</span> <span class="n">setBackgroundColor</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">r</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">g</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">b</span><span class="p">)</span> 
 <span class="n">Vector2</span> <span class="n">size</span><span class="p">()</span> <span class="k">const</span> 
-<span class="n">Vector2</span> <span class="n">topLeft</span><span class="p">()</span> <span class="k">const</span> </code></pre></figure>
+<span class="kt">void</span> <span class="n">update</span><span class="p">()</span> </code></pre></figure>
 
 
 <ul>
 
-	<li><a href=/allegro-engine/methods/collides/>collides</a></li>
+	<li><a href=/allegro-engine/methods/attachgui/>attachGUI</a></li>
 
-	<li><a href=/allegro-engine/methods/copy-ctor/>copy ctor</a></li>
+	<li><a href=/allegro-engine/methods/background/>background</a></li>
+
+	<li><a href=/allegro-engine/methods/bitmap/>bitmap</a></li>
+
+	<li><a href=/allegro-engine/methods/clearbitmap/>clearBitmap</a></li>
 
 	<li><a href=/allegro-engine/methods/ctor/>ctor</a></li>
 
-	<li><a href=/allegro-engine/methods/getbitmap/>getBitmap</a></li>
+	<li><a href=/allegro-engine/methods/draw/>draw</a></li>
+
+	<li><a href=/allegro-engine/methods/drawgui/>drawGUI</a></li>
+
+	<li><a href=/allegro-engine/methods/setbackgroundcolor/>setBackgroundColor</a></li>
 
 	<li><a href=/allegro-engine/methods/size/>size</a></li>
 
-	<li><a href=/allegro-engine/methods/topleft/>topLeft</a></li>
+	<li><a href=/allegro-engine/methods/update/>update</a></li>
 
 </ul>
 
 <h1>Data Members</h1>
 
 
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">ALLEGRO_COLOR</span> <span class="n">_background</span> <span class="o">=</span> <span class="n">al_map_rgb</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> 
+<span class="n">ALLEGRO_BITMAP</span> <span class="o">*</span> <span class="n">_bitmap</span> 
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Drawable</span><span class="o">*&gt;</span> <span class="n">_guis</span> 
+<span class="n">Vector2</span> <span class="n">_size</span> </code></pre></figure>
+
+
 <ul>
+
+	<li><a href=/allegro-engine/data-members/background/>_background</a></li>
+
+	<li><a href=/allegro-engine/data-members/bitmap/>_bitmap</a></li>
+
+	<li><a href=/allegro-engine/data-members/guis/>_guis</a></li>
+
+	<li><a href=/allegro-engine/data-members/size/>_size</a></li>
 
 </ul>
 

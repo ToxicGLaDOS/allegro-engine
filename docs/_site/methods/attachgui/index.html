@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>RectCollider</title>
-  <meta name="description" content="RectCollider is a collider in the shape of a rectangle. It is one of the main ways you can detect collisions between objects in your game. When you create a ...">
+  <title>attachGUI</title>
+  <meta name="description" content="DescriptionAttaches a Drawable to this camera. The position of the Drawable will be interpretted in camera space. Meaning, no matter where the camera&#39;s p...">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/classes/rect-collider/">
+  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/methods/attachgui/">
   <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
 </head>
 
@@ -54,54 +54,17 @@
 
     <div class="page-content">
       <div class="wrapper">
-        
+        <div class="body">
 
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="n">attachGUI</span><span class="p">(</span><span class="n">Drawable</span><span class="o">*</span> <span class="n">drawable</span><span class="p">)</span></code></pre></figure>
+  
+  <div class="function-description">
+    <h1>Description</h1>
 
+<p>Attaches a <code>Drawable</code> to this camera. The position of the <code>Drawable</code> will be interpretted in camera space. Meaning, no matter where the camera&#39;s position is (0, 0) always refers to the top left of the camera. There is nothing special about the <code>Drawable</code> passed in to this function (except the way it&#39;s position is handled), so if you register it with the engine it&#39;s update method will be called every frame as usual. Note that it usually makes more sense to register it as an object rather than a <code>Drawable</code>, because if you register it as a <code>Drawable</code> it will be drawn to the scene.</p>
 
-
-
-
-
-<h1>RectCollider</h1>
-
-<p>RectCollider is a collider in the shape of a rectangle. It is one of the main ways you can detect collisions between objects in your game. When you create a Collider of any kind be sure to register it with the engine using <code>engine.register_collider(&amp;my_collider)</code>. Once a collider is registered with the engine it will automatically detect collisions between every other collider that has been registered with the engine. When a collision is detected the <code>onCollision</code> method of both colliders will be called.</p>
-
-
-
-<h1>Public functions</h1>
-
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="n">collides</span><span class="p">(</span><span class="n">Collider</span> <span class="o">*</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span> 
-<span class="n">RectCollider</span><span class="p">(</span><span class="k">const</span> <span class="n">RectCollider</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> 
-<span class="n">RectCollider</span><span class="p">()</span>
-<span class="n">RectCollider</span><span class="p">(</span><span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">position</span><span class="p">,</span> <span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">size</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span> 
-<span class="n">ALLEGRO_BITMAP</span> <span class="o">*</span> <span class="n">getBitmap</span><span class="p">()</span> <span class="k">const</span> 
-<span class="n">Vector2</span> <span class="n">size</span><span class="p">()</span> <span class="k">const</span> 
-<span class="n">Vector2</span> <span class="n">topLeft</span><span class="p">()</span> <span class="k">const</span> </code></pre></figure>
-
-
-<ul>
-
-	<li><a href=/allegro-engine/methods/collides/>collides</a></li>
-
-	<li><a href=/allegro-engine/methods/copy-ctor/>copy ctor</a></li>
-
-	<li><a href=/allegro-engine/methods/ctor/>ctor</a></li>
-
-	<li><a href=/allegro-engine/methods/getbitmap/>getBitmap</a></li>
-
-	<li><a href=/allegro-engine/methods/size/>size</a></li>
-
-	<li><a href=/allegro-engine/methods/topleft/>topLeft</a></li>
-
-</ul>
-
-<h1>Data Members</h1>
-
-
-<ul>
-
-</ul>
+  </div>
+</div>
 
       </div>
     </div>

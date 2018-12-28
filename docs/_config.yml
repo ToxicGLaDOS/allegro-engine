@@ -94,8 +94,46 @@ defaults:
                         path: "_methods/rect_collider"
                 values:
                         class: rectcollider
-
-
+        -
+                scope:
+                        path: "_methods/circle_collider"
+                values:
+                        class: circlecollider
+        -
+                scope:
+                        path: "_data-members/circle_collider"
+                values:
+                        class: circlecollider
+        -
+                scope:
+                        path: "_methods/camera"
+                values:
+                        class: camera
+        -
+                scope:
+                        path: "_data-members/camera"
+                values:
+                        class: camera
+        -
+                scope:
+                        path: "_methods/engine"
+                values:
+                        class: engine
+        -
+                scope:
+                        path: "_data-members/engine"
+                values:
+                        class: engine
+        -
+                scope:
+                        path: "_methods/circle_collider"
+                values:
+                        class: circlecollider
+        -
+                scope:
+                        path: "_data-members/rect_collider"
+                values:
+                        class: circlecollider
 
 
 

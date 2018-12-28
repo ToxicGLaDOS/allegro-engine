@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>RectCollider</title>
-  <meta name="description" content="RectCollider is a collider in the shape of a rectangle. It is one of the main ways you can detect collisions between objects in your game. When you create a ...">
+  <title>CircleCollider</title>
+  <meta name="description" content="CircleCollider is a collider in the shape of a circle. It is one of the main ways you can detect collisions between objects in your game. When you create a C...">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/classes/rect-collider/">
+  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/classes/circle-collider/">
   <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
 </head>
 
@@ -62,9 +62,9 @@
 
 
 
-<h1>RectCollider</h1>
+<h1>CircleCollider</h1>
 
-<p>RectCollider is a collider in the shape of a rectangle. It is one of the main ways you can detect collisions between objects in your game. When you create a Collider of any kind be sure to register it with the engine using <code>engine.register_collider(&amp;my_collider)</code>. Once a collider is registered with the engine it will automatically detect collisions between every other collider that has been registered with the engine. When a collision is detected the <code>onCollision</code> method of both colliders will be called.</p>
+<p>CircleCollider is a collider in the shape of a circle. It is one of the main ways you can detect collisions between objects in your game. When you create a Collider of any kind be sure to register it with the engine using <code>engine.register_collider(&amp;my_collider)</code>. Once a collider is registered with the engine it will automatically detect collisions between every other collider that has been registered with the engine. When a collision is detected the <code>onCollision</code> method of both colliders will be called.</p>
 
 
 
@@ -72,11 +72,11 @@
 
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="n">collides</span><span class="p">(</span><span class="n">Collider</span> <span class="o">*</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span> 
-<span class="n">RectCollider</span><span class="p">(</span><span class="k">const</span> <span class="n">RectCollider</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> 
-<span class="n">RectCollider</span><span class="p">()</span>
-<span class="n">RectCollider</span><span class="p">(</span><span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">position</span><span class="p">,</span> <span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">size</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span> 
+<span class="n">CircleCollider</span><span class="p">(</span><span class="k">const</span> <span class="n">CircleCollider</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> 
+<span class="n">CircleCollider</span><span class="p">()</span>
+<span class="n">CircleCollider</span><span class="p">(</span><span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">position</span><span class="p">,</span> <span class="kt">double</span> <span class="n">radius</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span> 
 <span class="n">ALLEGRO_BITMAP</span> <span class="o">*</span> <span class="n">getBitmap</span><span class="p">()</span> <span class="k">const</span> 
-<span class="n">Vector2</span> <span class="n">size</span><span class="p">()</span> <span class="k">const</span> 
+<span class="kt">double</span> <span class="n">radius</span><span class="p">()</span> <span class="k">const</span> 
 <span class="n">Vector2</span> <span class="n">topLeft</span><span class="p">()</span> <span class="k">const</span> </code></pre></figure>
 
 
@@ -90,7 +90,7 @@
 
 	<li><a href=/allegro-engine/methods/getbitmap/>getBitmap</a></li>
 
-	<li><a href=/allegro-engine/methods/size/>size</a></li>
+	<li><a href=/allegro-engine/methods/radius/>radius</a></li>
 
 	<li><a href=/allegro-engine/methods/topleft/>topLeft</a></li>
 
@@ -99,7 +99,22 @@
 <h1>Data Members</h1>
 
 
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">ALLEGRO_BITMAP</span><span class="o">*</span> <span class="n">_bitmap</span> 
+<span class="kt">double</span> <span class="n">_radius</span> 
+<span class="n">ALLEGRO_BITMAP</span><span class="o">*</span> <span class="n">_bitmap</span> 
+<span class="n">Vector2</span> <span class="n">_size</span> </code></pre></figure>
+
+
 <ul>
+
+	<li><a href=/allegro-engine/data-members/bitmap/>_bitmap</a></li>
+
+	<li><a href=/allegro-engine/data-members/radius/>_radius</a></li>
+
+	<li><a href=/allegro-engine/data-members/bitmap/>_bitmap</a></li>
+
+	<li><a href=/allegro-engine/data-members/size/>_size</a></li>
 
 </ul>
 

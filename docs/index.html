@@ -20,7 +20,9 @@ layout: default
 
   <h1 class="">Table of Contents</h1>
   <ul style=list-style-type:circle">
-	  <li><a href="/object/">Object</a></li>
+	  {% for class in site.classes %}
+	  <li><a href={{class.url}}>{{class.title}}</a></li>
+	  {% endfor %}
   </ul>
 
   <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>

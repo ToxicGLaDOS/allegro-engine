@@ -5,7 +5,7 @@
 
 
 RectCollider::RectCollider()
-	: Collider(Vector2(0,0), "NULL")
+	: Collider(Vector2(0,0), "")
 	,_size(Vector2(0,0)){
 	
 	initBitmap();

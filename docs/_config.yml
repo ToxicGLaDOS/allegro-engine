@@ -11,7 +11,7 @@ email: jefferysmith8397@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   This is the documentation for the allegro-engine project on github. 
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://yourdomain.com" # the base hostname & protocol for your site
+url: "http://smit8397.github.io/allegro-engine" # the base hostname & protocol for your site
 twitter_username: jekyllrb
 github_username:  smit8397
 
@@ -66,34 +66,34 @@ defaults:
                         class: sprite
         -
                 scope:
-                        path: "_data-members/drawable"
+                        path: "_data-members/vector2"
                 values:
-                        class: drawable
+                        class: vector2
         -
                 scope:
-                        path: "_methods/drawable"
+                        path: "_methods/vector2"
                 values:
-                        class: drawable
+                        class: vector2
         -
                 scope:
-                        path: "_data-members/drawable"
+                        path: "_data-members/collider"
                 values:
-                        class: drawable
+                        class: collider
         -
                 scope:
-                        path: "_methods/drawable"
+                        path: "_methods/collider"
                 values:
-                        class: drawable
+                        class: collider
         -
                 scope:
-                        path: "_data-members/drawable"
+                        path: "_data-members/rect_collider"
                 values:
-                        class: drawable
+                        class: rectcollider
         -
                 scope:
-                        path: "_methods/drawable"
+                        path: "_methods/rect_collider"
                 values:
-                        class: drawable
+                        class: rectcollider
 
 
 

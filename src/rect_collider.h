@@ -20,7 +20,6 @@ class RectCollider : public Collider{
 		void initBitmap();
 		
 		ALLEGRO_BITMAP* _bitmap;
-		bool _draw = false;
 		Vector2  _size;
 };
 

@@ -45,7 +45,7 @@ int main(int argc, char **argv){
 
 	PaddleCollider p1_collider = PaddleCollider(Vector2(0,0), paddle_size, "P1 collider", &bounce_sound);
 	PaddleCollider p2_collider = PaddleCollider(Vector2(width - 50, 0), paddle_size, "P2 collider", &bounce_sound);
-	SquareCollider ball_collider = SquareCollider(ball_start, ball_size, "Ball collider");
+	RectCollider ball_collider = RectCollider(ball_start, ball_size, "Ball collider");
 	VertWallCollider left_wall = VertWallCollider(Vector2(-10,0), Vector2(10, height), "Left wall collider", &goal_sound, &p2_score);
 	VertWallCollider right_wall = VertWallCollider(Vector2(width,0), Vector2(10, height), "Right wall collider", &goal_sound, &p1_score);
 	HorzWallCollider top_wall = HorzWallCollider(Vector2(0, 10), Vector2(width, 10), "Top wall collider");

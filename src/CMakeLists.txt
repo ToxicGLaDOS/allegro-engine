@@ -7,7 +7,7 @@ add_library(engine
 	engine.h engine.cpp
 	camera.cpp
 	geometry.cpp
-	square_collider.cpp
+	rect_collider.cpp
 	circle_collider.cpp
 	vector2.cpp
 	input.cpp

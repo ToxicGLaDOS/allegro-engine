@@ -3,7 +3,7 @@
 
 
 VertWallCollider::VertWallCollider(const Vector2& pos, const Vector2& size, const std::string& name, AudioResource* hitSound, Text* score)
-	: SquareCollider(pos, size, name)
+	: RectCollider(pos, size, name)
 	, _hitSound(hitSound)
 	, _score(score){}
 

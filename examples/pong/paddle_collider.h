@@ -2,10 +2,10 @@
 #define PADDLE_COLLIDER_H
 
 #include"collider.h"
-#include"square_collider.h"
+#include"rect_collider.h"
 #include"audio_resource.h"
 
-class PaddleCollider : public SquareCollider{
+class PaddleCollider : public RectCollider{
 	public:
 		PaddleCollider(const Vector2& pos, const Vector2& size, const std::string& name, AudioResource* hitSound);
 		void onCollision(Collider* other);

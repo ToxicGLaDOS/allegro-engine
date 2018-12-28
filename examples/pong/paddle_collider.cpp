@@ -3,7 +3,7 @@
 #include"ball_motion.h"
 
 PaddleCollider::PaddleCollider(const Vector2& pos, const Vector2& size, const std::string& name, AudioResource* hitSound)
-	: SquareCollider(pos, size, name)
+	: RectCollider(pos, size, name)
 	, _hitSound(hitSound){} 
 
 

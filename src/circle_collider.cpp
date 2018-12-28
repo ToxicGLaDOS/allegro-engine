@@ -1,5 +1,5 @@
 #include"circle_collider.h"
-#include"square_collider.h"
+#include"rect_collider.h"
 #include"geometry.h"
 #include<string>
 #include<allegro5/allegro_primitives.h>
@@ -33,14 +33,14 @@ void CircleCollider::initBitmap(){
 
 bool CircleCollider::collides(Collider * other) const{
 	CircleCollider* circle_ptr = dynamic_cast<CircleCollider*>(other);
-	SquareCollider* square_ptr = dynamic_cast<SquareCollider*>(other);
+	RectCollider* square_ptr = dynamic_cast<RectCollider*>(other);
 
 	if(circle_ptr != NULL){
 		CircleCollider circle = *circle_ptr;
 		return circleCircleIntersection(_position, _radius, circle.position(), circle.radius());
 	}
 	if(square_ptr != NULL){
-		SquareCollider square = *square_ptr;
+		RectCollider square = *square_ptr;
 		return rectCircleIntersection(square.position(), square.size(), _position, _radius);
 	}
 }

@@ -3,7 +3,7 @@
 
 
 HorzWallCollider::HorzWallCollider(const Vector2& pos, const Vector2& size, const std::string& name)
-	: SquareCollider(pos,size,name){}
+	: RectCollider(pos,size,name){}
 
 
 void HorzWallCollider::onCollision(Collider * other){

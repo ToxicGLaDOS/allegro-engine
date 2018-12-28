@@ -7,7 +7,7 @@ BallMotion::BallMotion(double dx, double dy, std::string name)
 	  ,_dy(dy){}
 
 void BallMotion::update(){
-	_parent->move_by(Vector2(_dx, _dy));
+	_parent->moveBy(Vector2(_dx, _dy));
 }
 
 void BallMotion::flipDx(){

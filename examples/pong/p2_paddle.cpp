@@ -11,10 +11,10 @@ P2Paddle::P2Paddle(const Vector2& pos, float speed, const ImageResource& image, 
 void P2Paddle::update(){
 		Input input = *_engine->input();
 		if(input.keyHeld("up")){
-			move_by(Vector2(0, _speed));
+			moveBy(Vector2(0, _speed));
 		}
 		else if(input.keyHeld("down")){
-			move_by(Vector2(0, -_speed));
+			moveBy(Vector2(0, -_speed));
 		}
 	
 }

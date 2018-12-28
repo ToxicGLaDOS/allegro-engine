@@ -15,8 +15,8 @@ class Object{
 		Object(const Vector2& pos, const std::string& name);
 		~Object();
 		Vector2 position() const;
-		void move_to(const Vector2& pos);	
-		void move_by(const Vector2& by);
+		void moveTo(const Vector2& pos);	
+		void moveBy(const Vector2& by);
 		void attach(Object* parent);
 		bool isParentOf(Object* child);
 		Object* findChildWithName(const std::string& name) const;

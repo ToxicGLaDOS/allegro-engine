@@ -26,16 +26,16 @@ Object* Object::parent() const{
 	return _parent;
 }
 
-void Object::move_to(const Vector2& position){
+void Object::moveTo(const Vector2& position){
 	
 	int x_delta = position.x() - _position.x();
 	int y_delta = position.y() - _position.y();
 
 	
-	move_by(Vector2(x_delta, y_delta));
+	moveBy(Vector2(x_delta, y_delta));
 }
 
-void Object::move_by(const Vector2& by){
+void Object::moveBy(const Vector2& by){
 	_position = _position + by;
 	propagate_movement(by);
 }
@@ -102,7 +102,7 @@ std::vector<Object*> Object::children() const{
 
 void Object::propagate_movement(const Vector2& by){
 	for(Object * child : _children){
-		child->move_by(by);
+		child->moveBy(by);
 	}	
 }
 

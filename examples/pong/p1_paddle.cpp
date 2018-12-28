@@ -11,10 +11,10 @@ P1Paddle::P1Paddle(const Vector2& pos, float speed, const ImageResource& image, 
 void P1Paddle::update(){
 		Input input = *_engine->input();
 		if(input.keyHeld("w")){
-			move_by(Vector2(0, _speed));
+			moveBy(Vector2(0, _speed));
 		}
 		else if(input.keyHeld("s")){
-			move_by(Vector2(0, -_speed));
+			moveBy(Vector2(0, -_speed));
 		}
 	
 }

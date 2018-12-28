@@ -13,7 +13,7 @@ void VertWallCollider::onCollision(Collider* other){
 	if(other->name() == "Ball collider"){
 		int width = _engine->screenWidth();
 		int height = _engine->screenHeight();
-		other->parent()->move_to(Vector2(width/2,-height/2));
+		other->parent()->moveTo(Vector2(width/2,-height/2));
 		_hitSound->play();
 		int score = std::stoi(_score->text());
 		_score->setText(std::to_string(score + 1));

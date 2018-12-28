@@ -8,6 +8,8 @@ layout: default
 {% assign data-members = site.data-members | where:"class",name %}
 {% assign data-members-size = data-members | size %}
 
+
+
 <h1>{{ page.title }}</h1>
 
 {{ content }}
@@ -21,7 +23,7 @@ layout: default
 
 <ul>
 {% for function in functions %}
-	<li><a href={{ function.url }}>{{function.title}}</a></li>
+	<li><a href={{ function.url | prepend: site.baseurl }}>{{function.title}}</a></li>
 {% endfor %}
 </ul>
 
@@ -34,6 +36,6 @@ layout: default
 {% endif %}
 <ul>
 {% for data-member in data-members %}
-	<li><a href={{ data-member.url }}>{{data-member.title}}</a></li>
+	<li><a href={{ data-member.url | prepend: site.baseurl }}>{{data-member.title}}</a></li>
 {% endfor %}
 </ul>

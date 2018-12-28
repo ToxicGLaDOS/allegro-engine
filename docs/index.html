@@ -21,7 +21,7 @@ layout: default
   <h1 class="">Table of Contents</h1>
   <ul style=list-style-type:circle">
 	  {% for class in site.classes %}
-	  <li><a href={{class.url}}>{{class.title}}</a></li>
+	  <li><a href={{ class.url | prepend: site.baseurl }}>{{class.title}}</a></li>
 	  {% endfor %}
   </ul>
 

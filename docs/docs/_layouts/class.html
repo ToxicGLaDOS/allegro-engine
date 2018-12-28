@@ -1,0 +1,39 @@
+---
+layout: default
+---
+
+{% assign name = {{page.title | downcase }} %}
+
+{% assign functions = site.methods | where:"class",name %}
+{% assign data-members = site.data-members | where:"class",name %}
+{% assign data-members-size = data-members | size %}
+
+<h1>{{ page.title }}</h1>
+
+{{ content }}
+
+
+{{ "# Public functions" | markdownify }}
+{% highlight c++ %}
+{% for function in functions %}
+{{ function.signature }} {% endfor %}
+{% endhighlight %}
+
+<ul>
+{% for function in functions %}
+	<li><a href={{ function.url }}>{{function.title}}</a></li>
+{% endfor %}
+</ul>
+
+{{ "# Data Members" | markdownify}}
+{% if data-members-size != 0 %}
+{% highlight c++ %}
+{% for data-member in data-members %}
+{{ data-member.definition }} {% endfor %}
+{% endhighlight %}
+{% endif %}
+<ul>
+{% for data-member in data-members %}
+	<li><a href={{ data-member.url }}>{{data-member.title}}</a></li>
+{% endfor %}
+</ul>

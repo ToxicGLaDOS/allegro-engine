@@ -6,7 +6,7 @@
 
 class HorzWallCollider : public RectCollider{
 	public:
-		HorzWallCollider(const Vector2& pos, const Vector2& size, const std::string& name);
+		HorzWallCollider(const Transform& trans, const Vector2& size, const std::string& name);
 		void onCollision(Collider* other);
 
 

@@ -7,14 +7,14 @@
 
 
 
-CircleCollider::CircleCollider(const Vector2& pos, double radius, const std::string& name)
-	: Collider(pos, name),
+CircleCollider::CircleCollider(const Transform& transform, double radius, const std::string& name)
+	: Collider(transform, name),
 	_radius(radius){
 	initBitmap();	
 }
 
 CircleCollider::CircleCollider(const CircleCollider& other)
-	: Collider(other._position, other._name)
+	: Collider(other.transform(), other._name)
 	, _bitmap(al_clone_bitmap(other._bitmap))
 	, _radius(other._radius){}
 
@@ -37,16 +37,16 @@ bool CircleCollider::collides(Collider * other) const{
 
 	if(circle_ptr != NULL){
 		CircleCollider circle = *circle_ptr;
-		return circleCircleIntersection(_position, _radius, circle.position(), circle.radius());
+		return circleCircleIntersection(_transform.position(), _radius, circle.transform().position(), circle.radius());
 	}
 	if(square_ptr != NULL){
 		RectCollider square = *square_ptr;
-		return rectCircleIntersection(square.position(), square.size(), _position, _radius);
+		return rectCircleIntersection(square.transform().position(), square.size(), _transform.position(), _radius);
 	}
 }
 
 Vector2 CircleCollider::topLeft() const{
-	return Vector2(_position.x() - _radius, _position.y() + _radius);
+	return Vector2(_transform.position().x() - _radius, _transform.position().y() + _radius);
 }
 
 ALLEGRO_BITMAP * CircleCollider::getBitmap() const{

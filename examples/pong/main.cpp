@@ -28,28 +28,37 @@ int main(int argc, char **argv){
 	AudioResource bounce_sound = AudioResource("ball_hit.wav");
 	AudioResource goal_sound = AudioResource("goal.wav");
 
-	Text p1_score = Text(Vector2(width/4,0)  , "0", "nakula.ttf", 100, 255, 255, 255, "P1 score text");
-	Text p2_score = Text(Vector2(width*3/4,0), "0", "nakula.ttf", 100, 255, 255, 255, "P2 score text");
+	Text p1_score = Text(Transform(Vector2(width/4,0))  , "0", "nakula.ttf", 100, 255, 255, 255, "P1 score text");
+	Text p2_score = Text(Transform(Vector2(width*3/4,0)), "0", "nakula.ttf", 100, 255, 255, 255, "P2 score text");
 
 	bool running = true;
 	double ball_speed = 7;
 
-	Vector2 ball_start = Vector2(width/2, -height/2);
+	Transform ball_start = Transform(Vector2(width/2, -height/2));
 	Vector2 ball_size = Vector2(50, 50);
 	Vector2 paddle_size = Vector2(50, 250);
 
-	P1Paddle paddle1 = P1Paddle(Vector2(0, 0), 5,  paddle_image, "Player1 paddle");
-	P2Paddle paddle2 = P2Paddle(Vector2(width - 50, 0), 5, paddle_image, "Player2 paddle");
+	Transform p1_start = Transform(Vector2(0, 0));
+	Transform p2_start = Transform(Vector2(width - 50, 0));
+
+	Transform l_wall_trans = Transform(Vector2(-10, 0));
+	Transform r_wall_trans = Transform(Vector2(width, 0));
+	Transform t_wall_trans = Transform(Vector2(0, 10));
+	Transform b_wall_trans = Transform(Vector2(0, -height));
+	
+	P1Paddle paddle1 = P1Paddle(p1_start, 5, paddle_image, "Player1 paddle");
+	P2Paddle paddle2 = P2Paddle(p2_start, 5, paddle_image, "Player2 paddle");
 	Sprite ball = Sprite(ball_start, ball_image, "Ball");
 
 
-	PaddleCollider p1_collider = PaddleCollider(Vector2(0,0), paddle_size, "P1 collider", &bounce_sound);
-	PaddleCollider p2_collider = PaddleCollider(Vector2(width - 50, 0), paddle_size, "P2 collider", &bounce_sound);
+	PaddleCollider p1_collider = PaddleCollider(p1_start, paddle_size, "P1 collider", &bounce_sound);
+	PaddleCollider p2_collider = PaddleCollider(p2_start, paddle_size, "P2 collider", &bounce_sound);
 	RectCollider ball_collider = RectCollider(ball_start, ball_size, "Ball collider");
-	VertWallCollider left_wall = VertWallCollider(Vector2(-10,0), Vector2(10, height), "Left wall collider", &goal_sound, &p2_score);
-	VertWallCollider right_wall = VertWallCollider(Vector2(width,0), Vector2(10, height), "Right wall collider", &goal_sound, &p1_score);
-	HorzWallCollider top_wall = HorzWallCollider(Vector2(0, 10), Vector2(width, 10), "Top wall collider");
-	HorzWallCollider bottom_wall = HorzWallCollider(Vector2(0, -height), Vector2(width, 10), "Bottom wall collider");
+
+	VertWallCollider left_wall = VertWallCollider(l_wall_trans, Vector2(10, height), "Left wall collider", &goal_sound, &p2_score);
+	VertWallCollider right_wall = VertWallCollider(r_wall_trans, Vector2(10, height), "Right wall collider", &goal_sound, &p1_score);
+	HorzWallCollider top_wall = HorzWallCollider(t_wall_trans, Vector2(width, 10), "Top wall collider");
+	HorzWallCollider bottom_wall = HorzWallCollider(b_wall_trans, Vector2(width, 10), "Bottom wall collider");
 
 	#ifdef COLLIDER_DEBUG
 	p1_collider.setDraw(true);

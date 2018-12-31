@@ -2,8 +2,8 @@
 #include"ball_motion.h"
 
 
-HorzWallCollider::HorzWallCollider(const Vector2& pos, const Vector2& size, const std::string& name)
-	: RectCollider(pos,size,name){}
+HorzWallCollider::HorzWallCollider(const Transform& trans, const Vector2& size, const std::string& name)
+	: RectCollider(trans,size,name){}
 
 
 void HorzWallCollider::onCollision(Collider * other){

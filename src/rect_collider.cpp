@@ -5,21 +5,21 @@
 
 
 RectCollider::RectCollider()
-	: Collider(Vector2(0,0), "")
+	: Collider(Transform(Vector2(0,0), 0, Vector2(1,1)), "")
 	,_size(Vector2(0,0)){
 	
 	initBitmap();
 }
 
-RectCollider::RectCollider(const Vector2& position, const Vector2& size, const std::string& name)
-	: Collider(position, name)
+RectCollider::RectCollider(const Transform& transform, const Vector2& size, const std::string& name)
+	: Collider(transform, name)
 	, _size(size){
 	
 	initBitmap();	
 }
 
 RectCollider::RectCollider(const RectCollider& other)
-	: Collider(other._position, other._name)
+	: Collider(other.transform(), other._name)
 	, _bitmap(al_clone_bitmap(other._bitmap))
 	, _size(other._size){}
 
@@ -48,16 +48,16 @@ bool RectCollider::collides(Collider * other) const{
 	CircleCollider* circle_ptr = dynamic_cast<CircleCollider*>(other);	
 	if(square_ptr != NULL){
 		RectCollider square = *square_ptr;
-		return rectRectIntersection(_position, _size, square.position(), square.size());
+		return rectRectIntersection(_transform.position(), _size, square.transform().position(), square.size());
 	}
 	if(circle_ptr != NULL){
 		CircleCollider circle = *circle_ptr;
-		return rectCircleIntersection(_position, _size, circle.position(), circle.radius());
+		return rectCircleIntersection(_transform.position(), _size, circle.transform().position(), circle.radius());
 	}
 }
 
 Vector2 RectCollider::topLeft() const{
-	return _position;
+	return _transform.position();
 }
 
 ALLEGRO_BITMAP * RectCollider::getBitmap() const{

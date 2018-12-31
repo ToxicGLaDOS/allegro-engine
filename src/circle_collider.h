@@ -10,7 +10,7 @@ class CircleCollider : public Collider{
 
 
 	public:
-		CircleCollider(const Vector2& position, double radius, const std::string& name);
+		CircleCollider(const Transform& transform, double radius, const std::string& name);
 		CircleCollider(const CircleCollider& other);
 		~CircleCollider();
 		double radius() const;

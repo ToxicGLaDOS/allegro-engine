@@ -5,16 +5,16 @@
 #include<vector>
 #include<string>
 #include "vector2.h"
+#include "transform.h"
 
 // Forward declaration of engine
 class Engine;
 
 class Object{
 	public:
-		Object(int x_pos, int y_pos, const std::string& name);
-		Object(const Vector2& pos, const std::string& name);
+		Object(const Transform& pos, const std::string& name);
 		~Object();
-		Vector2 position() const;
+		Transform transform() const;
 		void moveTo(const Vector2& pos);	
 		void moveBy(const Vector2& by);
 		void attach(Object* parent);
@@ -27,7 +27,7 @@ class Object{
 		virtual void update();
 	protected:
 		Engine* _engine = NULL;
-		Vector2  _position;
+		Transform _transform;
 		std::vector <Object*> _children;
 		Object* _parent = NULL;
 		std::string _name;

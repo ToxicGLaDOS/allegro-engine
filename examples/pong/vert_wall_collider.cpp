@@ -2,8 +2,8 @@
 #include"engine.h"
 
 
-VertWallCollider::VertWallCollider(const Vector2& pos, const Vector2& size, const std::string& name, AudioResource* hitSound, Text* score)
-	: RectCollider(pos, size, name)
+VertWallCollider::VertWallCollider(const Transform& trans, const Vector2& size, const std::string& name, AudioResource* hitSound, Text* score)
+	: RectCollider(trans, size, name)
 	, _hitSound(hitSound)
 	, _score(score){}
 

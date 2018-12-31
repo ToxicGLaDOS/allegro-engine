@@ -2,8 +2,8 @@
 #include"engine.h"
 
 
-P1Paddle::P1Paddle(const Vector2& pos, float speed, const ImageResource& image, const std::string& name)
-	: Sprite(pos, image, name)
+P1Paddle::P1Paddle(const Transform& trans, float speed, const ImageResource& image, const std::string& name)
+	: Sprite(trans, image, name)
 	, _speed(speed){}
 
 

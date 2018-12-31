@@ -8,7 +8,7 @@
 class RectCollider : public Collider{
 	public:
 		RectCollider();
-		RectCollider(const Vector2& position, const Vector2& size, const std::string& name);
+		RectCollider(const Transform& transform, const Vector2& size, const std::string& name);
 		RectCollider(const RectCollider& other);
 		~RectCollider();
 		bool collides(Collider * other) const;

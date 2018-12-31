@@ -12,7 +12,7 @@
 class Camera : public Object{
 
 	public:
-		Camera(const Vector2& pos, const Vector2& size, const std::string& name);
+		Camera(const Transform& transform, const Vector2& size, const std::string& name);
 		~Camera();
 		void draw(Drawable* drawable);
 		void drawGUI();

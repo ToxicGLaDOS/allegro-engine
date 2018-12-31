@@ -4,13 +4,9 @@
 #include "exceptions.h"
 
 
-Object::Object(int x_pos, int y_pos, const std::string& name)
+Object::Object(const Transform& transform, const std::string& name)
 	: _name(name)
-	, _position(Vector2(x_pos, y_pos)){}
-
-Object::Object(const Vector2& position, const std::string& name)
-	: _name(name)
-	, _position(position){}
+	, _transform(transform){}
 
 Object::~Object(){
 	for(Object * obj : _children){
@@ -18,8 +14,8 @@ Object::~Object(){
 	}
 }
 
-Vector2 Object::position() const{
-	return _position;
+Transform Object::transform() const{
+	return _transform;
 }
 
 Object* Object::parent() const{
@@ -28,15 +24,15 @@ Object* Object::parent() const{
 
 void Object::moveTo(const Vector2& position){
 	
-	int x_delta = position.x() - _position.x();
-	int y_delta = position.y() - _position.y();
+	int x_delta = position.x() - _transform.position().x();
+	int y_delta = position.y() - _transform.position().y();
 
 	
 	moveBy(Vector2(x_delta, y_delta));
 }
 
 void Object::moveBy(const Vector2& by){
-	_position = _position + by;
+	_transform.setPosition(_transform.position() + by);
 	propagate_movement(by);
 }
 

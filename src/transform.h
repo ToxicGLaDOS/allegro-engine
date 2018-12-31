@@ -5,6 +5,7 @@
 
 class Transform {
 	public:
+		Transform(const Vector2& position);
 		Transform(const Vector2& position, double rotation, const Vector2& scale);
 		
 		void setPosition(const Vector2& position);

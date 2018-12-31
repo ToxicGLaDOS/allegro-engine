@@ -2,8 +2,8 @@
 
 #include"ball_motion.h"
 
-PaddleCollider::PaddleCollider(const Vector2& pos, const Vector2& size, const std::string& name, AudioResource* hitSound)
-	: RectCollider(pos, size, name)
+PaddleCollider::PaddleCollider(const Transform& trans, const Vector2& size, const std::string& name, AudioResource* hitSound)
+	: RectCollider(trans, size, name)
 	, _hitSound(hitSound){} 
 
 

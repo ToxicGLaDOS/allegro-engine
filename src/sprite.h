@@ -8,7 +8,7 @@
 
 class Sprite : public Drawable{
 	public:
-		Sprite(const Vector2& pos, const ImageResource& image, const std::string& name);		
+		Sprite(const Transform& transform, const ImageResource& image, const std::string& name);		
 		Vector2 topLeft() const;
 		ALLEGRO_BITMAP * getBitmap() const;	
 	protected:

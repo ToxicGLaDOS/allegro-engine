@@ -1,7 +1,7 @@
 #include"collider.h"
 
-Collider::Collider(const Vector2& pos, const std::string& name)
-	: Drawable(pos,name){}
+Collider::Collider(const Transform& transform, const std::string& name)
+	: Drawable(transform, name){}
 
 
 

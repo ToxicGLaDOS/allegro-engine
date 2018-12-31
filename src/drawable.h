@@ -9,7 +9,7 @@
 
 class Drawable : public Object{
 	public:
-		Drawable(const Vector2& pos, const std::string& name);
+		Drawable(const Transform& transform, const std::string& name);
 		virtual ALLEGRO_BITMAP * getBitmap() const = 0;
 		virtual Vector2 topLeft() const = 0;
 	protected:

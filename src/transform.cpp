@@ -1,5 +1,10 @@
 #include "transform.h"
 
+Transform::Transform(const Vector2& position)
+	: _position(position)
+	, _rotation(0)
+	, _scale(Vector2(1, 1)){}
+
 Transform::Transform(const Vector2& position, double rotation, const Vector2& scale)
 	: _position(position)
 	, _rotation(rotation)

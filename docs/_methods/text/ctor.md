@@ -1,6 +1,6 @@
 ---
 title: ctor
-signature: "Text(const Vector2& pos, const std::string& text, const std::string& fontPath, int size,
+signature: "Text(const Transform& transform, const std::string& text, const std::string& fontPath, int size,
                                 unsigned char r, unsigned char g, unsigned char b, const std::string& name);"
 ---
 
@@ -8,7 +8,7 @@ signature: "Text(const Vector2& pos, const std::string& text, const std::string&
 # Description
 Creates a text object with the following properties.
 
-`pos` - The position of the text
+`transform` - The position, rotation and scale of the text
 
 `text` - The content of the text
 

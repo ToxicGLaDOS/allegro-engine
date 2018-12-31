@@ -7,7 +7,7 @@
 
 class PaddleCollider : public RectCollider{
 	public:
-		PaddleCollider(const Vector2& pos, const Vector2& size, const std::string& name, AudioResource* hitSound);
+		PaddleCollider(const Transform& trans, const Vector2& size, const std::string& name, AudioResource* hitSound);
 		void onCollision(Collider* other);
 
 	private:

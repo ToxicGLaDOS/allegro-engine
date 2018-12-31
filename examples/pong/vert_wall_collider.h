@@ -8,7 +8,7 @@
 
 class VertWallCollider : public RectCollider{
 	public:
-		VertWallCollider(const Vector2& pos, const Vector2& size, const std::string& name, AudioResource* hitSound, Text* score);
+		VertWallCollider(const Transform& trans, const Vector2& size, const std::string& name, AudioResource* hitSound, Text* score);
 		void onCollision(Collider* other);
 	private:
 		AudioResource* _hitSound;

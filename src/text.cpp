@@ -5,8 +5,8 @@
 #include<stdio.h>
 #include<iostream>
 
-Text::Text(const Vector2& pos, const std::string& text, const std::string& fontPath, int size, unsigned char r, unsigned char g, unsigned char b, const std::string& name)
-	: Drawable(pos, name)
+Text::Text(const Transform& transform, const std::string& text, const std::string& fontPath, int size, unsigned char r, unsigned char g, unsigned char b, const std::string& name)
+	: Drawable(transform, name)
 	, _text(text)
 	, _size(size)
 	, _color(al_map_rgb(r,g,b)){
@@ -32,7 +32,7 @@ ALLEGRO_BITMAP* Text::getBitmap() const{
 }
 
 Vector2 Text::topLeft() const{
-	return _position;
+	return _transform.position();
 }
 
 void Text::setText(const std::string& text){

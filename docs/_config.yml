@@ -179,6 +179,17 @@ defaults:
                         path: "_data-members/image_resource"
                 values:
                         class: imageresource
+        -
+                scope:
+                        path: "_methods/transform"
+                values:
+                        class: transform
+        -
+                scope:
+                        path: "_data-members/transform"
+                values:
+                        class: transform
+
 
 
 

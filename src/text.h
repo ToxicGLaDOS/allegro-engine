@@ -8,7 +8,7 @@
 
 class Text : public Drawable{
 	public:
-		Text(const Vector2& pos, const std::string& text, const std::string& fontPath, int size, 
+		Text(const Transform& transform, const std::string& text, const std::string& fontPath, int size, 
 				unsigned char r, unsigned char g, unsigned char b, const std::string& name);
 		ALLEGRO_BITMAP* getBitmap() const;
 		Vector2 topLeft() const;

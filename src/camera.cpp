@@ -2,8 +2,8 @@
 #include<string>
 #include<stdio.h>
 
-Camera::Camera(const Vector2& pos, const Vector2& size, const std::string& name)
-	:Object(pos, name)
+Camera::Camera(const Transform& transform, const Vector2& size, const std::string& name)
+	:Object(transform, name)
 	, _size(size){
 	
 	_bitmap = al_create_bitmap(_size.x(), _size.y());	
@@ -18,7 +18,7 @@ void Camera::draw(Drawable* drawable){
 	al_set_target_bitmap(_bitmap);
 	// Negate the y because positive y is down on the screen 
 	// but we want a normal coordinate space where up is positive y
-	al_draw_bitmap(drawable_bitmap, drawable->topLeft().x() - _position.x(), -drawable->topLeft().y() + _position.y(), 0);
+	al_draw_bitmap(drawable_bitmap, drawable->topLeft().x() - _transform.position().x(), -drawable->topLeft().y() + _transform.position().y(), 0);
 }
 
 void Camera::drawGUI(){

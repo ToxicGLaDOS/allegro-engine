@@ -4,12 +4,8 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+This is the documentation for the allegro-engine! It is not a professional grade engine by any means, but you are welcome to look through the source code in its entirety, and edit it as you wish!
 
-You can find the source code for the Jekyll new theme at:
-{% include icon-github.html username="jglovier" %} /
-[jekyll-new](https://github.com/jglovier/jekyll-new)
+You can check out the github [here](https://github.com/smit8397/allegro-engine). I am not sure whether I want to accept pull requests right now, but if you have any ideas of things that should be added I would be glad to hear your suggestions! 
 
-You can find the source code for Jekyll at
-{% include icon-github.html username="jekyll" %} /
-[jekyll](https://github.com/jekyll/jekyll)
+You can email me at jefferysmith8397@gmail.com if you have questions or suggestions.

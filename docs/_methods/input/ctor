@@ -1,0 +1,10 @@
+---
+title: ctor
+signature: Input()
+---
+
+# WARNING
+You should not try to create an `Input` instance manually. Instead use the `_engine->input()` to get a reference to the `Input` created by `Engine`. However, for completeness this constructor will be described here.
+
+# Description
+Creates an `Input` instance. `Input` needs no arguments, because it comes ready to load inputs from everything that it can handle (keyboard, mouse, etc.).

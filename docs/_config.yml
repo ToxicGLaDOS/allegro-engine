@@ -12,7 +12,7 @@ description: > # this means to ignore newlines until "baseurl:"
   This is the documentation for the allegro-engine project on github. 
 baseurl: "/allegro-engine" # the subpath of your site, e.g. /blog
 url: "http://smit8397.github.io/allegro-engine/" # the base hostname & protocol for your site
-twitter_username: jekyllrb
+twitter_username: 
 github_username:  smit8397
 
 defaults:
@@ -126,17 +126,59 @@ defaults:
                         class: engine
         -
                 scope:
-                        path: "_methods/circle_collider"
+                        path: "_methods/exceptions"
                 values:
-                        class: circlecollider
+                        class: exceptions
         -
                 scope:
-                        path: "_data-members/rect_collider"
+                        path: "_methods/geometry"
                 values:
-                        class: circlecollider
-
-
-
+                        class: geometry
+        -
+                scope:
+                        path: "_data-members/geometry"
+                values:
+                        class: geometry
+        -
+                scope:
+                        path: "_methods/input"
+                values:
+                        class: input
+        -
+                scope:
+                        path: "_data-members/input"
+                values:
+                        class: input
+        -
+                scope:
+                        path: "_methods/text"
+                values:
+                        class: text
+        -
+                scope:
+                        path: "_data-members/text"
+                values:
+                        class: text
+        -
+                scope:
+                        path: "_methods/audio_resource"
+                values:
+                        class: audioresource
+        -
+                scope:
+                        path: "_data-members/audio_resource"
+                values:
+                        class: audioresource
+        -
+                scope:
+                        path: "_methods/image_resource"
+                values:
+                        class: imageresource
+        -
+                scope:
+                        path: "_data-members/image_resource"
+                values:
+                        class: imageresource
 
 
 

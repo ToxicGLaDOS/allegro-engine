@@ -10,8 +10,8 @@
   <meta name="description" content="DescriptionVector2 represents multiple things in the engine. A Vector2 can represent a point or a vector. It is really just a structure holding two pieces of...">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/classes/vector2/">
-  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/allegro-engine/classes/vector2/">
+  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://localhost:4000/allegro-engine/feed.xml">
 </head>
 
 
@@ -76,6 +76,9 @@
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">Vector2</span><span class="p">();</span>
 <span class="n">Vector2</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">);</span> 
 <span class="k">const</span> <span class="kt">double</span> <span class="n">dot</span><span class="p">(</span><span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span> 
+<span class="kt">double</span> <span class="n">magnitude</span><span class="p">()</span> <span class="k">const</span> 
+<span class="kt">void</span> <span class="n">normalize</span><span class="p">()</span> 
+<span class="n">Vector2</span> <span class="n">normalized</span><span class="p">()</span> <span class="k">const</span> 
 <span class="n">Vector2</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span> 
 <span class="n">Vector2</span> <span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span> 
 <span class="kt">void</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> 
@@ -90,6 +93,12 @@
 	<li><a href=/allegro-engine/methods/ctor/>ctor</a></li>
 
 	<li><a href=/allegro-engine/methods/dot/>dot</a></li>
+
+	<li><a href=/allegro-engine/methods/magnitude/>magnitude</a></li>
+
+	<li><a href=/allegro-engine/methods/normalize/>normalize</a></li>
+
+	<li><a href=/allegro-engine/methods/normalized/>normalized</a></li>
 
 	<li><a href=/allegro-engine/methods/operator/>operator+</a></li>
 

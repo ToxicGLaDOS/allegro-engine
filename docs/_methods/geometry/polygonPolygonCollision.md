@@ -13,6 +13,7 @@ Determines whether there is a collision between two polygons using the seperatin
 
 # Example
 Assume you have a polygon that looks like this. 
+
 ```
 A----B
 |    |

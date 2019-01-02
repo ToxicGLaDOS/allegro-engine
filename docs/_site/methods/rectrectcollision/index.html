@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>rectRectIntersection</title>
+  <title>rectRectCollision</title>
   <meta name="description" content="DescriptionReturns true if the rectangle defined by r1_pos and r1_size collides with the rectangle defined by r2_pos and r2_size">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/methods/rectrectintersection/">
-  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/allegro-engine/methods/rectrectcollision/">
+  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://localhost:4000/allegro-engine/feed.xml">
 </head>
 
 
@@ -56,7 +56,7 @@
       <div class="wrapper">
         <div class="body">
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="n">rectRectIntersection</span><span class="p">(</span><span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">r1_pos</span><span class="p">,</span> <span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">r1_size</span><span class="p">,</span> <span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">r2_pos</span><span class="p">,</span> <span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">r2_size</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="n">rectRectCollision</span><span class="p">(</span><span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">r1_pos</span><span class="p">,</span> <span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">r1_size</span><span class="p">,</span> <span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">r2_pos</span><span class="p">,</span> <span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">r2_size</span><span class="p">)</span></code></pre></figure>
   
   <div class="function-description">
     <h1>Description</h1>
@@ -65,13 +65,13 @@
 
 <h1>Example</h1>
 <div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">// True
-</span><span class="n">rectRectIntersection</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
+</span><span class="n">rectRectCollision</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
 
 <span class="c1">// False
-</span><span class="n">rectRectIntersection</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">));</span>
+</span><span class="n">rectRectCollision</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">));</span>
 
 <span class="c1">// True (even though r2 is contained in r1)
-</span><span class="n">rectRectIntersection</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">));</span>
+</span><span class="n">rectRectCollision</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">));</span>
 
 
 

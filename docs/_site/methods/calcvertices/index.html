@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>circleCircleIntersection</title>
-  <meta name="description" content="DescriptionReturns true if the circle defined by c1_pos and r1 collides with the circle defined by c2_pos1 andr2`">
+  <title>calcVertices</title>
+  <meta name="description" content="WARNINGYou do not need to call this function manually. Calling this function is handled by Engine. However, for completeness it will be described here.">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/methods/circlecircleintersection/">
-  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/allegro-engine/methods/calcvertices/">
+  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://localhost:4000/allegro-engine/feed.xml">
 </head>
 
 
@@ -56,26 +56,17 @@
       <div class="wrapper">
         <div class="body">
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="n">circleCircleIntersection</span><span class="p">(</span><span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">c1_pos</span><span class="p">,</span> <span class="kt">double</span> <span class="n">r1</span><span class="p">,</span> <span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">c2_pos</span><span class="p">,</span> <span class="kt">double</span> <span class="n">r2</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="n">calcVertices</span><span class="p">()</span></code></pre></figure>
   
   <div class="function-description">
-    <h1>Description</h1>
+    <h1>WARNING</h1>
 
-<p>Returns true if the circle defined by <code>c1_pos</code> and <code>r1</code> collides with the circle defined by <code>c2_pos1 and</code>r2`</p>
+<p>You do not need to call this function manually. Calling this function is handled by <code>Engine</code>. However, for completeness it will be described here.</p>
 
-<h1>Example</h1>
-<div class="highlight"><pre><code class="language-c++" data-lang="c++">
-<span class="c1">// True
-</span><span class="n">circleCircleIntersection</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="mi">5</span><span class="p">,</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="mi">4</span><span class="p">);</span>
+<h1>Description</h1>
 
-<span class="c1">// False
-</span><span class="n">circleCircleIntersection</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="mi">2</span><span class="p">);</span>
+<p>Calculates where all the vertices should be for the polygon that represents this <code>RectCollider</code>. This is just a step we have to take before each collision detection cycle and is handled automatically before collision detection by <code>Engine</code>.</p>
 
-<span class="c1">// True (even though one circle contains the other
-</span><span class="n">circleCircleIntersection</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="mi">10</span><span class="p">,</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="mi">5</span><span class="p">);</span>
-
-
-</code></pre></div>
   </div>
 </div>
 

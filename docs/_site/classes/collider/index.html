@@ -10,8 +10,8 @@
   <meta name="description" content="Collider is the base class for all colliders in the engine. It is not recommended to inherit from this class yourself, because you must implement collision d...">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/classes/collider/">
-  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/allegro-engine/classes/collider/">
+  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://localhost:4000/allegro-engine/feed.xml">
 </head>
 
 
@@ -71,14 +71,18 @@
 <h1>Public functions</h1>
 
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">virtual</span> <span class="kt">bool</span> <span class="n">collides</span><span class="p">(</span><span class="n">Collider</span> <span class="o">*</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span> 
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">virtual</span> <span class="kt">void</span> <span class="n">calcVertices</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span> 
+<span class="k">virtual</span> <span class="kt">bool</span> <span class="n">collides</span><span class="p">(</span><span class="n">Collider</span> <span class="o">*</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span> 
 <span class="n">Collider</span><span class="p">(</span><span class="k">const</span> <span class="n">Transform</span><span class="o">&amp;</span> <span class="n">transform</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span> 
 <span class="kt">void</span> <span class="n">draw</span><span class="p">()</span> <span class="k">const</span> 
 <span class="k">virtual</span> <span class="kt">void</span> <span class="n">onCollision</span><span class="p">(</span><span class="n">Collider</span><span class="o">*</span> <span class="n">other</span><span class="p">)</span> 
-<span class="kt">void</span> <span class="n">setDraw</span><span class="p">(</span><span class="kt">bool</span> <span class="n">draw</span><span class="p">)</span> </code></pre></figure>
+<span class="kt">void</span> <span class="n">setDraw</span><span class="p">(</span><span class="kt">bool</span> <span class="n">draw</span><span class="p">)</span> 
+<span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span> <span class="n">vertices</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span> </code></pre></figure>
 
 
 <ul>
+
+	<li><a href=/allegro-engine/methods/calcvertices/>calcVertices</a></li>
 
 	<li><a href=/allegro-engine/methods/collides/>Collides</a></li>
 
@@ -89,6 +93,8 @@
 	<li><a href=/allegro-engine/methods/oncollision/>onCollision</a></li>
 
 	<li><a href=/allegro-engine/methods/setdraw/>setDraw</a></li>
+
+	<li><a href=/allegro-engine/methods/vertices/>vertices</a></li>
 
 </ul>
 

@@ -18,7 +18,17 @@ void Camera::draw(Drawable* drawable){
 	al_set_target_bitmap(_bitmap);
 	// Negate the y because positive y is down on the screen 
 	// but we want a normal coordinate space where up is positive y
-	al_draw_bitmap(drawable_bitmap, drawable->topLeft().x() - _transform.position().x(), -drawable->topLeft().y() + _transform.position().y(), 0);
+	Vector2 position = drawable->transform().position();
+	double rotation = drawable->transform().rotation();
+	Vector2 scale = drawable->transform().scale();
+	int bitmap_width = al_get_bitmap_width(drawable_bitmap);
+	int bitmap_height = al_get_bitmap_height(drawable_bitmap);
+	al_draw_scaled_rotated_bitmap(drawable_bitmap, 
+			bitmap_width/2, bitmap_height/2, 
+			position.x() - _transform.position().x(), -position.y() + _transform.position().y(), 
+			scale.x(), scale.y(), 
+			rotation, 0);
+	//al_draw_bitmap(drawable_bitmap, drawable->topLeft().x() - _transform.position().x(), -drawable->topLeft().y() + _transform.position().y(), 0);
 }
 
 void Camera::drawGUI(){

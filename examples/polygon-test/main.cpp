@@ -44,8 +44,8 @@ int main(int argc, char **argv){
 	//poly1_points = polygonCircle(20, 20, 100);
 	poly2_points = polygonEllipse(50, 10, 30, 200);	
 
-	Polygon poly1 = Polygon(Transform(Vector2(100, -100)), poly1_points, "poly1");
-	Polygon poly2 = Polygon(Transform(Vector2(100+offset, -100-offset)), poly2_points, "poly2");
+	Polygon poly1 = Polygon(Transform(Vector2(0, 0)), poly1_points, "poly1");
+	Polygon poly2 = Polygon(Transform(Vector2(0, 0)), poly2_points, "poly2");
 
 	poly1.setOther(&poly2);
 	poly2.setOther(&poly1);

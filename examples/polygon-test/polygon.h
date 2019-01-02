@@ -9,6 +9,8 @@ class Polygon : public Drawable{
 		Polygon(const Transform& trans, std::vector<Vector2> points, std::string name);
 		ALLEGRO_BITMAP* getBitmap() const;
 		Vector2 topLeft() const;
+		Vector2 bitmapCenter() const;
+		Vector2 getCenter(std::vector<Vector2> points);
 		void update();
 		void move(Vector2 dir);
 		void makeBitmap(ALLEGRO_COLOR color);

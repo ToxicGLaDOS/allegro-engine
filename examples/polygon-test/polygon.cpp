@@ -5,10 +5,28 @@
 #include "engine.h"
 
 Polygon::Polygon(const Transform& trans, std::vector<Vector2> points, std::string name)
-	: Drawable(trans, name)
+	: Drawable(Transform(getCenter(points), trans.rotation(), trans.scale()), name)
 	, _points(points){	
 	
 
+}
+
+Vector2 Polygon::getCenter(std::vector<Vector2> points){
+	Vector2 first = points[0];
+	double minx = first.x(), miny = first.y(), maxx = first.x(), maxy = first.y();
+	for(Vector2 v : points){
+		if(v.x() > maxx)
+			maxx = v.x();
+		if(v.x() < minx)
+			minx = v.x();
+		if(v.y() > maxy)
+			maxy = v.y();
+		if(v.y() < miny)
+			miny = v.y();
+	}
+	Vector2 center = Vector2((maxx + minx) / 2, (maxy + miny) /2);
+	printf("Center: (%f, %f)\n", center.x(), center.y());
+	return center;
 }
 
 void Polygon::makeBitmap(ALLEGRO_COLOR color){
@@ -41,12 +59,12 @@ void Polygon::makeBitmap(ALLEGRO_COLOR color){
 }
 
 void Polygon::move(Vector2 dir){
+	moveBy(dir);
 	std::vector<Vector2> newPoints;
 	for(Vector2 v : _points){
 		newPoints.push_back(v + dir);
 	}
 	_points = newPoints;
-	makeBitmap(_noncollide_color);
 }
 
 void Polygon::update(){

@@ -45,10 +45,10 @@ void RectCollider::initBitmap(){
 void RectCollider::calcVertices(){
 	Vector2 pos = _transform.position();
 	_vertices.clear();
-	_vertices.push_back(pos);
-	_vertices.push_back(Vector2(pos.x(), pos.y() - _size.y()));
-	_vertices.push_back(Vector2(pos.x() + _size.x(), pos.y() - _size.y()));
-	_vertices.push_back(Vector2(pos.x() + _size.x(), pos.y()));
+	_vertices.push_back(Vector2(pos.x() - _size.x()/2, pos.y() + _size.y()/2));
+	_vertices.push_back(Vector2(pos.x() - _size.x()/2, pos.y() - _size.y()/2));
+	_vertices.push_back(Vector2(pos.x() + _size.x()/2, pos.y() - _size.y()/2));
+	_vertices.push_back(Vector2(pos.x() + _size.x()/2, pos.y() + _size.y()/2));
 	//printf("%s: (%f, %f), (%f, %f), (%f, %f), (%f, %f)\n", _name.c_str(), _vertices[0].x(), _vertices[0].y(), _vertices[1].x(), _vertices[1].y(), _vertices[2].x(), _vertices[2].y(), _vertices[3].x(), _vertices[3].y());
 }
 

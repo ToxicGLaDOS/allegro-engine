@@ -20,7 +20,7 @@ int width = 1000, height = 1000;
 
 int main(int argc, char **argv){
 	Engine engine = Engine(width, height, 120);	
-	Camera camera = Camera(Vector2(0,0), Vector2(width, height), "main camera");
+	Camera camera = Camera(Vector2(0, 0), Vector2(width, height), "main camera");
 	
 	ImageResource paddle_image = ImageResource("paddle.png");
 	ImageResource ball_image = ImageResource("ball.png");
@@ -38,13 +38,13 @@ int main(int argc, char **argv){
 	Vector2 ball_size = Vector2(50, 50);
 	Vector2 paddle_size = Vector2(50, 250);
 
-	Transform p1_start = Transform(Vector2(0, 0));
-	Transform p2_start = Transform(Vector2(width - 50, 0));
+	Transform p1_start = Transform(Vector2(50, -125));
+	Transform p2_start = Transform(Vector2(width - 50, -125));
 
-	Transform l_wall_trans = Transform(Vector2(-10, 0));
-	Transform r_wall_trans = Transform(Vector2(width, 0));
-	Transform t_wall_trans = Transform(Vector2(0, 10));
-	Transform b_wall_trans = Transform(Vector2(0, -height));
+	Transform l_wall_trans = Transform(Vector2(-5, -height/2));
+	Transform r_wall_trans = Transform(Vector2(width + 5, -height/2));
+	Transform t_wall_trans = Transform(Vector2(width/2, 5));
+	Transform b_wall_trans = Transform(Vector2(width/2, -height+5));
 	
 	P1Paddle paddle1 = P1Paddle(p1_start, 5, paddle_image, "Player1 paddle");
 	P2Paddle paddle2 = P2Paddle(p2_start, 5, paddle_image, "Player2 paddle");

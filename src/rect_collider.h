@@ -11,6 +11,8 @@ class RectCollider : public Collider{
 		RectCollider(const Transform& transform, const Vector2& size, const std::string& name);
 		RectCollider(const RectCollider& other);
 		~RectCollider();
+		void calcVertices();
+		std::vector<Vector2> vertices() const;
 		bool collides(Collider * other) const;
 		Vector2 topLeft() const;
 		ALLEGRO_BITMAP * getBitmap() const;
@@ -18,7 +20,8 @@ class RectCollider : public Collider{
 
 	private:
 		void initBitmap();
-		
+
+		std::vector<Vector2> _vertices;
 		ALLEGRO_BITMAP* _bitmap;
 		Vector2  _size;
 };

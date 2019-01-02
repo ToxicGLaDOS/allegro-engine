@@ -2,4 +2,4 @@
 title: geometry
 ---
 
-Geometry is not a class, but rather just a set of helpful functions for checking things about shapes in your game. The most useful one to you will probably be the distance function. The collision functions are used by the colliders to test collisions against each other by the engine, but don't let that stop you from using them manually if the need arises!
+Geometry is not a class, but rather just a set of helpful functions for checking things about shapes in your game. The most useful one to you will probably be the distance function. Many of these functions were used by the collision detection system before it was changed to using the SAT algorithm. They could still be useful so they were left in just in case you need them. 

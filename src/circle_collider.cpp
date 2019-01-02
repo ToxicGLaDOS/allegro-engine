@@ -3,14 +3,16 @@
 #include"geometry.h"
 #include<string>
 #include<allegro5/allegro_primitives.h>
-
+#include<math.h>
 
 
 
 CircleCollider::CircleCollider(const Transform& transform, double radius, const std::string& name)
 	: Collider(transform, name),
 	_radius(radius){
-	initBitmap();	
+
+	
+	initBitmap();
 }
 
 CircleCollider::CircleCollider(const CircleCollider& other)
@@ -31,18 +33,25 @@ void CircleCollider::initBitmap(){
 	al_draw_circle(_radius, _radius, _radius, al_map_rgb(0, 200, 0), 1);
 }
 
-bool CircleCollider::collides(Collider * other) const{
-	CircleCollider* circle_ptr = dynamic_cast<CircleCollider*>(other);
-	RectCollider* square_ptr = dynamic_cast<RectCollider*>(other);
+void CircleCollider::calcVertices(){
+	_vertices.clear();
+	
+	double twopi = 2*M_PI;
+	int resolution = 20;
+	Vector2 pos = _transform.position();
+	for(int i = 0; i < resolution; i++){
+		double t = (i/(double)resolution) * twopi;
+		_vertices.push_back(Vector2(_radius * cos(t) + pos.x(), _radius * sin(t) - pos.y()));
+	}
 
-	if(circle_ptr != NULL){
-		CircleCollider circle = *circle_ptr;
-		return circleCircleIntersection(_transform.position(), _radius, circle.transform().position(), circle.radius());
-	}
-	if(square_ptr != NULL){
-		RectCollider square = *square_ptr;
-		return rectCircleIntersection(square.transform().position(), square.size(), _transform.position(), _radius);
-	}
+}
+
+std::vector<Vector2> CircleCollider::vertices() const{
+	return _vertices;
+}
+
+bool CircleCollider::collides(Collider * other) const{
+	return polygonPolygonCollision(_vertices, other->vertices());
 }
 
 Vector2 CircleCollider::topLeft() const{

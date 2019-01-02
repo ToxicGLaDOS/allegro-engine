@@ -38,7 +38,7 @@ const double Vector2::dot(const Vector2& other) const{
 
 const Vector2 Vector2::projectOnto(const Vector2& other) const{
 	double dotProd = dot(other);
-	return (dotProd / pow(distance(Vector2(0,0),other),2)) * other;
+	return (dotProd / pow(other.magnitude(),2)) * other;
 }
 
 const double Vector2::x() const{
@@ -47,4 +47,19 @@ const double Vector2::x() const{
 
 const double Vector2::y() const{
 	return _y;
+}
+
+double Vector2::magnitude() const{
+	return sqrt(pow(_x, 2) + pow(_y, 2));
+}
+
+Vector2 Vector2::normalized() const{
+	double mag = magnitude();
+	return Vector2(_x / mag, _y / mag);
+}
+
+void Vector2::normalize(){
+	double mag = magnitude();
+	_x = _x / mag;
+	_y = _y / mag;
 }

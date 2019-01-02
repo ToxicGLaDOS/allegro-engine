@@ -14,12 +14,15 @@ class CircleCollider : public Collider{
 		CircleCollider(const CircleCollider& other);
 		~CircleCollider();
 		double radius() const;
+		void calcVertices();
+		std::vector<Vector2> vertices() const;
 		bool collides(Collider * other) const;
 		Vector2 topLeft() const;
 		ALLEGRO_BITMAP * getBitmap() const;
 	private:
 		void initBitmap();
 
+		std::vector<Vector2> _vertices;
 		ALLEGRO_BITMAP* _bitmap;
 		double _radius;
 

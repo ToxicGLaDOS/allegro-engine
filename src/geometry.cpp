@@ -1,6 +1,7 @@
 #include"vector2.h"
 #include<math.h>
 #include<stdio.h>
+#include<vector>
 #include<allegro5/allegro.h>
 #include<allegro5/allegro_image.h>
 #include<allegro5/allegro_primitives.h>
@@ -41,7 +42,7 @@ int sign(double a){
 }
 
 
-bool lineCircleIntersection(const Vector2& p1, const Vector2& p2, const Vector2& c_pos, double radius){
+bool lineCircleCollision(const Vector2& p1, const Vector2& p2, const Vector2& c_pos, double radius){
 	Vector2 v = p2 - p1;
 	Vector2 pointToCircle = c_pos - p1;
 	Vector2 projection = pointToCircle.projectOnto(v);
@@ -106,7 +107,7 @@ bool lineCircleIntersection(const Vector2& p1, const Vector2& p2, const Vector2&
 	return false;
 }
 
-bool rectCircleIntersection(const Vector2& r_pos, const Vector2& r_size, const Vector2& c_pos, double radius){
+bool rectCircleCollision(const Vector2& r_pos, const Vector2& r_size, const Vector2& c_pos, double radius){
 	
 	Vector2 a = Vector2(r_pos.x(),              r_pos.y());
 	Vector2 b = Vector2(r_pos.x(),              r_pos.y() - r_size.y());
@@ -117,17 +118,17 @@ bool rectCircleIntersection(const Vector2& r_pos, const Vector2& r_size, const V
 	if(pointInRect(c_pos, r_pos, r_size)){
 		return true;
 	}
-	else if(   lineCircleIntersection(a, b, c_pos, radius)
-		|| lineCircleIntersection(b, c, c_pos, radius)
-		|| lineCircleIntersection(c, d, c_pos, radius)
-		|| lineCircleIntersection(d, a, c_pos, radius)){
+	else if(   lineCircleCollision(a, b, c_pos, radius)
+		|| lineCircleCollision(b, c, c_pos, radius)
+		|| lineCircleCollision(c, d, c_pos, radius)
+		|| lineCircleCollision(d, a, c_pos, radius)){
 		return true;
 	}
 
 	return false;
 }
 
-bool rectRectIntersection(const Vector2& r1_pos, const Vector2& r1_size, const Vector2& r2_pos, const Vector2& r2_size){
+bool rectRectCollision(const Vector2& r1_pos, const Vector2& r1_size, const Vector2& r2_pos, const Vector2& r2_size){
 	Vector2 left_pos, right_pos, top_pos, bottom_pos, left_size, top_size;
 
 
@@ -160,7 +161,7 @@ bool rectRectIntersection(const Vector2& r1_pos, const Vector2& r1_size, const V
 	}
 } 
 
-bool circleCircleIntersection(const Vector2& c1_pos, double r1, const Vector2& c2_pos, double r2){
+bool circleCircleCollision(const Vector2& c1_pos, double r1, const Vector2& c2_pos, double r2){
 	if(distance(c1_pos, c2_pos) < r1 + r2){
 		return true;
 	}
@@ -171,4 +172,57 @@ bool circleCircleIntersection(const Vector2& c1_pos, double r1, const Vector2& c
 } 
 
 
+bool polygonPolygonCollision(const std::vector<Vector2>& poly1, const std::vector<Vector2>&poly2){
+	std::vector<Vector2> normals;
+	for(int i = 0; i < poly1.size(); i++){
+		Vector2 p1 = poly1[i];
+		Vector2 p2 = poly1[(i + 1) % poly1.size()];
+		
+		Vector2 direction = p2 - p1;
+		
+		normals.push_back(Vector2(direction.x(), -direction.y()).normalized());
+	}
 
+	for(int i = 0; i < poly2.size() - 1; i++){
+		Vector2 p1 = poly2[i];
+		Vector2 p2 = poly2[(i + 1) % poly2.size()];
+		
+		Vector2 direction = p2 - p1;
+		
+		normals.push_back(Vector2(direction.x(), -direction.y()).normalized());
+	}
+	
+	for(Vector2 normal : normals){
+		double min_proj_poly1 = poly1[0].dot(normal);
+		double max_proj_poly1 = poly1[0].dot(normal);
+		
+		for(Vector2 v : poly1){
+			double cur_proj1 = v.dot(normal);
+			if(min_proj_poly1 > cur_proj1){
+				min_proj_poly1 = cur_proj1;
+			}
+			if(cur_proj1 > max_proj_poly1){
+				max_proj_poly1 = cur_proj1;
+			}
+		}
+		
+		
+		double min_proj_poly2 = poly2[0].dot(normal);
+		double max_proj_poly2 = poly2[0].dot(normal);
+		
+		for(Vector2 v : poly2){
+			double cur_proj2 = v.dot(normal);
+			if(min_proj_poly2 > cur_proj2){
+				min_proj_poly2 = cur_proj2;
+			}
+			if(cur_proj2 > max_proj_poly2){
+				max_proj_poly2 = cur_proj2;
+			}
+		}
+		if(max_proj_poly2 < min_proj_poly1 || max_proj_poly1 < min_proj_poly2){
+			return false;	
+		}
+	}
+	return true;
+
+}

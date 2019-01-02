@@ -15,7 +15,7 @@ RectCollider::RectCollider(const Transform& transform, const Vector2& size, cons
 	: Collider(transform, name)
 	, _size(size){
 	
-	initBitmap();	
+	initBitmap();
 }
 
 RectCollider::RectCollider(const RectCollider& other)
@@ -42,18 +42,23 @@ void RectCollider::initBitmap(){
 
 }
 
+void RectCollider::calcVertices(){
+	Vector2 pos = _transform.position();
+	_vertices.clear();
+	_vertices.push_back(pos);
+	_vertices.push_back(Vector2(pos.x(), pos.y() - _size.y()));
+	_vertices.push_back(Vector2(pos.x() + _size.x(), pos.y() - _size.y()));
+	_vertices.push_back(Vector2(pos.x() + _size.x(), pos.y()));
+	//printf("%s: (%f, %f), (%f, %f), (%f, %f), (%f, %f)\n", _name.c_str(), _vertices[0].x(), _vertices[0].y(), _vertices[1].x(), _vertices[1].y(), _vertices[2].x(), _vertices[2].y(), _vertices[3].x(), _vertices[3].y());
+}
 
-bool RectCollider::collides(Collider * other) const{	
-	RectCollider* square_ptr = dynamic_cast<RectCollider*>(other);
-	CircleCollider* circle_ptr = dynamic_cast<CircleCollider*>(other);	
-	if(square_ptr != NULL){
-		RectCollider square = *square_ptr;
-		return rectRectIntersection(_transform.position(), _size, square.transform().position(), square.size());
-	}
-	if(circle_ptr != NULL){
-		CircleCollider circle = *circle_ptr;
-		return rectCircleIntersection(_transform.position(), _size, circle.transform().position(), circle.radius());
-	}
+std::vector<Vector2> RectCollider::vertices() const{
+	return _vertices;
+}
+
+
+bool RectCollider::collides(Collider * other) const{
+	return polygonPolygonCollision(vertices(), other->vertices());
 }
 
 Vector2 RectCollider::topLeft() const{

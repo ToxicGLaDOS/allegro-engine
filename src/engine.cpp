@@ -131,12 +131,18 @@ void Engine::register_collider(Collider * collider){
 }
 
 void Engine::checkCollisions(){
+	// Set up the colliders for collision checking using SAT
+	for(Collider* collider : _colliders){
+		collider->calcVertices();
+	}
+
 	// Iterate through each collider as i
 	// then each collider after that one as j
 	for(int i = 0; i < _colliders.size(); i++){
 		for(int j = i + 1; j < _colliders.size(); j++){
 			Collider * collider1 = _colliders[i];
 			Collider * collider2 = _colliders[j];
+			
 			// If we get a collision we call both callbacks
 			if(collider1->collides(collider2)){	
 				collider1->onCollision(collider2);

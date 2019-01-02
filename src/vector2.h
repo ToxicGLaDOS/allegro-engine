@@ -14,6 +14,10 @@ class Vector2{
 		const double x() const;
 		const double y() const;
 		
+		double magnitude() const;
+		Vector2 normalized() const;
+		void normalize();
+		
 	private:
 		double _x, _y;
 

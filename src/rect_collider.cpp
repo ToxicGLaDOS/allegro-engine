@@ -1,6 +1,7 @@
 #include "rect_collider.h"
 #include "circle_collider.h"
 #include "geometry.h"
+#include "matrix2x2.h"
 #include <allegro5/allegro_primitives.h>
 
 
@@ -45,10 +46,14 @@ void RectCollider::initBitmap(){
 void RectCollider::calcVertices(){
 	Vector2 pos = _transform.position();
 	_vertices.clear();
-	_vertices.push_back(Vector2(pos.x() - _size.x()/2, pos.y() + _size.y()/2));
-	_vertices.push_back(Vector2(pos.x() - _size.x()/2, pos.y() - _size.y()/2));
-	_vertices.push_back(Vector2(pos.x() + _size.x()/2, pos.y() - _size.y()/2));
-	_vertices.push_back(Vector2(pos.x() + _size.x()/2, pos.y() + _size.y()/2));
+	_vertices.push_back(Vector2(-_size.x()/2,  _size.y()/2));
+	_vertices.push_back(Vector2(-_size.x()/2, -_size.y()/2));
+	_vertices.push_back(Vector2(_size.x()/2,  -_size.y()/2));
+	_vertices.push_back(Vector2(_size.x()/2,   _size.y()/2));
+	for(int i = 0; i < _vertices.size(); i++){
+		Vector2 scaled = Matrix2x2::scale(_vertices[i], _transform.scale().x(), _transform.scale().y());
+		_vertices[i] = Matrix2x2::rotate(scaled , _transform.rotation()) + _transform.position();
+	}
 	//printf("%s: (%f, %f), (%f, %f), (%f, %f), (%f, %f)\n", _name.c_str(), _vertices[0].x(), _vertices[0].y(), _vertices[1].x(), _vertices[1].y(), _vertices[2].x(), _vertices[2].y(), _vertices[3].x(), _vertices[3].y());
 }
 

@@ -44,7 +44,7 @@ int main(int argc, char **argv){
 	Transform l_wall_trans = Transform(Vector2(-5, -height/2));
 	Transform r_wall_trans = Transform(Vector2(width + 5, -height/2));
 	Transform t_wall_trans = Transform(Vector2(width/2, 5));
-	Transform b_wall_trans = Transform(Vector2(width/2, -height+5));
+	Transform b_wall_trans = Transform(Vector2(width/2, -height-5));
 	
 	P1Paddle paddle1 = P1Paddle(p1_start, 5, paddle_image, "Player1 paddle");
 	P2Paddle paddle2 = P2Paddle(p2_start, 5, paddle_image, "Player2 paddle");

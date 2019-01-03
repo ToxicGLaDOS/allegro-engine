@@ -8,6 +8,7 @@ class Matrix2x2{
 		Matrix2x2(double a, double b, double c, double d);
 		Vector2 operator*(const Vector2& point) const;
 		static Vector2 rotate(const Vector2& point, float theta);
+		static Vector2 scale(const Vector2& point, float xScale, float yScale);
 	private:
 		double array[2][2];
 };

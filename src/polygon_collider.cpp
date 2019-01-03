@@ -58,7 +58,8 @@ std::vector<Vector2> PolygonCollider::vertices() const{
 
 void PolygonCollider::calcVertices(){
 	for(int i = 0; i < _vertices.size(); i++){
-		_vertices[i] = Matrix2x2::rotate(_original_vertices[i] , _transform.rotation()) + _transform.position();
+		Vector2 scaled = Matrix2x2::scale(_original_vertices[i], _transform.scale().x(), _transform.scale().y());
+		_vertices[i] = Matrix2x2::rotate(scaled , _transform.rotation()) + _transform.position();
 	}
 	
 }

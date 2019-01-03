@@ -49,8 +49,8 @@ int main(int argc, char **argv){
 	poly2_points = polygonEllipse(150, 50, 30, 0);
 	double angle = 0;
 	
-	MyPolygon poly1 = MyPolygon(Transform(Vector2(300, -300), -angle, Vector2(1, 1)), polygonCircle(50, 4, 0), "poly1");
-	PolygonCollider poly2 = PolygonCollider(Transform(Vector2(200, -200),  angle, Vector2(1, 1)), poly2_points, "poly2");
+	MyPolygon poly1 = MyPolygon(Transform(Vector2(300, -300), -angle, Vector2(1.2, 1.8)), polygonCircle(50, 4, 0), "poly1");
+	PolygonCollider poly2 = PolygonCollider(Transform(Vector2(200, -200),  angle, Vector2(.5, 3)), poly2_points, "poly2");
 	
 
 	poly1.setDraw(true);

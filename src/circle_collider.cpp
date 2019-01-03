@@ -1,6 +1,7 @@
 #include"circle_collider.h"
 #include"rect_collider.h"
 #include"geometry.h"
+#include"matrix2x2.h"
 #include<string>
 #include<allegro5/allegro_primitives.h>
 #include<math.h>
@@ -41,7 +42,11 @@ void CircleCollider::calcVertices(){
 	Vector2 pos = _transform.position();
 	for(int i = 0; i < resolution; i++){
 		double t = (i/(double)resolution) * twopi;
-		_vertices.push_back(Vector2(_radius * cos(t) + pos.x(), _radius * sin(t) - pos.y()));
+		_vertices.push_back(Vector2(_radius * cos(t), _radius * sin(t)));
+	}
+	for(int i = 0; i < _vertices.size(); i++){
+		Vector2 scaled = Matrix2x2::scale(_vertices[i], _transform.scale().x(), _transform.scale().y());
+		_vertices[i] = Matrix2x2::rotate(scaled , _transform.rotation()) + _transform.position();
 	}
 
 }

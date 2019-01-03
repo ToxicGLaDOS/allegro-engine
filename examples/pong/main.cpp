@@ -6,6 +6,7 @@
 #include"ball_motion.h"
 #include"image_resource.h"
 #include"audio_resource.h"
+#include"circle_collider.h"
 #include"horz_wall_collider.h"
 #include"vert_wall_collider.h"
 #include"paddle_collider.h"
@@ -54,6 +55,7 @@ int main(int argc, char **argv){
 	PaddleCollider p1_collider = PaddleCollider(p1_start, paddle_size, "P1 collider", &bounce_sound);
 	PaddleCollider p2_collider = PaddleCollider(p2_start, paddle_size, "P2 collider", &bounce_sound);
 	RectCollider ball_collider = RectCollider(ball_start, ball_size, "Ball collider");
+	//CircleCollider ball_collider = CircleCollider(Transform(Vector2(width/2, -height/2), .7, Vector2(5, 4)), 10, "Ball collider");
 
 	VertWallCollider left_wall = VertWallCollider(l_wall_trans, Vector2(10, height), "Left wall collider", &goal_sound, &p2_score);
 	VertWallCollider right_wall = VertWallCollider(r_wall_trans, Vector2(10, height), "Right wall collider", &goal_sound, &p1_score);

@@ -172,33 +172,47 @@ bool circleCircleCollision(const Vector2& c1_pos, double r1, const Vector2& c2_p
 } 
 
 
-bool polygonPolygonCollision(const std::vector<Vector2>& poly1, const std::vector<Vector2>&poly2){
+Vector2 getCenter(const std::vector<Vector2>& poly){
+	double minx = poly[0].x(), maxx = poly[0].x(), miny = poly[0].y(), maxy = poly[0].y();
+	for(Vector2 v : poly){
+		if(v.x() < minx)
+			minx = v.x();
+		if(v.x() > maxx)
+			maxx = v.x();
+		if(v.y() < miny)
+			miny = v.y();
+		if(v.y() > maxy)
+			maxy = v.y();
+	}
+	return Vector2((maxx + minx)/2, (maxy + miny)/2);
+}
+
+bool polygonPolygonCollision(const std::vector<Vector2>& poly1, const std::vector<Vector2>& poly2){
 	std::vector<Vector2> normals;
+
 	for(int i = 0; i < poly1.size(); i++){
 		Vector2 p1 = poly1[i];
 		Vector2 p2 = poly1[(i + 1) % poly1.size()];
 		
 		Vector2 direction = p2 - p1;
-		
-		normals.push_back(Vector2(direction.x(), -direction.y()).normalized());
+		normals.push_back(Vector2(direction.y(), -direction.x()).normalized());
 	}
 
-	for(int i = 0; i < poly2.size() - 1; i++){
+	for(int i = 0; i < poly2.size(); i++){
 		Vector2 p1 = poly2[i];
 		Vector2 p2 = poly2[(i + 1) % poly2.size()];
 		
 		Vector2 direction = p2 - p1;
-		
-		normals.push_back(Vector2(direction.x(), -direction.y()).normalized());
+		normals.push_back(Vector2(direction.y(), -direction.x()).normalized());
 	}
-	
+
 	for(Vector2 normal : normals){
 		double min_proj_poly1 = poly1[0].dot(normal);
 		double max_proj_poly1 = poly1[0].dot(normal);
 		
 		for(Vector2 v : poly1){
 			double cur_proj1 = v.dot(normal);
-			if(min_proj_poly1 > cur_proj1){
+			if(cur_proj1 < min_proj_poly1){
 				min_proj_poly1 = cur_proj1;
 			}
 			if(cur_proj1 > max_proj_poly1){
@@ -212,15 +226,16 @@ bool polygonPolygonCollision(const std::vector<Vector2>& poly1, const std::vecto
 		
 		for(Vector2 v : poly2){
 			double cur_proj2 = v.dot(normal);
-			if(min_proj_poly2 > cur_proj2){
+			if(cur_proj2 < min_proj_poly2){
 				min_proj_poly2 = cur_proj2;
 			}
 			if(cur_proj2 > max_proj_poly2){
 				max_proj_poly2 = cur_proj2;
 			}
 		}
+
 		if(max_proj_poly2 < min_proj_poly1 || max_proj_poly1 < min_proj_poly2){
-			return false;	
+			return false;
 		}
 	}
 	return true;

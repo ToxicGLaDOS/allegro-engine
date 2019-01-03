@@ -69,8 +69,6 @@ void Engine::mainLoop(){
 }
 
 void Engine::draw(){
-	// Clear camera bitmap
-	_camera->clearBitmap();
 
 	for(Drawable * drawable : _drawables){
 		_camera->draw(drawable);
@@ -93,10 +91,15 @@ void Engine::draw(){
 void Engine::update(){
 	_input->update();
 	_camera->update();
+	// Clear camera bitmap
+	_camera->clearBitmap();
+
+
 	for(Object * object : _objects){
 		object->update();
 	}
 	for(Drawable* drawable : _drawables){
+		al_set_target_bitmap(_camera->bitmap());
 		drawable->update();
 	}
 	checkCollisions();

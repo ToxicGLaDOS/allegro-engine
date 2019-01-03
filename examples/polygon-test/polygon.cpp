@@ -3,12 +3,14 @@
 #include "geometry.h"
 #include "input.h"
 #include "engine.h"
+#include "matrix2x2.h"
 
 Polygon::Polygon(const Transform& trans, std::vector<Vector2> points, std::string name)
 	: Drawable(Transform(getCenter(points), trans.rotation(), trans.scale()), name)
-	, _points(points){	
+	, _points(points)
+	, _base_points(points){
 	
-
+	transformPoints();
 }
 
 Vector2 Polygon::getCenter(std::vector<Vector2> points){
@@ -25,14 +27,13 @@ Vector2 Polygon::getCenter(std::vector<Vector2> points){
 			miny = v.y();
 	}
 	Vector2 center = Vector2((maxx + minx) / 2, (maxy + miny) /2);
-	printf("Center: (%f, %f)\n", center.x(), center.y());
 	return center;
 }
 
 void Polygon::makeBitmap(ALLEGRO_COLOR color){
-	Vector2 first = _points[0];
+	Vector2 first = _base_points[0];
 	double minx = first.x(), miny = first.y(), maxx = first.x(), maxy = first.y();
-	for(Vector2 v : _points){
+	for(Vector2 v : _base_points){
 		if(v.x() > maxx)
 			maxx = v.x();
 		if(v.x() < minx)
@@ -47,13 +48,21 @@ void Polygon::makeBitmap(ALLEGRO_COLOR color){
 	_bitmap = al_create_bitmap(maxx - minx, maxy - miny + 1);
 	al_set_target_bitmap(_bitmap);
 	al_clear_to_color(al_map_rgba(0, 0, 0, 0));
-	for(int i = 0; i < _points.size(); i++){
-		Vector2 start = _points[i] - Vector2(minx, miny);
-		Vector2 end = _points[(i + 1) % _points.size()] - Vector2(minx, miny);
+	std::vector<Vector2> translatedPoints;
+	for(Vector2 p : _base_points){
+		Vector2 translated = Vector2((p - Vector2(minx, maxy)).x(), -((p - Vector2(minx, maxy)).y()));
+		translatedPoints.push_back(translated);
+	}
+	for(int i = 0; i < _base_points.size(); i++){
+		Vector2 start = translatedPoints[i];
+		//printf("Start: (%f, %f)\n",start.x(),start.y());
+		Vector2 end = translatedPoints[(i + 1) % translatedPoints.size()];
 		if(start.x() == 0)
 			start = Vector2(start.x() + 1, start.y());
 		if(start.y() == 0)
 			start = Vector2(start.x(), start.y() + 1);
+		if(end.x() == 0)
+			end = Vector2(end.x() + 1, end.y());
 		al_draw_line(start.x(), start.y(), end.x(), end.y(), color, 1);
 	}
 }
@@ -64,7 +73,15 @@ void Polygon::move(Vector2 dir){
 	for(Vector2 v : _points){
 		newPoints.push_back(v + dir);
 	}
+	_topLeft = _topLeft + dir;
 	_points = newPoints;
+}
+
+void Polygon::transformPoints(){
+
+	for(int i = 0; i < _points.size(); i++){
+		_points[i] = Matrix2x2::rotate(_points[i] - _transform.position(), _transform.rotation()) + _transform.position();
+	}
 }
 
 void Polygon::update(){
@@ -79,7 +96,10 @@ void Polygon::update(){
 		if(input->keyHeld("d"))
 			move(Vector2(5,0));
 	}
-	
+	//printf("%s: %f, %f\n", _name.c_str(), _transform.position().x(), _transform.position().y());
+	for(int i = 0; i < _points.size(); i++){
+		//al_draw_line(_points[i].x(), -_points[i].y(), _points[(i+1)%_points.size()].x(), -_points[(i+1)%_points.size()].y(), al_map_rgb(0, 0, 255), 10);
+	}
 	if(_other != NULL){
 		if(polygonPolygonCollision(_points, _other->points())){
 			makeBitmap(_collide_color);

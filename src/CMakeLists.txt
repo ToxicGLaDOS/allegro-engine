@@ -10,6 +10,7 @@ add_library(engine
 	rect_collider.cpp
 	circle_collider.cpp
 	vector2.cpp
+	matrix2x2.cpp
 	transform.cpp
 	input.cpp
 	image_resource.cpp

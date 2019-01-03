@@ -1,6 +1,6 @@
 set(build_name polygon-test)
 
-add_executable(${build_name} main.cpp polygon.cpp)
+add_executable(${build_name} main.cpp polygon.cpp polygon_collider.cpp)
 
 target_link_libraries(${build_name} engine)
 

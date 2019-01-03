@@ -10,6 +10,7 @@ class Polygon : public Drawable{
 		ALLEGRO_BITMAP* getBitmap() const;
 		Vector2 topLeft() const;
 		Vector2 bitmapCenter() const;
+		void transformPoints();
 		Vector2 getCenter(std::vector<Vector2> points);
 		void update();
 		void move(Vector2 dir);
@@ -20,7 +21,7 @@ class Polygon : public Drawable{
 		Vector2 _topLeft;	
 		Polygon* _other = NULL;
 		ALLEGRO_BITMAP* _bitmap;
-		std::vector<Vector2> _points;
+		std::vector<Vector2> _points, _base_points;
 		ALLEGRO_COLOR _collide_color = al_map_rgb(255,0,0);
 		ALLEGRO_COLOR _noncollide_color= al_map_rgb(0,255,0);
 };

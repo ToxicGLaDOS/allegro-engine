@@ -102,6 +102,9 @@ void Engine::update(){
 		al_set_target_bitmap(_camera->bitmap());
 		drawable->update();
 	}
+	for(Collider* collider : _colliders){
+		collider->update();
+	}
 	checkCollisions();
 	draw();
 

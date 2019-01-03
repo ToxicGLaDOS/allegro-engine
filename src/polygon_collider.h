@@ -12,8 +12,9 @@ class PolygonCollider : public Collider{
 		void calcVertices();
 		ALLEGRO_BITMAP* getBitmap() const;
 		Vector2 topLeft() const;
-	protected:
-		Vector2 calcPosition(std::vector<Vector2> points);
+	protected:	
+		void makeBitmap();
+		
 		std::vector<Vector2> _original_vertices;
 		std::vector<Vector2> _vertices;
 		ALLEGRO_BITMAP* _bitmap;

@@ -9,6 +9,7 @@ add_library(engine
 	geometry.cpp
 	rect_collider.cpp
 	circle_collider.cpp
+	polygon_collider.cpp
 	vector2.cpp
 	matrix2x2.cpp
 	transform.cpp

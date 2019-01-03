@@ -50,8 +50,6 @@ void Camera::attachGUI(Drawable* drawable){
 
 
 void Camera::update(){
-	al_set_target_bitmap(_bitmap);
-	al_clear_to_color(_background);
 }
 
 void Camera::setBackgroundColor(unsigned char r, unsigned char g, unsigned char b){
@@ -73,7 +71,7 @@ unsigned char* Camera::background() const{
 
 void Camera::clearBitmap(){
 	al_set_target_bitmap(_bitmap);
-	al_clear_to_color(al_map_rgba(0,0,0,0));
+	al_clear_to_color(_background);
 }
 
 Vector2 Camera::size() const{

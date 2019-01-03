@@ -189,7 +189,7 @@ Vector2 getCenter(const std::vector<Vector2>& poly){
 
 bool polygonPolygonCollision(const std::vector<Vector2>& poly1, const std::vector<Vector2>& poly2){
 	std::vector<Vector2> normals;
-
+	
 	for(int i = 0; i < poly1.size(); i++){
 		Vector2 p1 = poly1[i];
 		Vector2 p2 = poly1[(i + 1) % poly1.size()];
@@ -209,7 +209,6 @@ bool polygonPolygonCollision(const std::vector<Vector2>& poly1, const std::vecto
 	for(Vector2 normal : normals){
 		double min_proj_poly1 = poly1[0].dot(normal);
 		double max_proj_poly1 = poly1[0].dot(normal);
-		
 		for(Vector2 v : poly1){
 			double cur_proj1 = v.dot(normal);
 			if(cur_proj1 < min_proj_poly1){

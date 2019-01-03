@@ -3,7 +3,7 @@
 #include"rect_collider.h"
 #include<math.h>
 #include"polygon_collider.h"
-
+#include"my_polygon.h"
 
 std::vector<Vector2> polygonCircle(double radius, int resolution, double offset){
 	std::vector<Vector2> polygon;
@@ -40,29 +40,27 @@ int main(int argc, char **argv){
 	poly1_points.push_back(Vector2(base, -base));
 	poly1_points.push_back(Vector2(base, -base-size));
 	poly1_points.push_back(Vector2(base+size, -base-size));
-	//poly1_points.push_back(Vector2(base+size, -base));
+
+	poly2_points.push_back(Vector2(base+offset, -base-offset));
+	poly2_points.push_back(Vector2(base+offset, -base-size-offset));
+	poly2_points.push_back(Vector2(base+size+offset, -base-size-offset));
 
 
-	//poly1_points = polygonCircle(20, 20, 100);
-	poly2_points = polygonEllipse(150, 50, 30, 200);
-	double angle = M_PI/4;
-	Polygon poly1 = Polygon(Transform(Vector2(200, -200),  angle, Vector2(1, 1)), poly1_points, "poly1");
-	Polygon poly2 = Polygon(Transform(Vector2(300, -300), -angle, Vector2(1, 1)), poly2_points, "poly2");
+	poly2_points = polygonEllipse(150, 50, 30, 0);
+	double angle = 0;
+	
+	MyPolygon poly1 = MyPolygon(Transform(Vector2(300, -300), -angle, Vector2(1, 1)), polygonCircle(50, 4, 0), "poly1");
+	PolygonCollider poly2 = PolygonCollider(Transform(Vector2(200, -200),  angle, Vector2(1, 1)), poly2_points, "poly2");
+	
 
-	poly1.setOther(&poly2);
-	poly2.setOther(&poly1);
-
-	//poly1.setDraw(true);
-	//poly2.setDraw(true);
+	poly1.setDraw(true);
+	poly2.setDraw(true);
 
 	camera.setBackgroundColor(60, 0, 0);
 	
-	engine.register_drawable(&poly1);
-	engine.register_drawable(&poly2);
+	engine.register_collider(&poly1);
+	engine.register_collider(&poly2);
 
-	//engine.register_collider(&poly1);
-	//engine.register_collider(&poly2);
-	
 	engine.register_camera(&camera);
 
 	engine.mainLoop();

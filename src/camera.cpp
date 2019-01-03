@@ -30,7 +30,6 @@ void Camera::draw(Drawable* drawable){
 			scale.x(), scale.y(), 
 			-rotation, 0); // -rotation because allegro rotates clockwise for some reason
 	
-	
 //	al_draw_bitmap(drawable_bitmap, drawable->topLeft().x() - _transform.position().x(), -drawable->topLeft().y() + _transform.position().y(), 0);
 //	al_draw_bitmap(drawable_bitmap, position.x() - _transform.position().x(), -position.y() + _transform.position().y(), 0);
 }
@@ -51,6 +50,7 @@ void Camera::attachGUI(Drawable* drawable){
 
 
 void Camera::update(){
+	al_set_target_bitmap(_bitmap);
 	al_clear_to_color(_background);
 }
 

@@ -10,7 +10,7 @@ class Matrix2x2{
 		static Vector2 rotate(const Vector2& point, float theta);
 		static Vector2 scale(const Vector2& point, float xScale, float yScale);
 	private:
-		double array[2][2];
+		double _array[2][2];
 };
 
 #endif

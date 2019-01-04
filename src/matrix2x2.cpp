@@ -3,15 +3,15 @@
 
 
 Matrix2x2::Matrix2x2(double a, double b, double c, double d){
-	array[0][0] = a;
-	array[0][1] = b;
-	array[1][0] = c;
-	array[1][1] = d;
+	_array[0][0] = a;
+	_array[0][1] = b;
+	_array[1][0] = c;
+	_array[1][1] = d;
 }
 
 
 Vector2 Matrix2x2::operator*(const Vector2& point) const{
-	return Vector2(array[0][0] * point.x() + array[0][1] * point.y(), array[1][0] * point.x() + array[1][1] * point.y());
+	return Vector2(_array[0][0] * point.x() + _array[0][1] * point.y(), _array[1][0] * point.x() + _array[1][1] * point.y());
 }
 
 Vector2 Matrix2x2::rotate(const Vector2& point, float theta){

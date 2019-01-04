@@ -10,8 +10,8 @@
   <meta name="description" content="Input handles all the input gathering for your game. If you want to check out if a key is pressed you check with the functions Input gives to you. You should...">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/allegro-engine/classes/input/">
-  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://localhost:4000/allegro-engine/feed.xml">
+  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/classes/input/">
+  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
 </head>
 
 
@@ -64,19 +64,22 @@
 
 <h1>Input</h1>
 
-<p>Input handles all the input gathering for your game. If you want to check out if a key is pressed you check with the functions <code>Input</code> gives to you. You should not try to create your own input instance though. Instead use the one that <code>Engine</code> creates automatically. To get this input from an <code>Object</code> check out the <code>_engine</code> field of your object and the <code>input</code> method of <code>Engine</code>.</p>
+<p>Input handles all the input gathering for your game. If you want to check out if a key is pressed you check with the functions <code class="highlighter-rouge">Input</code> gives to you. You should not try to create your own input instance though. Instead use the one that <code class="highlighter-rouge">Engine</code> creates automatically. To get this input from an <code class="highlighter-rouge">Object</code> check out the <code class="highlighter-rouge">_engine</code> field of your object and the <code class="highlighter-rouge">input</code> method of <code class="highlighter-rouge">Engine</code>.</p>
 
 
 
-<h1>Public functions</h1>
+<h1 id="public-functions">Public functions</h1>
 
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"> 
 <span class="n">Input</span><span class="p">()</span> 
 <span class="kt">void</span> <span class="n">destroy</span><span class="p">()</span> 
 <span class="kt">bool</span> <span class="n">keyHeld</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">key</span><span class="p">)</span> <span class="k">const</span> 
-<span class="kt">bool</span> <span class="n">keyPressed</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">key</span><span class="p">)</span> <span class="k">const</span> 
 <span class="kt">bool</span> <span class="n">keyReleased</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">key</span><span class="p">)</span> <span class="k">const</span> 
+<span class="kt">bool</span> <span class="n">mouseButtonHeld</span><span class="p">(</span><span class="kt">int</span> <span class="n">buttonNum</span><span class="p">)</span> <span class="k">const</span> 
+<span class="kt">bool</span> <span class="n">mouseButtonPressed</span><span class="p">(</span><span class="kt">int</span> <span class="n">buttonNum</span><span class="p">)</span> <span class="k">const</span> 
+<span class="kt">bool</span> <span class="n">mouseButtonReleased</span><span class="p">(</span><span class="kt">int</span> <span class="n">buttonNum</span><span class="p">)</span> <span class="k">const</span> 
+<span class="n">Vector2</span> <span class="n">mousePosition</span><span class="p">()</span> <span class="k">const</span> 
 <span class="kt">void</span> <span class="n">update</span><span class="p">()</span> </code></pre></figure>
 
 
@@ -90,21 +93,32 @@
 
 	<li><a href=/allegro-engine/methods/keyheld/>keyHeld</a></li>
 
-	<li><a href=/allegro-engine/methods/keypressed/>keyPressed</a></li>
-
 	<li><a href=/allegro-engine/methods/keyreleased/>keyReleased</a></li>
+
+	<li><a href=/allegro-engine/methods/mousebuttonheld/>mouseButtonHeld</a></li>
+
+	<li><a href=/allegro-engine/methods/mousebuttonpressed/>mouseButtonPressed</a></li>
+
+	<li><a href=/allegro-engine/methods/mousebuttonreleased/>mouseButtonReleased</a></li>
+
+	<li><a href=/allegro-engine/methods/mouseposition/>mousePosition</a></li>
 
 	<li><a href=/allegro-engine/methods/update/>update</a></li>
 
 </ul>
 
-<h1>Data Members</h1>
+<h1 id="data-members">Data Members</h1>
 
 
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">ALLEGRO_EVENT_QUEUE</span> <span class="o">*</span> <span class="n">_event_queue</span> 
 <span class="kt">bool</span> <span class="n">_held</span><span class="p">[</span><span class="n">ALLEGRO_KEY_MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="nb">false</span><span class="p">}</span> 
 <span class="n">ALLEGRO_EVENT_SOURCE</span> <span class="o">*</span> <span class="n">_keyboard_source</span> 
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">_mouseHeld</span> 
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">_mousePressed</span> 
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">_mouseReleased</span> 
+<span class="kt">int</span> <span class="n">_numAxes</span> 
+<span class="kt">int</span> <span class="n">_numButtons</span> 
 <span class="kt">bool</span> <span class="n">_pressed</span><span class="p">[</span><span class="n">ALLEGRO_KEY_MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="nb">false</span><span class="p">}</span> 
 <span class="kt">bool</span> <span class="n">_released</span><span class="p">[</span><span class="n">ALLEGRO_KEY_MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="nb">false</span><span class="p">}</span> 
 <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">_stringKeyMap</span> <span class="o">=</span> <span class="p">{...}</span> </code></pre></figure>
@@ -117,6 +131,16 @@
 	<li><a href=/allegro-engine/data-members/held/>_held</a></li>
 
 	<li><a href=/allegro-engine/data-members/keyboard-source/>_keyboard_source</a></li>
+
+	<li><a href=/allegro-engine/data-members/mouseheld/>_mouseHeld</a></li>
+
+	<li><a href=/allegro-engine/data-members/mousepressed/>_mousePressed</a></li>
+
+	<li><a href=/allegro-engine/data-members/mousereleased/>_mouseReleased</a></li>
+
+	<li><a href=/allegro-engine/data-members/numaxes/>_numAxes</a></li>
+
+	<li><a href=/allegro-engine/data-members/numbuttons/>_numButtons</a></li>
 
 	<li><a href=/allegro-engine/data-members/pressed/>_pressed</a></li>
 

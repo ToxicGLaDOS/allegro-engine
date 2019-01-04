@@ -10,8 +10,8 @@
   <meta name="description" content="DescriptionSets the draw field of this Collider.Sometimes it is useful to see where a collider is for debugging purposes. To accomplish this, each collider h...">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/allegro-engine/methods/setdraw/">
-  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://localhost:4000/allegro-engine/feed.xml">
+  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/methods/setdraw/">
+  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
 </head>
 
 
@@ -59,15 +59,15 @@
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="n">setDraw</span><span class="p">(</span><span class="kt">bool</span> <span class="n">draw</span><span class="p">)</span></code></pre></figure>
   
   <div class="function-description">
-    <h1>Description</h1>
+    <h1 id="description">Description</h1>
+<p>Sets the draw field of this <code class="highlighter-rouge">Collider</code>.
+Sometimes it is useful to see where a collider is for debugging purposes. To accomplish this, each collider has a draw field that determines whether the collider should be drawn. Collider drawing is for debugging purposes only, so there is no color or line thickness control.</p>
 
-<p>Sets the draw field of this <code>Collider</code>.
-Sometimes it is useful to see where a collider is for debugging purposes. To accomplish this, each collider has a draw field that determines whether the collider should be drawn. Collider drawing is for debugging purposes only, so there is no color or line thickness control. </p>
-
-<h1>Example</h1>
-<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="n">RectCollider</span> <span class="n">rc</span> <span class="o">=</span> <span class="n">RectCollider</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="s">"rc"</span><span class="p">);</span>
+<h1 id="example">Example</h1>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">RectCollider</span> <span class="n">rc</span> <span class="o">=</span> <span class="n">RectCollider</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="s">"rc"</span><span class="p">);</span>
 <span class="n">rc</span><span class="p">.</span><span class="n">setDraw</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span> <span class="c1">// The collider will now be drawn as if it were any other Drawable
-</span></code></pre></div>
+</span></code></pre></div></div>
+
   </div>
 </div>
 

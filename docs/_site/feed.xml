@@ -4,20 +4,21 @@
     <title>Allegro-engine</title>
     <description>This is the documentation for the allegro-engine project on github. 
 </description>
-    <link>http://localhost:4000/allegro-engine/</link>
-    <atom:link href="http://localhost:4000/allegro-engine/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 01 Jan 2019 18:27:15 -0600</pubDate>
-    <lastBuildDate>Tue, 01 Jan 2019 18:27:15 -0600</lastBuildDate>
+    <link>http://smit8397.github.io/allegro-engine//allegro-engine/</link>
+    <atom:link href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 03 Jan 2019 22:33:44 -0600</pubDate>
+    <lastBuildDate>Thu, 03 Jan 2019 22:33:44 -0600</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
         <title>Docs completed! (sort of)</title>
-        <description>&lt;p&gt;The documentation has finally finished its first iteration! I will be working on the docs concurrently with the engine to keep everything as up-to-date as possible, and added more examples and more helpful descriptions to the various methods, and data members that aren&amp;#39;t explained as well as they could be. 
+        <description>&lt;p&gt;The documentation has finally finished its first iteration! I will be working on the docs concurrently with the engine to keep everything as up-to-date as possible, and added more examples and more helpful descriptions to the various methods, and data members that aren’t explained as well as they could be. 
 This is my first project this large and it has been very fun to work on so far. Hopefully I can make this into a useful engine in the future!&lt;/p&gt;
+
 </description>
         <pubDate>Mon, 31 Dec 2018 10:22:41 -0600</pubDate>
-        <link>http://localhost:4000/allegro-engine/documentation/2018/12/31/docs-completed.html</link>
-        <guid isPermaLink="true">http://localhost:4000/allegro-engine/documentation/2018/12/31/docs-completed.html</guid>
+        <link>http://smit8397.github.io/allegro-engine//allegro-engine/documentation/2018/12/31/docs-completed.html</link>
+        <guid isPermaLink="true">http://smit8397.github.io/allegro-engine//allegro-engine/documentation/2018/12/31/docs-completed.html</guid>
         
         
         <category>documentation</category>

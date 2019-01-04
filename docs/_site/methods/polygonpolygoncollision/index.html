@@ -10,8 +10,8 @@
   <meta name="description" content="DescriptionDetermines whether there is a collision between two polygons using the seperating axis theorem (SAT). poly1 and poly2 are lists of points that def...">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/allegro-engine/methods/polygonpolygoncollision/">
-  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://localhost:4000/allegro-engine/feed.xml">
+  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/methods/polygonpolygoncollision/">
+  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
 </head>
 
 
@@ -59,25 +59,30 @@
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="n">polygonPolygonCollision</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;&amp;</span> <span class="n">poly1</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;&amp;</span><span class="n">poly2</span><span class="p">)</span></code></pre></figure>
   
   <div class="function-description">
-    <h1>Description</h1>
-
-<p>Determines whether there is a collision between two polygons using the seperating axis theorem (SAT). <code>poly1</code> and <code>poly2</code> are lists of points that define the polygon. There are two conditions this function assumes. </p>
+    <h1 id="description">Description</h1>
+<p>Determines whether there is a collision between two polygons using the seperating axis theorem (SAT). <code class="highlighter-rouge">poly1</code> and <code class="highlighter-rouge">poly2</code> are lists of points that define the polygon. There are two conditions this function assumes.</p>
 
 <ol>
-<li><p>The lists of points must be listed in counter-clockwise order.</p></li>
-<li><p>The polygon must be convex.</p></li>
+  <li>
+    <p>The lists of points must be listed in counter-clockwise order.</p>
+  </li>
+  <li>
+    <p>The polygon must be convex.</p>
+  </li>
 </ol>
 
-<h1>Example</h1>
+<h1 id="example">Example</h1>
+<p>Assume you have a polygon that looks like this.</p>
 
-<p>Assume you have a polygon that looks like this. </p>
-<div class="highlight"><pre><code class="language-" data-lang="">A----B
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A----B
 |    |
 |    |
 |    |
 C----D
-</code></pre></div>
-<p>Then you could list the points <code>ACDB</code>, <code>CDBA</code>, <code>DBAC</code>, or <code>BACD</code>, but not any other way.</p>
+</code></pre></div></div>
+
+<p>Then you could list the points <code class="highlighter-rouge">ACDB</code>, <code class="highlighter-rouge">CDBA</code>, <code class="highlighter-rouge">DBAC</code>, or <code class="highlighter-rouge">BACD</code>, but not any other way.</p>
+
 
   </div>
 </div>

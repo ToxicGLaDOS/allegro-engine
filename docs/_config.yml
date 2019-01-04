@@ -189,8 +189,26 @@ defaults:
                         path: "_data-members/transform"
                 values:
                         class: transform
-
-
+        -
+                scope:
+                        path: "_methods/matrix2x2"
+                values:
+                        class: matrix2x2
+        -
+                scope:
+                        path: "_data-members/matrix2x2"
+                values:
+                        class: matrix2x2
+        -
+                scope:
+                        path: "_methods/polygon_collider"
+                values:
+                        class: polygoncollider
+        -
+                scope:
+                        path: "_data-members/polygon_collider"
+                values:
+                        class: polygoncollider
 
 
 
@@ -208,5 +226,5 @@ collections:
                 #permalink: /allegro-engine/:collection/:name/
 
 # Build settings
-#markdown: kramdown
-markdown: redcarpet
+markdown: kramdown
+#markdown: redcarpet

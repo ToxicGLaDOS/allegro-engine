@@ -10,8 +10,8 @@
   <meta name="description" content="DescriptionThrown when a parent is attached to a child. Parent objects cannot be attached to thier children because it would create a cyclic structure which ...">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/allegro-engine/methods/attachtochildexception/">
-  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://localhost:4000/allegro-engine/feed.xml">
+  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/methods/attachtochildexception/">
+  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
 </head>
 
 
@@ -59,9 +59,8 @@
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">class</span> <span class="nc">AttachToChildException</span> <span class="o">:</span> <span class="k">public</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span></code></pre></figure>
   
   <div class="function-description">
-    <h1>Description</h1>
-
-<p>Thrown when a parent is attached to a child. Parent objects cannot be attached to thier children because it would create a cyclic structure which would cause an infinite loop when one of the objects moved. If you encounter this error make sure to detach the child first. You can do this by passing <code>NULL</code> to the <code>attach</code> function.</p>
+    <h1 id="description">Description</h1>
+<p>Thrown when a parent is attached to a child. Parent objects cannot be attached to thier children because it would create a cyclic structure which would cause an infinite loop when one of the objects moved. If you encounter this error make sure to detach the child first. You can do this by passing <code class="highlighter-rouge">NULL</code> to the <code class="highlighter-rouge">attach</code> function.</p>
 
   </div>
 </div>

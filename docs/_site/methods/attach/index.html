@@ -10,8 +10,8 @@
   <meta name="description" content="DescriptionAttaches this object to the parent object. The _parent field of this object will be set to the parent argument that is pass in. To detach an objec...">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/allegro-engine/methods/attach/">
-  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://localhost:4000/allegro-engine/feed.xml">
+  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/methods/attach/">
+  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
 </head>
 
 
@@ -59,15 +59,14 @@
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="n">attach</span><span class="p">(</span><span class="n">Object</span><span class="o">*</span> <span class="n">parent</span><span class="p">);</span></code></pre></figure>
   
   <div class="function-description">
-    <h1>Description</h1>
+    <h1 id="description">Description</h1>
+<p>Attaches this object to the parent object. The <code class="highlighter-rouge">_parent</code> field of this object will be set to the parent argument that is pass in. To detach an object just pass <code class="highlighter-rouge">NULL</code> to this function.</p>
 
-<p>Attaches this object to the parent object. The <code>_parent</code> field of this object will be set to the parent argument that is pass in. To detach an object just pass <code>NULL</code> to this function.</p>
+<p>When an object moves it also moves all children objects of it and all children of those objects and so on, always keeping the relative distance the same. Because of this movement propagation, cyclic structures are not allowed. Any attempt to attach an object to another object that is a child, or a child of a child, etc. of this object will raise a <code class="highlighter-rouge">AttachToChildException</code>, so be sure to detach the child before attaching.</p>
 
-<p>When an object moves it also moves all children objects of it and all children of those objects and so on, always keeping the relative distance the same. Because of this movement propagation, cyclic structures are not allowed. Any attempt to attach an object to another object that is a child, or a child of a child, etc. of this object will raise a <code>AttachToChildException</code>, so be sure to detach the child before attaching.</p>
+<h1 id="example">Example</h1>
+<p>If <code class="highlighter-rouge">objB</code> is attached to <code class="highlighter-rouge">objA</code> and we move <code class="highlighter-rouge">objA</code> to the left 5 units then <code class="highlighter-rouge">objB</code> will also be moved to the left 5 units. However, if <code class="highlighter-rouge">objB</code> is moved to the left 5 units <code class="highlighter-rouge">objA</code> will not be moved, because it is the parent object.</p>
 
-<h1>Example</h1>
-
-<p>If <code>objB</code> is attached to <code>objA</code> and we move <code>objA</code> to the left 5 units then <code>objB</code> will also be moved to the left 5 units. However, if <code>objB</code> is moved to the left 5 units <code>objA</code> will not be moved, because it is the parent object.</p>
 
   </div>
 </div>

@@ -10,8 +10,8 @@
   <meta name="description" content="WARNINGYou do not need to call this method manually. Calls to this method are handled by Engine. However, for completeness it will be described here.">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/allegro-engine/methods/drawgui/">
-  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://localhost:4000/allegro-engine/feed.xml">
+  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/methods/drawgui/">
+  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
 </head>
 
 
@@ -59,13 +59,12 @@
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="n">drawGUI</span><span class="p">()</span></code></pre></figure>
   
   <div class="function-description">
-    <h1>WARNING</h1>
+    <h1 id="warning">WARNING</h1>
+<p>You do not need to call this method manually. Calls to this method are handled by <code class="highlighter-rouge">Engine</code>. However, for completeness it will be described here.</p>
 
-<p>You do not need to call this method manually. Calls to this method are handled by <code>Engine</code>. However, for completeness it will be described here.</p>
+<h1 id="description">Description</h1>
+<p>Draws everything attached to this camera with <code class="highlighter-rouge">attachGUI</code> to this camera’s bitmap. We need this to be seperate from the normal <code class="highlighter-rouge">draw</code> method because GUIs are always drawn on top of everything else and they appear on the screen statically instead of moving when the camera moves.</p>
 
-<h1>Description</h1>
-
-<p>Draws everything attached to this camera with <code>attachGUI</code> to this camera&#39;s bitmap. We need this to be seperate from the normal <code>draw</code> method because GUIs are always drawn on top of everything else and they appear on the screen statically instead of moving when the camera moves. </p>
 
   </div>
 </div>

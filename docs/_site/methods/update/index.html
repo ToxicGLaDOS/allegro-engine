@@ -10,8 +10,8 @@
   <meta name="description" content="DescriptionThis function is meant to be overridden by your objects that derive from Object (or from children of Object). This function will be called on ever...">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/allegro-engine/methods/update/">
-  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://localhost:4000/allegro-engine/feed.xml">
+  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/methods/update/">
+  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
 </head>
 
 
@@ -59,12 +59,12 @@
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">virtual</span> <span class="kt">void</span> <span class="n">update</span><span class="p">()</span></code></pre></figure>
   
   <div class="function-description">
-    <h1>Description</h1>
+    <h1 id="description">Description</h1>
+<p>This function is meant to be overridden by your objects that derive from <code class="highlighter-rouge">Object</code> (or from children of <code class="highlighter-rouge">Object</code>). This function will be called on every one of your <code class="highlighter-rouge">Objects</code> that you register with the engine each frame. Because this is called each frame, your should take care to not put any infinite loops, or any extremely expensive operations in the update method as it will freeze things up.</p>
 
-<p>This function is meant to be overridden by your objects that derive from <code>Object</code> (or from children of <code>Object</code>). This function will be called on every one of your <code>Objects</code> that you register with the engine each frame. Because this is called each frame, your should take care to not put any infinite loops, or any extremely expensive operations in the update method as it will freeze things up. </p>
+<p>You may notice that this method is not pure virtual. That is because you don’t always need something to happen every update for some objects and it would be inconvenient to have to implement this method every time just to have it blank. To solve this problem the method is simply virtual with no body. If you do not override this method it will do nothing.</p>
 
-<p>You may notice that this method is not pure virtual. That is because you don&#39;t always need something to happen every update for some objects and it would be inconvenient to have to implement this method every time just to have it blank. To solve this problem the method is simply virtual with no body. If you do not override this method it will do nothing.</p>
-<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="c1">// Every update we check for if 'w' or 's' is held down and if they are we move the object accordingly.
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Every update we check for if 'w' or 's' is held down and if they are we move the object accordingly.
 </span><span class="kt">void</span> <span class="n">UpAndDownMover</span><span class="o">::</span><span class="n">update</span><span class="p">(){</span>
                 <span class="n">Input</span> <span class="n">input</span> <span class="o">=</span> <span class="o">*</span><span class="n">_engine</span><span class="o">-&gt;</span><span class="n">input</span><span class="p">();</span>
                 <span class="k">if</span><span class="p">(</span><span class="n">input</span><span class="p">.</span><span class="n">keyHeld</span><span class="p">(</span><span class="s">"w"</span><span class="p">)){</span>
@@ -75,7 +75,8 @@
                 <span class="p">}</span>
 
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div></div>
+
   </div>
 </div>
 

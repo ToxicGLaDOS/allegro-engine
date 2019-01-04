@@ -10,8 +10,8 @@
   <meta name="description" content="DescriptionCamera is the class that draws all of the objects in your game. An engine object requires a camera, and trying to call engine.mainLoop without a c...">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/allegro-engine/classes/camera/">
-  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://localhost:4000/allegro-engine/feed.xml">
+  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/classes/camera/">
+  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
 </head>
 
 
@@ -64,18 +64,18 @@
 
 <h1>Camera</h1>
 
-<h1>Description</h1>
-
-<p>Camera is the class that draws all of the objects in your game. An engine object requires a camera, and trying to call <code>engine.mainLoop</code> without a camera will result in unexpected behaviour. When you create an <code>Engine</code> object be sure to register the camera using the <code>register_camera</code> method of <code>Engine</code>.</p>
-
+<h1 id="description">Description</h1>
+<p>Camera is the class that draws all of the objects in your game. An engine object requires a camera, and trying to call <code class="highlighter-rouge">engine.mainLoop</code> without a camera will result in unexpected behaviour. When you create an <code class="highlighter-rouge">Engine</code> object be sure to register the camera using the <code class="highlighter-rouge">register_camera</code> method of <code class="highlighter-rouge">Engine</code>.</p>
 
 
-<h1>Public functions</h1>
+
+<h1 id="public-functions">Public functions</h1>
 
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="n">attachGUI</span><span class="p">(</span><span class="n">Drawable</span><span class="o">*</span> <span class="n">drawable</span><span class="p">)</span> 
 <span class="kt">unsigned</span> <span class="kt">char</span><span class="o">*</span> <span class="n">background</span><span class="p">()</span> <span class="k">const</span> 
 <span class="n">ALLEGRO_BITMAP</span> <span class="o">*</span> <span class="n">bitmap</span><span class="p">()</span> <span class="k">const</span> 
+<span class="n">Vector2</span> <span class="n">cameraToWorldSpace</span><span class="p">(</span><span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">point</span><span class="p">)</span> 
 <span class="kt">void</span> <span class="n">clearBitmap</span><span class="p">()</span> 
 <span class="n">Camera</span><span class="p">(</span><span class="k">const</span> <span class="n">Transform</span><span class="o">&amp;</span> <span class="n">transform</span><span class="p">,</span> <span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">size</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span> 
 <span class="kt">void</span> <span class="n">draw</span><span class="p">(</span><span class="n">Drawable</span><span class="o">*</span> <span class="n">drawable</span><span class="p">)</span> 
@@ -93,6 +93,8 @@
 
 	<li><a href=/allegro-engine/methods/bitmap/>bitmap</a></li>
 
+	<li><a href=/allegro-engine/methods/cameratoworldspace/>cameraToWorldSpace</a></li>
+
 	<li><a href=/allegro-engine/methods/clearbitmap/>clearBitmap</a></li>
 
 	<li><a href=/allegro-engine/methods/ctor/>ctor</a></li>
@@ -109,7 +111,7 @@
 
 </ul>
 
-<h1>Data Members</h1>
+<h1 id="data-members">Data Members</h1>
 
 
 

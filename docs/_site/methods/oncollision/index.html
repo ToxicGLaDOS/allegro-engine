@@ -10,8 +10,8 @@
   <meta name="description" content="DescriptionThis function will be called each frame that this Collider overlaps with any other collider that has been registered with the engine (assuming you...">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/allegro-engine/methods/oncollision/">
-  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://localhost:4000/allegro-engine/feed.xml">
+  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/methods/oncollision/">
+  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
 </head>
 
 
@@ -59,10 +59,9 @@
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">virtual</span> <span class="kt">void</span> <span class="n">onCollision</span><span class="p">(</span><span class="n">Collider</span><span class="o">*</span> <span class="n">other</span><span class="p">)</span></code></pre></figure>
   
   <div class="function-description">
-    <h1>Description</h1>
-
-<p>This function will be called each frame that this <code>Collider</code> overlaps with any other collider that has been registered with the engine (assuming you&#39;ve registered this collider with the engine as well). When you inherit from this class or from the concrete collider classes (RectCollider, CircleCollider) you should override this method.
-You may notice this method is virtual and not pure virtual. That is because there are times when you don&#39;t want to have anything happen on a collision and it would be tedious to have to implement this function every time that happens. So instead it is defined as virtual with an empty body. Meaning that if you don&#39;t override this method then it will be called, but nothing will happen.</p>
+    <h1 id="description">Description</h1>
+<p>This function will be called each frame that this <code class="highlighter-rouge">Collider</code> overlaps with any other collider that has been registered with the engine (assuming you’ve registered this collider with the engine as well). When you inherit from this class or from the concrete collider classes (RectCollider, CircleCollider) you should override this method.
+You may notice this method is virtual and not pure virtual. That is because there are times when you don’t want to have anything happen on a collision and it would be tedious to have to implement this function every time that happens. So instead it is defined as virtual with an empty body. Meaning that if you don’t override this method then it will be called, but nothing will happen.</p>
 
   </div>
 </div>

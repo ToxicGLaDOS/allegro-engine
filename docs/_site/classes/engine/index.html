@@ -10,8 +10,8 @@
   <meta name="description" content="Engine is the class that handles most of the frame to frame operations of your game. Checking collisions, drawing everything in the scene, etc. All objects t...">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/allegro-engine/classes/engine/">
-  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://localhost:4000/allegro-engine/feed.xml">
+  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/classes/engine/">
+  <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
 </head>
 
 
@@ -64,14 +64,15 @@
 
 <h1>Engine</h1>
 
-<p>Engine is the class that handles most of the frame to frame operations of your game. Checking collisions, drawing everything in the scene, etc. All objects that you want to be handled by the engine need to be registered with the engine first. To do so use the correct <code>register_xxx</code> method to suit your needs. Engine also handles the creation and destruction of the display window. When creating a display keep in mind the aspect ratio of the display so you can create a camera with the same aspect ratio. Failure to do so will create squashed looking images.</p>
+<p>Engine is the class that handles most of the frame to frame operations of your game. Checking collisions, drawing everything in the scene, etc. All objects that you want to be handled by the engine need to be registered with the engine first. To do so use the correct <code class="highlighter-rouge">register_xxx</code> method to suit your needs. Engine also handles the creation and destruction of the display window. When creating a display keep in mind the aspect ratio of the display so you can create a camera with the same aspect ratio. Failure to do so will create squashed looking images.</p>
 
 
 
-<h1>Public functions</h1>
+<h1 id="public-functions">Public functions</h1>
 
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">Engine</span><span class="p">(</span><span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">maxFrameRate</span><span class="p">)</span> 
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">Camera</span><span class="o">*</span> <span class="n">camera</span><span class="p">()</span> <span class="k">const</span> 
+<span class="n">Engine</span><span class="p">(</span><span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">maxFrameRate</span><span class="p">)</span> 
 <span class="n">Input</span><span class="o">*</span> <span class="n">input</span><span class="p">()</span> <span class="k">const</span> 
 <span class="kt">void</span> <span class="n">mainLoop</span><span class="p">()</span> 
 <span class="kt">void</span> <span class="n">register_camera</span><span class="p">(</span><span class="n">Camera</span> <span class="o">*</span> <span class="n">camera</span><span class="p">)</span> 
@@ -83,6 +84,8 @@
 
 
 <ul>
+
+	<li><a href=/allegro-engine/methods/camera/>camera</a></li>
 
 	<li><a href=/allegro-engine/methods/ctor/>ctor</a></li>
 
@@ -104,7 +107,7 @@
 
 </ul>
 
-<h1>Data Members</h1>
+<h1 id="data-members">Data Members</h1>
 
 
 

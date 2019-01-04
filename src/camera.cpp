@@ -13,6 +13,10 @@ Camera::~Camera(){
 	al_destroy_bitmap(_bitmap);	
 }
 
+Vector2 Camera::cameraToWorldSpace(const Vector2& point){
+	return Vector2(point.x() + _transform.position().x(), _transform.position().y() - point.y());
+}
+
 void Camera::draw(Drawable* drawable){
 	ALLEGRO_BITMAP* drawable_bitmap = drawable->getBitmap();
 	al_set_target_bitmap(_bitmap);

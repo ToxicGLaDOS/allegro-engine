@@ -170,6 +170,10 @@ void Engine::destroyDisplay(){
 	al_destroy_display(_display);	
 }
 
+Camera* Engine::camera() const{
+	return _camera;
+}
+
 Input* Engine::input() const{
 	return _input;
 }

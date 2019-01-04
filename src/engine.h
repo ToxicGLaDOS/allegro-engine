@@ -19,7 +19,8 @@ class Engine{
 
 		int screenWidth() const;
 		int screenHeight() const;
-
+		
+		Camera* camera() const;
 		Input* input() const;
 	protected:
 		int _width, _height;

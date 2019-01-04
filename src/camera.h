@@ -14,6 +14,7 @@ class Camera : public Object{
 	public:
 		Camera(const Transform& transform, const Vector2& size, const std::string& name);
 		~Camera();
+		Vector2 cameraToWorldSpace(const Vector2& point);
 		void draw(Drawable* drawable);
 		void drawGUI();
 		void attachGUI(Drawable* drawable);

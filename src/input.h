@@ -1,10 +1,11 @@
 #ifndef INPUT_H
 #define INPUT_H
 
+#include"vector2.h"
 #include<string>
 #include<allegro5/allegro.h>
 #include<map>
-
+#include<vector>
 
 class Input{
 	public:
@@ -16,14 +17,23 @@ class Input{
 		bool keyPressed(const std::string& key) const;
 		bool keyReleased(const std::string& key) const;
 		bool keyHeld(const std::string& key) const;
+		bool mouseButtonPressed(int buttonNum) const;
+		bool mouseButtonReleased(int buttonNum) const;
+		bool mouseButtonHeld(int buttonNum) const;
+		Vector2 mousePosition() const;
 	private:
 		
 		bool _pressed[ALLEGRO_KEY_MAX] = {false};
 		bool _held[ALLEGRO_KEY_MAX] = {false};
 		bool _released[ALLEGRO_KEY_MAX] = {false};
+		std::vector<bool> _mousePressed;
+		std::vector<bool> _mouseReleased;
+		std::vector<bool> _mouseHeld;
 		ALLEGRO_EVENT_QUEUE * _event_queue;
-		ALLEGRO_EVENT_SOURCE * _keyboard_source; 
-	
+		ALLEGRO_EVENT_SOURCE * _keyboard_source, *_mouse_source; 
+		
+		int _numAxes, _numButtons;
+
 		// Returns an allegro key code
 		int stringToKey(const std::string& keyName) const;
 		const std::map<std::string, int> _stringKeyMap = {

@@ -24,9 +24,8 @@ Object* Object::parent() const{
 
 void Object::moveTo(const Vector2& position){
 	
-	int x_delta = position.x() - _transform.position().x();
-	int y_delta = position.y() - _transform.position().y();
-
+	double x_delta = position.x() - _transform.position().x();
+	double y_delta = position.y() - _transform.position().y();
 	
 	moveBy(Vector2(x_delta, y_delta));
 }

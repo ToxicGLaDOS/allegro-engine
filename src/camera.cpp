@@ -33,9 +33,6 @@ void Camera::draw(Drawable* drawable){
 			position.x() - _transform.position().x(), -position.y() + _transform.position().y(), 
 			scale.x(), scale.y(), 
 			-rotation, 0); // -rotation because allegro rotates clockwise for some reason
-	
-//	al_draw_bitmap(drawable_bitmap, drawable->topLeft().x() - _transform.position().x(), -drawable->topLeft().y() + _transform.position().y(), 0);
-//	al_draw_bitmap(drawable_bitmap, position.x() - _transform.position().x(), -position.y() + _transform.position().y(), 0);
 }
 
 void Camera::drawGUI(){
@@ -43,7 +40,7 @@ void Camera::drawGUI(){
 	for(Drawable* guiElement : _guis){
 		ALLEGRO_BITMAP* gui_bitmap = guiElement->getBitmap();
 		// Draw the gui without regard for the cameras position
-		al_draw_bitmap(gui_bitmap, guiElement->topLeft().x(), -guiElement->topLeft().y(), 0);
+		al_draw_bitmap(gui_bitmap, guiElement->transform().position().x(), -guiElement->transform().position().y(), 0);
 	}
 }
 

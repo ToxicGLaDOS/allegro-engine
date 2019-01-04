@@ -59,10 +59,6 @@ bool CircleCollider::collides(Collider * other) const{
 	return polygonPolygonCollision(_vertices, other->vertices());
 }
 
-Vector2 CircleCollider::topLeft() const{
-	return Vector2(_transform.position().x() - _radius, _transform.position().y() + _radius);
-}
-
 ALLEGRO_BITMAP * CircleCollider::getBitmap() const{
 	return _bitmap;
 }

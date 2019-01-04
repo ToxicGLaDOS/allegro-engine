@@ -11,7 +11,6 @@ class Text : public Drawable{
 		Text(const Transform& transform, const std::string& text, const std::string& fontPath, int size, 
 				unsigned char r, unsigned char g, unsigned char b, const std::string& name);
 		ALLEGRO_BITMAP* getBitmap() const;
-		Vector2 topLeft() const;
 
 		void setText(const std::string& text);
 		void setColor(unsigned char r, unsigned char g, unsigned char b);

@@ -68,6 +68,3 @@ ALLEGRO_BITMAP* PolygonCollider::getBitmap() const{
 	return _bitmap;
 }
 
-Vector2 PolygonCollider::topLeft() const{
-	return Vector2(0,0);
-}

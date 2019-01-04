@@ -66,10 +66,6 @@ bool RectCollider::collides(Collider * other) const{
 	return polygonPolygonCollision(vertices(), other->vertices());
 }
 
-Vector2 RectCollider::topLeft() const{
-	return _transform.position();
-}
-
 ALLEGRO_BITMAP * RectCollider::getBitmap() const{
 	return _bitmap;
 }

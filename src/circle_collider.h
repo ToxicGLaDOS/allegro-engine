@@ -17,7 +17,6 @@ class CircleCollider : public Collider{
 		void calcVertices();
 		std::vector<Vector2> vertices() const;
 		bool collides(Collider * other) const;
-		Vector2 topLeft() const;
 		ALLEGRO_BITMAP * getBitmap() const;
 	private:
 		void initBitmap();

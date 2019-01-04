@@ -31,10 +31,6 @@ ALLEGRO_BITMAP* Text::getBitmap() const{
 	return _bitmap;
 }
 
-Vector2 Text::topLeft() const{
-	return _transform.position();
-}
-
 void Text::setText(const std::string& text){
 	_text = text;
 	makeBitmap();

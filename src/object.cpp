@@ -54,6 +54,11 @@ void Object::attach(Object* parent){
 			error.append(parent->name());
 			throw AttachToChildException(error);
 		}
+		else if(parent == this){
+			// TODO: Change this to a better error type
+			std::string error = "Cannot attach object to itself!";
+			throw AttachToChildException(error);
+		}
 		_parent = parent;
 		parent->_children.push_back(this);
 

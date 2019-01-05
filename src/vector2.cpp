@@ -15,6 +15,10 @@ void Vector2::operator=(const Vector2 & other){
 	_y = other.y();
 }
 
+bool Vector2::operator==(const Vector2& other){
+	return (_x == other.x() && _y == other.y());
+}
+
 Vector2 Vector2::operator-(const Vector2 & other) const{
 	return Vector2(_x - other.x(), _y - other.y());
 }

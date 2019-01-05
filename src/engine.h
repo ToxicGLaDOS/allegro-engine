@@ -24,12 +24,12 @@ class Engine{
 		Input* input() const;
 	protected:
 		int _width, _height;
-		ALLEGRO_DISPLAY * _display; 
+		ALLEGRO_DISPLAY * _display = nullptr; 
 		Input* _input;
 		std::vector<Object*> _objects;
 		std::vector<Collider*> _colliders;
 		std::vector<Drawable*> _drawables;
-		Camera * _camera;
+		Camera * _camera = nullptr;
 		unsigned int _maxFrameRate;
 		bool _running = true;	
 

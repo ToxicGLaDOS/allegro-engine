@@ -5,6 +5,11 @@
 #include "engine.h"
 #include "object.h"
 #include "circle_collider.h"
+#include "rect_collider.h"
+#include "geometry.h"
+#include "matrix2x2.h"
+#include "polygon_collider.h"
+#include "text.h"
 
 SCENARIO( "creating image resources" ){
 	GIVEN( "an engine"){
@@ -335,5 +340,479 @@ SCENARIO( "creating circle colliders" ){
 			}
 		}
 	}
+}
 
+
+SCENARIO( "creating rect colliders" ){
+	GIVEN( "a rect collider" ){
+		double x = -15.3;
+		double y = -7.1;
+		double xSize = 18.1;
+		double ySize = 50.83;
+		std::string name = "rect1";
+		RectCollider rect = RectCollider(Transform(Vector2(x,y)), Vector2(xSize, ySize), name);
+		rect.calcVertices();
+
+		REQUIRE(rect.transform().position().x() == x);
+		REQUIRE(rect.transform().position().y() == y);
+		REQUIRE(rect.size().x() == xSize);
+		REQUIRE(rect.size().y() == ySize);
+		REQUIRE(rect.name() == name);
+
+		GIVEN( "another rect collider that collides with the first" ){
+			double other_x = -13.5;
+			double other_y = 0;
+			double other_xSize = 20.2;
+			double other_ySize = 70.9;
+			std::string other_name = "rect2";
+			RectCollider rect2 = RectCollider(Transform(Vector2(other_x,other_y)), Vector2(other_xSize, other_ySize), other_name);
+			rect2.calcVertices();
+
+			REQUIRE(rect.transform().position().x() == x);
+			REQUIRE(rect.transform().position().y() == y);
+			REQUIRE(rect.size().x() == xSize);
+			REQUIRE(rect.size().y() == ySize);
+			REQUIRE(rect.name() == name);
+
+			WHEN( "we see if they collide" ){
+				bool r1Collidesr2 = rect.collides(&rect2);
+				bool r2Collidesr1 = rect2.collides(&rect);
+
+				REQUIRE(r1Collidesr2 == r2Collidesr1);
+
+				THEN( "they do collide" ){
+					REQUIRE(r1Collidesr2);
+					REQUIRE(r2Collidesr1);
+				}
+			}
+			WHEN( "we move the second collider so they don't collide" ){
+				rect2.moveBy(Vector2(100, 100));
+				rect2.calcVertices();
+				bool r1Collidesr2 = rect.collides(&rect2);
+				bool r2Collidesr1 = rect2.collides(&rect);
+
+				REQUIRE(r1Collidesr2 == r2Collidesr1);
+
+				THEN( "they no longer collide" ){
+
+					REQUIRE_FALSE(r1Collidesr2);
+					REQUIRE_FALSE(r2Collidesr1);
+				}
+			}
+		}
+
+		GIVEN( "another rect collider that does not collide with the first" ){
+			double other_x = 100.5;
+			double other_y = 70;
+			double other_xSize = 20.2;
+			double other_ySize = 70.9;
+			std::string other_name = "rect2";
+			RectCollider rect2 = RectCollider(Transform(Vector2(other_x,other_y)), Vector2(other_xSize, other_ySize), other_name);
+			rect2.calcVertices();
+
+			REQUIRE(rect.transform().position().x() == x);
+			REQUIRE(rect.transform().position().y() == y);
+			REQUIRE(rect.size().x() == xSize);
+			REQUIRE(rect.size().y() == ySize);
+			REQUIRE(rect.name() == name);
+
+			WHEN( "we see if they collide" ){
+				bool r1Collidesr2 = rect.collides(&rect2);
+				bool r2Collidesr1 = rect2.collides(&rect);
+
+				REQUIRE(r1Collidesr2 == r2Collidesr1);
+
+				THEN( "they don't collide" ){
+					REQUIRE_FALSE(r1Collidesr2);
+					REQUIRE_FALSE(r2Collidesr1);
+				}
+			}
+			WHEN( "we move the second collider so they do collide" ){
+				// Move it to the same position as the first collider
+				// with a little offset
+				rect2.moveTo(Vector2(x + 10, y - 20));
+				rect2.calcVertices();
+				bool r1Collidesr2 = rect.collides(&rect2);
+				bool r2Collidesr1 = rect2.collides(&rect);
+
+				REQUIRE(r1Collidesr2 == r2Collidesr1);
+
+				THEN( "they now collide" ){
+
+					REQUIRE(r1Collidesr2);
+					REQUIRE(r2Collidesr1);
+				}
+			}
+		}
+
+		GIVEN( "another rect collider that is contained within the first" ){
+			double other_x = -15.3;
+			double other_y = -7.1;
+			double other_xSize = 1.4;
+			double other_ySize = 2.5;
+			std::string other_name = "rect2";
+			RectCollider rect2 = RectCollider(Transform(Vector2(other_x,other_y)), Vector2(other_xSize, other_ySize), other_name);
+			rect2.calcVertices();
+
+			WHEN( "we see if they collide" ){
+				bool r1Collidesr2 = rect.collides(&rect2);
+				bool r2Collidesr1 = rect2.collides(&rect);
+
+				REQUIRE(r1Collidesr2 == r2Collidesr1);
+
+				THEN( "they collide" ){
+					REQUIRE(r1Collidesr2);
+					REQUIRE(r2Collidesr1);
+				}
+			}
+		}
+	}
+}
+
+SCENARIO( "creating an engine" ){
+	GIVEN( "an engine with a (100, 100) display at 60 FPS" ){
+		int width = 100;
+		int height = 100;
+		int fps = 60;
+		Engine engine = Engine(width, height, fps);
+		
+		REQUIRE(engine.screenWidth() == width);
+		REQUIRE(engine.screenHeight() == height);
+		REQUIRE(engine.camera() == NULL);
+		REQUIRE_FALSE(engine.input() == NULL);
+
+		GIVEN( "a camera of the same size" ){
+			Camera camera = Camera(Transform(Vector2(0, 0)), Vector2(width, height), "camera");
+			WHEN( "the camera is registered" ){
+				engine.register_camera(&camera);
+				THEN( "the camera is stored in engine" ){
+					REQUIRE(engine.camera() == &camera);
+				}
+			}
+		}
+	}
+}
+
+SCENARIO( "geometry functions" ){
+	GIVEN( "a rectangle and point within it" ){
+		Vector2 point = Vector2(15.01, 20.9);
+		Vector2 pos = Vector2(14.2, 19.8);
+		Vector2 size = Vector2(10.1, 18.6);
+
+		WHEN( "we check if point in rect" ){
+			bool inRect = pointInRect(point, pos, size);
+			THEN( "the point is in the rect" ){
+				REQUIRE(inRect);
+			}
+		}
+	}
+	GIVEN( "a rectangle and point not in it" ){
+		Vector2 point = Vector2(-12, -2.9);
+		Vector2 pos = Vector2(14.2, 19.8);
+		Vector2 size = Vector2(10.1, 18.6);
+
+		WHEN( "we check if point in rect" ){
+			bool inRect = pointInRect(point, pos, size);
+			THEN( "the point is not in the rect" ){
+				REQUIRE_FALSE(inRect);
+			}
+		}
+	}
+	GIVEN( "two points" ){
+		double x1 = 10.2;
+		double y1 = 4.6;
+		double x2 = -14.8;
+		double y2 = -10;
+
+		Vector2 point1 = Vector2(x1, y1);
+		Vector2 point2 = Vector2(x2, y2);
+
+		WHEN( "we check the distance between them" ){
+			double aToB = distance(point1, point2);
+			double bToA = distance(point2, point1);
+			
+			THEN( "distance from pt1 to pt2 = pt2 to pt1" ){
+				REQUIRE(aToB == bToA);
+			}
+			THEN( "the distance is equal to sqrt((x1-x2)^2 + (y1-y2)^2)" ){
+				REQUIRE(aToB == Approx(sqrt(pow(x1-x2,2) + pow(y1-y2,2))));
+			}
+		}
+	}
+	GIVEN( "a circle and a point within it" ){
+		Vector2 point = Vector2(12.2, -10);
+		Vector2 pos = Vector2(11, -9);
+		double radius = 4;
+
+		WHEN( "we check if the point is in the circle" ){
+			bool inCircle = pointInCircle(point, pos, radius);
+
+			THEN( "the point is in the radius" ){
+				REQUIRE(inCircle);
+			}
+		}
+	}
+	GIVEN( "a circle and a point not contained within it" ){
+		Vector2 point = Vector2(15, -16);
+		Vector2 pos = Vector2(11, -9);
+		double radius = 4;
+
+		WHEN( "we check if the point is in the circle" ){
+			bool inCircle = pointInCircle(point, pos, radius);
+
+			THEN( "the point is in the radius" ){
+				REQUIRE_FALSE(inCircle);
+			}
+		}
+	}
+	GIVEN( "two polygons that collide" ){
+		std::vector<Vector2> poly1;
+		std::vector<Vector2> poly2;
+
+		// A triangle
+		poly1.push_back(Vector2(-10, 0));
+		poly1.push_back(Vector2(10, 0));
+		poly1.push_back(Vector2(0, 10));
+
+		// Same triangle but up three units
+		poly2.push_back(Vector2(-10, 3));
+		poly2.push_back(Vector2(10, 3));
+		poly2.push_back(Vector2(0, 13));
+
+		WHEN( "we see if they collide" ){
+			bool p1CollidesP2 = polygonPolygonCollision(poly1, poly2);
+			bool p2CollidesP1 = polygonPolygonCollision(poly2, poly1);
+
+			THEN( "order doesn't matter" ){
+				REQUIRE(p1CollidesP2 == p2CollidesP1);
+			}
+			THEN( "they collide" ){
+				REQUIRE(p1CollidesP2);
+			}
+		}
+	}
+	GIVEN( "two polygons that don't collides" ){
+		std::vector<Vector2> poly1;
+		std::vector<Vector2> poly2;
+
+		// A triangle
+		poly1.push_back(Vector2(-10, 0));
+		poly1.push_back(Vector2(10, 0));
+		poly1.push_back(Vector2(0, 10));
+
+		// Same triangle but up 20 units
+		poly2.push_back(Vector2(-10, 20));
+		poly2.push_back(Vector2(10, 20));
+		poly2.push_back(Vector2(0, 40));
+
+		WHEN( "we see if they collide" ){
+			bool p1CollidesP2 = polygonPolygonCollision(poly1, poly2);
+			bool p2CollidesP1 = polygonPolygonCollision(poly2, poly1);
+
+			THEN( "order doesn't matter" ){
+				REQUIRE(p1CollidesP2 == p2CollidesP1);
+			}
+			THEN( "they don't collide" ){
+				REQUIRE_FALSE(p1CollidesP2);
+			}
+		}
+	}
+}
+
+SCENARIO( "transforming points with matrix2x2" ){
+	GIVEN( "a point (1,0)" ){
+		Vector2 point = Vector2(1,0);
+
+		WHEN( "the point is rotated by 90 degrees" ){
+			Vector2 rotated = Matrix2x2::rotate(point, M_PI/2);
+			THEN( "the point is (0, 1)"){
+				// We need a margin because we are comparing to 0
+				// and by default the approx function uses a percentage change
+				// but any percent of 0 is 0...
+				REQUIRE(rotated.x() == Approx(0).margin(0.00001));
+				REQUIRE(rotated.y() == Approx(1));
+			}
+		}
+		WHEN( "the point is rotated by -90 degrees" ){
+			Vector2 rotated = Matrix2x2::rotate(point, -M_PI/2);
+			THEN( "the point is (0, -1)"){
+				REQUIRE(rotated.x() == Approx(0).margin(0.00001));
+				REQUIRE(rotated.y() == Approx(-1));
+			}
+		}
+		WHEN( "the point is rotated by 180 degrees" ){
+			Vector2 rotated = Matrix2x2::rotate(point, M_PI);
+			THEN( "the point is (-1, 0)"){
+				REQUIRE(rotated.x() == Approx(-1));
+				REQUIRE(rotated.y() == Approx(0).margin(0.00001));
+			}
+		}
+		WHEN( "we rotate the point by 360 degress" ){
+			Vector2 rotated = Matrix2x2::rotate(point, 2*M_PI);
+			THEN( "the point is (1, 0)"){
+				REQUIRE(rotated.x() == Approx(1));
+				REQUIRE(rotated.y() == Approx(0).margin(0.00001));
+			}
+		}
+		WHEN( "we rotate the point then rotate it by the negative" ){
+			double rotation = 2.45;
+			Vector2 rotated = Matrix2x2::rotate(point, rotation);
+			rotated = Matrix2x2::rotate(rotated, -rotation);
+			THEN( "the point is (-1, 0)"){
+				REQUIRE(rotated.x() == Approx(point.x()));
+				REQUIRE(rotated.y() == Approx(point.y()));
+			}
+		}
+	}
+	GIVEN( "a point (1,1)" ){
+		Vector2 point = Vector2(1,1);
+
+		WHEN( "the point is scaled by (1,1)" ){
+			Vector2 scaled = Matrix2x2::scale(point, 1, 1);
+			THEN( "the point is the same" ){
+				REQUIRE(point.x() == Approx(scaled.x()));
+				REQUIRE(point.y() == Approx(scaled.y()));
+			}
+		}
+		WHEN( "the point is scaled by (-2.5, 7.8)" ){
+			Vector2 scaled = Matrix2x2::scale(point, -2.5, 7.8);
+			THEN( "the point is the same" ){
+				REQUIRE(scaled.x() == Approx(-2.5));
+				REQUIRE(scaled.y() == Approx(7.8));
+			}
+		}
+		WHEN( "the point is scaled and then scaled by the opposite" ){
+			double xScale = 6.2;
+			double yScale = -10.2;
+			Vector2 scaled = Matrix2x2::scale(point, xScale, yScale);
+			scaled = Matrix2x2::scale(scaled, 1/xScale, 1/yScale);
+
+			THEN( "the point is the same" ){
+				REQUIRE(point.x() == Approx(scaled.x()));
+				REQUIRE(point.y() == Approx(scaled.y()));
+			}
+		}
+	}
+}
+
+SCENARIO( "creating and colliding polygon colliders" ){
+	GIVEN( "a polygon" ){
+		std::vector<Vector2> poly1;
+
+		// A triangle
+		poly1.push_back(Vector2(-10, -10));
+		poly1.push_back(Vector2(10, -10));
+		poly1.push_back(Vector2(0, 10));
+
+		double x = 1.2;
+		double y = .5;
+		std::string name = "poly1";
+
+		PolygonCollider poly1_collider = PolygonCollider(Transform(Vector2(x, y)), poly1, name); 
+		poly1_collider.calcVertices();
+
+		REQUIRE(poly1_collider.transform().position().x() == Approx(x));
+		REQUIRE(poly1_collider.transform().position().y() == Approx(y));
+		// TODO: Figure out why it thinks there is no opertator==
+		//REQUIRE(poly1_collider.vertices() == poly1);
+		REQUIRE(poly1_collider.name() == name);
+
+		GIVEN( "another polygon that collides with the first" ){
+			std::vector<Vector2> poly2;
+			// Same triangle
+			poly2.push_back(Vector2(-10, -10));
+			poly2.push_back(Vector2(10, -10));
+			poly2.push_back(Vector2(0, 10));
+			
+			double other_x = 2;
+			double other_y = 5;
+			std::string other_name = "poly2";
+
+			PolygonCollider poly2_collider = PolygonCollider(Transform(Vector2(other_x, other_y)), poly2, other_name); 
+			poly2_collider.calcVertices();
+
+			WHEN( "we see if they collide" ){
+				bool p1CollidesP2 = poly1_collider.collides(&poly2_collider);
+				bool p2CollidesP1 = poly2_collider.collides(&poly1_collider);
+
+				THEN( "order doesn't matter" ){
+					REQUIRE(p1CollidesP2 == p2CollidesP1);
+				}
+				THEN( "they collide" ){
+					REQUIRE(p1CollidesP2);
+				}
+			}
+		}
+		GIVEN( "another polygon that doesn't collide with the first" ){
+			std::vector<Vector2> poly2;
+			// Same triangle
+			poly2.push_back(Vector2(-10, -10));
+			poly2.push_back(Vector2(10, -10));
+			poly2.push_back(Vector2(0, 10));
+			
+			double other_x = 22.2;
+			double other_y = -6.7;
+			std::string other_name = "poly2";
+
+			PolygonCollider poly2_collider = PolygonCollider(Transform(Vector2(other_x, other_y)), poly2, other_name); 
+			poly2_collider.calcVertices();
+
+			WHEN( "we see if they collide" ){
+				bool p1CollidesP2 = poly1_collider.collides(&poly2_collider);
+				bool p2CollidesP1 = poly2_collider.collides(&poly1_collider);
+
+				THEN( "order doesn't matter" ){
+					REQUIRE(p1CollidesP2 == p2CollidesP1);
+				}
+				THEN( "they don't collide" ){
+					REQUIRE_FALSE(p1CollidesP2);
+				}
+			}
+		}
+	}
+}
+
+SCENARIO( "creating texts" ){
+	GIVEN( "an engine"){
+		Engine engine = Engine(100,100,60);
+		double x = 1.2;
+		double y = 5.3;
+		std::string text = "this is text";
+		int size = 12;
+		unsigned char r = 65, g = 23, b = 221;
+		std::string name= "text";
+		GIVEN( "a path to a non-existent font"){
+			std::string path = "fake.ttf";
+			
+			WHEN( "we load the text"){
+				THEN( "an exception is thrown"){
+					REQUIRE_THROWS(Text(Transform(Vector2(x,y)), text, path, size, r, g, b, name));
+				}
+			}
+
+		}
+		GIVEN( "a path to a real font" ){
+			std::string path = "real.ttf";
+			
+
+			WHEN( "we load the text" ){
+				THEN( "no exception is thrown" ){
+					REQUIRE_NOTHROW(Text(Transform(Vector2(x,y)), text, path, size, r, g, b, name));
+				}
+				THEN( "all the variables are the same" ){
+					Text t = Text(Transform(Vector2(x,y)), text, path, size, r, g, b, name);
+					unsigned char* color = t.color();
+					REQUIRE(t.transform().position().x() == Approx(x));
+					REQUIRE(t.transform().position().y() == Approx(y));
+					REQUIRE(t.text() == text);
+					REQUIRE(t.size() == size);
+					REQUIRE(color[0] == r);
+					REQUIRE(color[1] == g);
+					REQUIRE(color[2] == b);
+					REQUIRE(t.name() == name);
+				}
+			}
+
+		}
+	}
 }

@@ -4,6 +4,7 @@
 #include<allegro5/allegro_ttf.h>
 #include<stdio.h>
 #include<iostream>
+#include<fstream>
 
 Text::Text(const Transform& transform, const std::string& text, const std::string& fontPath, int size, unsigned char r, unsigned char g, unsigned char b, const std::string& name)
 	: Drawable(transform, name)
@@ -16,9 +17,17 @@ Text::Text(const Transform& transform, const std::string& text, const std::strin
 	
 	ALLEGRO_PATH *tail = al_create_path(fontPath.c_str());
 	al_join_paths(body, tail);
-	_font = al_load_font(al_path_cstr(body,'/'), _size, 0);
-	if(_font == NULL){
-		throw ResourceLoadException("Font failed to load!");
+	const char* file_path = al_path_cstr(body, '/');
+	if(std::ifstream(file_path)){
+		_font = al_load_font(file_path, _size, 0);
+		if(_font == NULL){
+			throw ResourceLoadException("Font failed to load!");
+		}
+	}
+	else{
+		std::string error("Font failed to load because there was no font at path ");
+		error.append(file_path);
+		throw ResourceLoadException(error);
 	}
 	al_destroy_path(body);
 	al_destroy_path(tail);

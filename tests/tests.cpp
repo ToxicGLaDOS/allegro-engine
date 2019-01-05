@@ -261,6 +261,15 @@ SCENARIO( "creating circle colliders" ){
 					REQUIRE(otherCollidesCircle == false);
 				}
 			}
+			WHEN( "we move the other collider to collide with the first" ){
+				other.moveTo(Vector2(circle.transform().position().x() + 40, circle.transform().position().y() + 40));
+				other.calcVertices();
+
+				THEN( "they collide" ){
+					REQUIRE(circle.collides(&other));
+					REQUIRE(other.collides(&circle));
+				}
+			}
 		}
 
 		GIVEN( "another circle collider that does collide with the first" ){
@@ -285,6 +294,16 @@ SCENARIO( "creating circle colliders" ){
 				THEN( "they do collide" ){
 					REQUIRE(circleCollidesOther == true);
 					REQUIRE(otherCollidesCircle == true);
+				}
+			}
+			
+			WHEN( "we move the other collider to not collide with the first" ){
+				other.moveTo(Vector2(circle.transform().position().x() + 400, circle.transform().position().y() + 300));
+				other.calcVertices();
+
+				THEN( "they collide" ){
+					REQUIRE_FALSE(circle.collides(&other));
+					REQUIRE_FALSE(other.collides(&circle));
 				}
 			}
 

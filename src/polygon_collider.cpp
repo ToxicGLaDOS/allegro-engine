@@ -3,10 +3,10 @@
 #include "matrix2x2.h"
 #include <allegro5/allegro_primitives.h>
 
-PolygonCollider::PolygonCollider(const Transform& trans, std::vector<Vector2> points, const std::string& name)
+PolygonCollider::PolygonCollider(const Transform& trans, std::vector<Vector2> points, const std::string& name, bool fixed/* = false*/)
 	: Collider(trans, name)
 	, _vertices(points)
-	, _original_vertices(points){
+	, _static(fixed){
 	
 	makeBitmap();
 }
@@ -57,7 +57,7 @@ std::vector<Vector2> PolygonCollider::vertices() const{
 	std::vector<Vector2> verts = _vertices;
 
 	for(int i = 0; i < verts.size(); i++){
-		Vector2 scaled = Matrix2x2::scale(_original_vertices[i], _transform.scale().x(), _transform.scale().y());
+		Vector2 scaled = Matrix2x2::scale(_vertices[i], _transform.scale().x(), _transform.scale().y());
 		verts[i] = Matrix2x2::rotate(scaled , _transform.rotation()) + _transform.position();
 	}
 	

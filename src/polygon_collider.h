@@ -6,15 +6,15 @@
 
 class PolygonCollider : public Collider{
 	public: 
-		PolygonCollider(const Transform& trans, std::vector<Vector2> points, const std::string& name);
+		PolygonCollider(const Transform& trans, std::vector<Vector2> points, const std::string& name, bool fixed = false);
 		bool collides(Collider* other) const;
 		std::vector<Vector2> vertices() const;
 		ALLEGRO_BITMAP* getBitmap() const;
 	protected:	
 		void makeBitmap();
 		
-		std::vector<Vector2> _original_vertices;
-		std::vector<Vector2> _vertices;
+		bool _static;	
+		const std::vector<Vector2> _vertices;
 		ALLEGRO_BITMAP* _bitmap;
 };
 

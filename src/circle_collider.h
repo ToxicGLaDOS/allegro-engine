@@ -11,7 +11,7 @@ class CircleCollider : public PolygonCollider{
 
 
 	public:
-		CircleCollider(const Transform& transform, double radius, const std::string& name);
+		CircleCollider(const Transform& transform, double radius, const std::string& name, bool fixed = false);
 		CircleCollider(const CircleCollider& other);
 		~CircleCollider();
 		double radius() const;

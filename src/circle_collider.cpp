@@ -8,8 +8,8 @@
 
 
 
-CircleCollider::CircleCollider(const Transform& transform, double radius, const std::string& name)
-	: PolygonCollider(transform, calcVertices(radius), name),
+CircleCollider::CircleCollider(const Transform& transform, double radius, const std::string& name, bool fixed/* = false*/)
+	: PolygonCollider(transform, calcVertices(radius), name, fixed),
 	_radius(radius){}
 
 /*

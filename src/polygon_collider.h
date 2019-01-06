@@ -9,7 +9,6 @@ class PolygonCollider : public Collider{
 		PolygonCollider(const Transform& trans, std::vector<Vector2> points, const std::string& name);
 		bool collides(Collider* other) const;
 		std::vector<Vector2> vertices() const;
-		void calcVertices();
 		ALLEGRO_BITMAP* getBitmap() const;
 	protected:	
 		void makeBitmap();

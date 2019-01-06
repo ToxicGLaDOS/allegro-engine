@@ -348,7 +348,6 @@ SCENARIO( "creating circle colliders" ){
 		std::string name = "circle1";
 
 		CircleCollider circle = CircleCollider(Vector2(x,y), radius, name);
-		circle.calcVertices();
 		REQUIRE(circle.transform().position().x() == x);
 		REQUIRE(circle.transform().position().y() == y);
 		REQUIRE(circle.radius() == radius);
@@ -360,7 +359,6 @@ SCENARIO( "creating circle colliders" ){
 			double other_radius = 10.2;
 			std::string other_name = "circle2";
 			CircleCollider other = CircleCollider(Vector2(other_x, other_y), other_radius, other_name);
-			other.calcVertices();
 			
 			REQUIRE(other.transform().position().x() == other_x);
 			REQUIRE(other.transform().position().y() == other_y);
@@ -380,8 +378,7 @@ SCENARIO( "creating circle colliders" ){
 			}
 			WHEN( "we move the other collider to collide with the first" ){
 				other.moveTo(Vector2(circle.transform().position().x() + 40, circle.transform().position().y() + 40));
-				other.calcVertices();
-
+				
 				THEN( "they collide" ){
 					REQUIRE(circle.collides(&other));
 					REQUIRE(other.collides(&circle));
@@ -395,7 +392,6 @@ SCENARIO( "creating circle colliders" ){
 			double other_radius = 40.5;
 			std::string other_name = "circle2";
 			CircleCollider other = CircleCollider(Vector2(other_x, other_y), other_radius, other_name);
-			other.calcVertices();
 			
 			REQUIRE(other.transform().position().x() == other_x);
 			REQUIRE(other.transform().position().y() == other_y);
@@ -416,7 +412,6 @@ SCENARIO( "creating circle colliders" ){
 			
 			WHEN( "we move the other collider to not collide with the first" ){
 				other.moveTo(Vector2(circle.transform().position().x() + 400, circle.transform().position().y() + 300));
-				other.calcVertices();
 
 				THEN( "they collide" ){
 					REQUIRE_FALSE(circle.collides(&other));
@@ -432,7 +427,6 @@ SCENARIO( "creating circle colliders" ){
 			double other_radius = 10;
 			std::string other_name = "circle2";
 			CircleCollider other = CircleCollider(Vector2(other_x, other_y), other_radius, other_name);
-			other.calcVertices();
 			
 			REQUIRE(other.transform().position().x() == other_x);
 			REQUIRE(other.transform().position().y() == other_y);
@@ -463,7 +457,6 @@ SCENARIO( "creating rect colliders" ){
 		double ySize = 50.83;
 		std::string name = "rect1";
 		RectCollider rect = RectCollider(Transform(Vector2(x,y)), Vector2(xSize, ySize), name);
-		rect.calcVertices();
 
 		REQUIRE(rect.transform().position().x() == x);
 		REQUIRE(rect.transform().position().y() == y);
@@ -478,7 +471,6 @@ SCENARIO( "creating rect colliders" ){
 			double other_ySize = 70.9;
 			std::string other_name = "rect2";
 			RectCollider rect2 = RectCollider(Transform(Vector2(other_x,other_y)), Vector2(other_xSize, other_ySize), other_name);
-			rect2.calcVertices();
 
 			REQUIRE(rect.transform().position().x() == x);
 			REQUIRE(rect.transform().position().y() == y);
@@ -499,7 +491,6 @@ SCENARIO( "creating rect colliders" ){
 			}
 			WHEN( "we move the second collider so they don't collide" ){
 				rect2.moveBy(Vector2(100, 100));
-				rect2.calcVertices();
 				bool r1Collidesr2 = rect.collides(&rect2);
 				bool r2Collidesr1 = rect2.collides(&rect);
 
@@ -520,7 +511,6 @@ SCENARIO( "creating rect colliders" ){
 			double other_ySize = 70.9;
 			std::string other_name = "rect2";
 			RectCollider rect2 = RectCollider(Transform(Vector2(other_x,other_y)), Vector2(other_xSize, other_ySize), other_name);
-			rect2.calcVertices();
 
 			REQUIRE(rect.transform().position().x() == x);
 			REQUIRE(rect.transform().position().y() == y);
@@ -543,7 +533,6 @@ SCENARIO( "creating rect colliders" ){
 				// Move it to the same position as the first collider
 				// with a little offset
 				rect2.moveTo(Vector2(x + 10, y - 20));
-				rect2.calcVertices();
 				bool r1Collidesr2 = rect.collides(&rect2);
 				bool r2Collidesr1 = rect2.collides(&rect);
 
@@ -564,7 +553,6 @@ SCENARIO( "creating rect colliders" ){
 			double other_ySize = 2.5;
 			std::string other_name = "rect2";
 			RectCollider rect2 = RectCollider(Transform(Vector2(other_x,other_y)), Vector2(other_xSize, other_ySize), other_name);
-			rect2.calcVertices();
 
 			WHEN( "we see if they collide" ){
 				bool r1Collidesr2 = rect.collides(&rect2);
@@ -821,7 +809,6 @@ SCENARIO( "creating and colliding polygon colliders" ){
 		std::string name = "poly1";
 
 		PolygonCollider poly1_collider = PolygonCollider(Transform(Vector2(x, y)), poly1, name); 
-		poly1_collider.calcVertices();
 
 		REQUIRE(poly1_collider.transform().position().x() == Approx(x));
 		REQUIRE(poly1_collider.transform().position().y() == Approx(y));
@@ -841,7 +828,6 @@ SCENARIO( "creating and colliding polygon colliders" ){
 			std::string other_name = "poly2";
 
 			PolygonCollider poly2_collider = PolygonCollider(Transform(Vector2(other_x, other_y)), poly2, other_name); 
-			poly2_collider.calcVertices();
 
 			WHEN( "we see if they collide" ){
 				bool p1CollidesP2 = poly1_collider.collides(&poly2_collider);
@@ -867,7 +853,6 @@ SCENARIO( "creating and colliding polygon colliders" ){
 			std::string other_name = "poly2";
 
 			PolygonCollider poly2_collider = PolygonCollider(Transform(Vector2(other_x, other_y)), poly2, other_name); 
-			poly2_collider.calcVertices();
 
 			WHEN( "we see if they collide" ){
 				bool p1CollidesP2 = poly1_collider.collides(&poly2_collider);

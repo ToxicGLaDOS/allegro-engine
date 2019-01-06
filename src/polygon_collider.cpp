@@ -28,7 +28,7 @@ void PolygonCollider::makeBitmap(){
 	// +1 because the bitmap won't render stuff right on the edge
 	_bitmap = al_create_bitmap(maxx - minx, maxy - miny + 1);
 	al_set_target_bitmap(_bitmap);
-	al_clear_to_color(al_map_rgba(0, 0, 0, 100));
+	al_clear_to_color(al_map_rgba(0, 0, 0, 0));
 	
 	std::vector<Vector2> translatedPoints;
 	for(Vector2 p : _vertices){
@@ -54,15 +54,14 @@ bool PolygonCollider::collides(Collider* other) const{
 }
 
 std::vector<Vector2> PolygonCollider::vertices() const{
-	return _vertices;
-}
+	std::vector<Vector2> verts = _vertices;
 
-void PolygonCollider::calcVertices(){
-	for(int i = 0; i < _vertices.size(); i++){
+	for(int i = 0; i < verts.size(); i++){
 		Vector2 scaled = Matrix2x2::scale(_original_vertices[i], _transform.scale().x(), _transform.scale().y());
-		_vertices[i] = Matrix2x2::rotate(scaled , _transform.rotation()) + _transform.position();
+		verts[i] = Matrix2x2::rotate(scaled , _transform.rotation()) + _transform.position();
 	}
 	
+	return verts;
 }
 
 ALLEGRO_BITMAP* PolygonCollider::getBitmap() const{

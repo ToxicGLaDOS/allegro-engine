@@ -3,25 +3,19 @@
 
 #include "vector2.h"
 #include "collider.h"
+#include "polygon_collider.h"
 #include <allegro5/allegro.h>
 
-class RectCollider : public Collider{
+class RectCollider : public PolygonCollider{
 	public:
-		RectCollider();
+		//RectCollider();
 		RectCollider(const Transform& transform, const Vector2& size, const std::string& name);
-		RectCollider(const RectCollider& other);
+		//RectCollider(const RectCollider& other);
 		~RectCollider();
-		void calcVertices();
-		std::vector<Vector2> vertices() const;
-		bool collides(Collider * other) const;
-		ALLEGRO_BITMAP * getBitmap() const;
 		Vector2 size() const;
 
 	private:
-		void initBitmap();
-
-		std::vector<Vector2> _vertices;
-		ALLEGRO_BITMAP* _bitmap;
+		std::vector<Vector2> calcVertices(const Vector2& size) const;
 		Vector2  _size;
 };
 

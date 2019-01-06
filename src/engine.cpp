@@ -137,11 +137,6 @@ void Engine::register_collider(Collider * collider){
 }
 
 void Engine::checkCollisions(){
-	// Set up the colliders for collision checking using SAT
-	for(Collider* collider : _colliders){
-		collider->calcVertices();
-	}
-
 	// Iterate through each collider as i
 	// then each collider after that one as j
 	for(int i = 0; i < _colliders.size(); i++){

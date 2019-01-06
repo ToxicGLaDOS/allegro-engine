@@ -3,10 +3,11 @@
 
 #include"collider.h"
 #include"vector2.h"
+#include"polygon_collider.h"
 #include<string>
 #include<allegro5/allegro5.h>
 
-class CircleCollider : public Collider{
+class CircleCollider : public PolygonCollider{
 
 
 	public:
@@ -14,15 +15,9 @@ class CircleCollider : public Collider{
 		CircleCollider(const CircleCollider& other);
 		~CircleCollider();
 		double radius() const;
-		void calcVertices();
-		std::vector<Vector2> vertices() const;
-		bool collides(Collider * other) const;
-		ALLEGRO_BITMAP * getBitmap() const;
 	private:
-		void initBitmap();
-
-		std::vector<Vector2> _vertices;
-		ALLEGRO_BITMAP* _bitmap;
+		std::vector<Vector2> calcVertices(double radius) const;
+		
 		double _radius;
 
 

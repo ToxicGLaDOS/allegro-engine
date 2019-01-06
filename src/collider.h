@@ -14,7 +14,6 @@ class Collider : public Drawable{
 		virtual std::vector<Vector2> vertices() const = 0;
 		// Called once every frame by engine
 		// right before collisions
-		virtual void calcVertices() = 0;
 		virtual void onCollision(Collider* other);
 		void setDraw(bool draw);
 		bool draw() const;

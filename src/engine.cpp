@@ -1,5 +1,6 @@
 #include"engine.h"
 #include"exceptions.h"
+#include"geometry.h"
 #include<allegro5/allegro5.h>
 #include<allegro5/allegro_image.h>
 #include<allegro5/allegro_audio.h>
@@ -143,11 +144,38 @@ void Engine::checkCollisions(){
 		for(int j = i + 1; j < _colliders.size(); j++){
 			Collider * collider1 = _colliders[i];
 			Collider * collider2 = _colliders[j];
-			
-			// If we get a collision we call both callbacks
-			if(collider1->collides(collider2)){	
-				collider1->onCollision(collider2);
-				collider2->onCollision(collider1);
+		
+			// If at least 1 collider is not fixed we have to check for collisions	
+			if(!collider1->fixed() || !collider2->fixed()){
+				Collision collision = minimumTranslationVector(collider1->vertices(), collider2->vertices());
+				Vector2 mtv = collision.mtv;
+				bool hit = collision.collided;
+				// If mtv != NULL we have a collision
+				if(hit){
+					// We only need to move stuff around if BOTH colliders are solid
+					if(collider1->solid() && collider2->solid()){
+						// If 1 collider is fixed we need to move the full distance
+						// (we know they aren't both fixed because of the if we used earlier)
+						if(collider1->fixed() || collider2->fixed()){
+							if(collider1->fixed()){
+								collider2->moveBy(mtv * -1);
+							}
+							else{
+								collider1->moveBy(mtv);
+							}
+						}
+						// If both colliders are not fixed, then we can move them both
+						// with half the distance in opposite directions
+						else{
+							// Move both half the distance (in the future this could be scaled by some mass variable)
+							collider2->moveBy(mtv * -.5);
+							collider1->moveBy(mtv *  .5);
+						}
+					}
+					// Lastly, after collisions have been resolved, we call both callbacks
+					collider1->onCollision(collider2);
+					collider2->onCollision(collider1);
+				}
 			}
 		}
 	}

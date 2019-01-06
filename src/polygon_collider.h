@@ -13,7 +13,6 @@ class PolygonCollider : public Collider{
 	protected:	
 		void makeBitmap();
 		
-		bool _static;	
 		const std::vector<Vector2> _vertices;
 		ALLEGRO_BITMAP* _bitmap;
 };

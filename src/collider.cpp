@@ -15,6 +15,14 @@ bool Collider::draw() const{
 	return _draw;
 }
 
+bool Collider::solid() const{
+	return _solid;
+}
+
+bool Collider::fixed() const{
+	return _fixed;
+}
+
 void Collider::onCollision(Collider* other){
 	// To be overridden
 }

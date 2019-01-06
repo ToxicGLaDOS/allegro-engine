@@ -1,4 +1,5 @@
 #include"vector2.h"
+#include"collision.h"
 #include<math.h>
 #include<float.h>
 #include<stdio.h>
@@ -267,7 +268,7 @@ Vector2 polygonCenter(std::vector<Vector2> points){
 }
 
 
-Vector2 minimumTranslationVector(const std::vector<Vector2>& poly1, const std::vector<Vector2>& poly2){
+Collision minimumTranslationVector(const std::vector<Vector2>& poly1, const std::vector<Vector2>& poly2){
 	std::vector<Vector2> normals;
 	Vector2 poly1Center = polygonCenter(poly1);
 	Vector2 poly2Center = polygonCenter(poly2);
@@ -325,8 +326,11 @@ Vector2 minimumTranslationVector(const std::vector<Vector2>& poly1, const std::v
 	
 		// If this is true they are not colliding
 		if(overlap < 0){
-			// Maybe this should be NULL
-			return Vector2(0, 0);
+			Collision collision;
+			collision.collided = false;
+			collision.mtv = Vector2(0, 0);
+
+			return collision;
 		}
 		else{
 			// In this case poly2 is on the "left"
@@ -340,6 +344,9 @@ Vector2 minimumTranslationVector(const std::vector<Vector2>& poly1, const std::v
 			}	
 		}
 	}
-	return minAxis * (minOverlap + epsilon);
+	Collision collision;
+	collision.mtv = minAxis * (minOverlap + epsilon);
+	collision.collided = true;
+	return collision;
 
 }

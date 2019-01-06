@@ -17,6 +17,8 @@ class Collider : public Drawable{
 		virtual void onCollision(Collider* other);
 		void setDraw(bool draw);
 		bool draw() const;
+		bool solid() const;
+		bool fixed() const;
 	protected:
 		bool _solid;
 		bool _fixed;

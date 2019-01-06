@@ -6,7 +6,7 @@ class Vector2{
 		Vector2();
 		Vector2(double x, double y);
 		void operator=(const Vector2& other);
-		bool operator==(const Vector2& other);
+		bool operator==(const Vector2& other) const;
 		Vector2 operator-(const Vector2& other) const;
 		Vector2 operator+(const Vector2& other) const;
 		Vector2 operator*(const double & scalar) const;

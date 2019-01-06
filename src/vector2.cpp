@@ -15,7 +15,7 @@ void Vector2::operator=(const Vector2 & other){
 	_y = other.y();
 }
 
-bool Vector2::operator==(const Vector2& other){
+bool Vector2::operator==(const Vector2& other) const{
 	return (_x == other.x() && _y == other.y());
 }
 

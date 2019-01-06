@@ -9,7 +9,7 @@
 class RectCollider : public PolygonCollider{
 	public:
 		//RectCollider();
-		RectCollider(const Transform& transform, const Vector2& size, const std::string& name, bool fixed = false);
+		RectCollider(const Transform& transform, const Vector2& size, const std::string& name, bool solid = false, bool fixed = false);
 		//RectCollider(const RectCollider& other);
 		~RectCollider();
 		Vector2 size() const;

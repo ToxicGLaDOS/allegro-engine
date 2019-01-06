@@ -6,7 +6,7 @@
 
 class PolygonCollider : public Collider{
 	public: 
-		PolygonCollider(const Transform& trans, std::vector<Vector2> points, const std::string& name, bool fixed = false);
+		PolygonCollider(const Transform& trans, std::vector<Vector2> points, const std::string& name, bool solid = false, bool fixed = false);
 		bool collides(Collider* other) const;
 		std::vector<Vector2> vertices() const;
 		ALLEGRO_BITMAP* getBitmap() const;

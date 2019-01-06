@@ -3,10 +3,9 @@
 #include "matrix2x2.h"
 #include <allegro5/allegro_primitives.h>
 
-PolygonCollider::PolygonCollider(const Transform& trans, std::vector<Vector2> points, const std::string& name, bool fixed/* = false*/)
-	: Collider(trans, name)
-	, _vertices(points)
-	, _static(fixed){
+PolygonCollider::PolygonCollider(const Transform& trans, std::vector<Vector2> points, const std::string& name, bool solid/* = false*/, bool fixed/* = false*/)
+	: Collider(trans, name, solid, fixed)
+	, _vertices(points){
 	
 	makeBitmap();
 }

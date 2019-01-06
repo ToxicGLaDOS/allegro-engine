@@ -12,8 +12,8 @@ RectCollider::RectCollider()
 	initBitmap();
 }
 */
-RectCollider::RectCollider(const Transform& transform, const Vector2& size, const std::string& name, bool fixed/* = false */)
-	: PolygonCollider(transform, calcVertices(size), name, fixed)
+RectCollider::RectCollider(const Transform& transform, const Vector2& size, const std::string& name, bool solid/*=false*/, bool fixed/* = false */)
+	: PolygonCollider(transform, calcVertices(size), name, solid, fixed)
 	, _size(size){}
 /*
 RectCollider::RectCollider(const RectCollider& other)

@@ -9,7 +9,7 @@
 
 class Collider : public Drawable{
 	public:
-		Collider(const Transform& transform, const std::string& name);
+		Collider(const Transform& transform, const std::string& name, bool solid = false, bool fixed = false);
 		virtual bool collides(Collider * other) const = 0;
 		virtual std::vector<Vector2> vertices() const = 0;
 		// Called once every frame by engine
@@ -18,6 +18,8 @@ class Collider : public Drawable{
 		void setDraw(bool draw);
 		bool draw() const;
 	protected:
+		bool _solid;
+		bool _fixed;
 		bool _draw = false;
 };
 

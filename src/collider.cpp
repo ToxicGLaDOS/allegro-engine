@@ -1,7 +1,9 @@
 #include"collider.h"
 
-Collider::Collider(const Transform& transform, const std::string& name)
-	: Drawable(transform, name){}
+Collider::Collider(const Transform& transform, const std::string& name, bool solid/*=false*/, bool fixed/*=false*/)
+	: Drawable(transform, name)
+	, _solid(solid)
+	, _fixed(fixed){}
 
 
 

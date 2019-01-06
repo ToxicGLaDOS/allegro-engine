@@ -2,6 +2,7 @@
 #include "circle_collider.h"
 #include "engine.h"
 #include <cstdlib>
+#include "gravity.h"
 
 CircleSpawner::CircleSpawner(const Transform& trans, const std::string& name)
 	: Object(trans, name){}
@@ -10,7 +11,10 @@ CircleSpawner::CircleSpawner(const Transform& trans, const std::string& name)
 void CircleSpawner::spawn(Vector2 position){
 	// Random between 100-200
 	int radius = rand() % 100 + 20;
-	CircleCollider* cc = new CircleCollider(Transform(position), radius, "newCollider");
+	Gravity* gravity = new Gravity(Transform(position), "newGravity");
+	CircleCollider* cc = new CircleCollider(Transform(position), radius, "newCollider", true, false);
+	cc->attach(gravity);
+	_engine->register_object(gravity);
 	_engine->register_collider(cc);
 	cc->setDraw(true);
 }

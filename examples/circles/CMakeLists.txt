@@ -1,6 +1,6 @@
 set(build_name circles)
 
-add_executable(${build_name} main.cpp circle_spawner.cpp)
+add_executable(${build_name} main.cpp circle_spawner.cpp gravity.cpp)
 
 target_link_libraries(${build_name} engine)
 

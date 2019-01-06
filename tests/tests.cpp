@@ -11,6 +11,118 @@
 #include "polygon_collider.h"
 #include "text.h"
 
+SCENARIO( "creating and using Vector2"){
+	GIVEN( "a Vector2" ){
+		double x = 1.2;
+		double y = -6.1;
+		Vector2 v = Vector2(x, y);
+
+		WHEN( "we check the x and y" ){
+			THEN( "the x and y components are the same as we passed to the ctor" ){
+				REQUIRE(v.x() == Approx(x));
+				REQUIRE(v.y() == Approx(y));
+			}
+		}
+		WHEN( "we create a copy" ){
+			Vector2 copy = v;
+			THEN( "the copy has the same x and y" ){
+				REQUIRE(copy.x() == Approx(v.x()));
+				REQUIRE(copy.y() == Approx(v.y()));
+			}
+		}
+		WHEN( "we check the magnitude" ){
+			THEN( "the magnitude is correct" ){
+				REQUIRE(v.magnitude() == Approx(6.21691).margin(.002));
+			}
+		}
+		WHEN( "we get a normalized version" ){
+			Vector2 normalized = v.normalized();
+			THEN( "the vector's magnitude is 1" ){
+				REQUIRE(normalized.magnitude() == Approx(1).margin(.002));
+			}
+			THEN( "the direction remains the same (y/x ratio)" ){
+				REQUIRE(v.y() / v.x() == Approx(normalized.y() / normalized.x()).margin(.002));
+			}
+		}
+		WHEN( "normalize the vector" ){
+			// We only copy to test against the origial
+			Vector2 copy = v;
+			v.normalize();
+			THEN( "the vector's magnitude is 1" ){
+				REQUIRE(v.magnitude() == Approx(1).margin(.002));
+			}
+			THEN( "the direction remains the same (y/x ratio)" ){
+				REQUIRE(copy.y() / copy.x() == Approx(v.y() / v.x()).margin(.002));
+			}
+		}
+		GIVEN( "another Vector2 that is not equal to the first" ){
+			double x2 = 28.9;
+			double y2 = .223;
+			Vector2 v2 = Vector2(x2, y2);
+
+			WHEN( "we check if the vectors are equal" ){
+				THEN( "the vectors are not equal" ){
+					REQUIRE_FALSE( v == v2 );
+				}
+			}
+			WHEN( "we subtract the first vector from the second" ){
+				Vector2 dif = v2 - v;
+				THEN( "we get a vector (x2 - x, y2 - y) "){
+					REQUIRE(dif.x() == Approx(v2.x() - v.x()));
+					REQUIRE(dif.y() == Approx(v2.y() - v.y()));
+				}
+			}
+			WHEN( "we subtract the second vector from the first" ){
+				Vector2 dif = v - v2;
+				THEN( "we get a vector (x - x2, y - y2) "){
+					REQUIRE(dif.x() == Approx(v.x() - v2.x()));
+					REQUIRE(dif.y() == Approx(v.y() - v2.y()));
+				}
+			}
+			WHEN( "we add the first vector to the second" ){
+				Vector2 sum = v + v2;
+				THEN( "we get a vector (x + x2, y + y2)" ){
+					REQUIRE(sum.x() == Approx(x + x2));
+					REQUIRE(sum.y() == Approx(y + y2));
+				}
+			}
+			WHEN( "we add the second vector to the first" ){
+				Vector2 sum = v2 + v;
+				THEN( "we get a vector (x2 + x, y2 + y)" ){
+					REQUIRE(sum.x() == Approx(x2 + x));
+					REQUIRE(sum.y() == Approx(y2 + y));
+				}
+			}
+			WHEN( "we dot the first vector with the second" ){
+				double dot = v.dot(v2);
+				THEN( "we get a double (x * x2) + (y * y2)" ){
+					REQUIRE(dot == Approx((x * x2) + (y * y2)));
+				}
+			}
+			WHEN( "we dot the second vector with the first" ){
+				double dot = v2.dot(v);
+				THEN( "we get a double (x2 * x) + (y2 * y)" ){
+					REQUIRE(dot == Approx((x2 * x) + (y2 * y)));
+				}
+			}
+			WHEN( "we project the first vector onto the second" ){
+				Vector2 proj = v.projectOnto(v2);
+				THEN ("we get a the proper projection vector"){
+					REQUIRE(proj.x() == Approx(1.15134).margin(.002));
+					REQUIRE(proj.y() == Approx(0.00917).margin(.002));		
+				}
+			}
+			WHEN( "we project the second vector onto the first" ){
+				Vector2 proj = v2.projectOnto(v);
+				THEN ("we get a the proper projection vector"){
+					REQUIRE(proj.x() == Approx(1.03451).margin(.002));
+					REQUIRE(proj.y() == Approx(-5.25874).margin(.002));			
+				}
+			}
+		}
+	}
+}
+
 SCENARIO( "creating image resources" ){
 	GIVEN( "an engine"){
 		Engine engine = Engine(100,100,60);

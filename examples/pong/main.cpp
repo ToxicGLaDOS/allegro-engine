@@ -20,7 +20,7 @@ int width = 1000, height = 1000;
 
 
 int main(int argc, char **argv){
-	Engine engine = Engine(width, height, 120);	
+	Engine engine = Engine(width, height, 60);	
 	Camera camera = Camera(Vector2(0, 0), Vector2(width, height), "main camera");
 	
 	ImageResource paddle_image = ImageResource("paddle.png");

@@ -9,11 +9,14 @@
 #include<allegro5/allegro_font.h>
 #include<allegro5/allegro_ttf.h>
 #include<stdio.h>
+#include<chrono>
+#include<iostream>
 
 Engine::Engine(int width, int height, unsigned int maxFrameRate)
 	: _width(width)
 	, _height(height)
 	, _maxFrameRate(maxFrameRate){
+
 	if(!al_init()){
 		throw AllegroInitException("Allegro failed to initalize!");
 	}
@@ -35,7 +38,9 @@ Engine::Engine(int width, int height, unsigned int maxFrameRate)
 	if(!al_init_ttf_addon()){
 		throw AllegroInitException("Allegro ttf addon failed to initalize!");
 	}
-	
+	al_set_new_display_option(ALLEGRO_VSYNC, 2, ALLEGRO_SUGGEST);
+	al_set_new_display_refresh_rate(maxFrameRate);
+
 	_display = al_create_display(width, height);
 	_input = new Input();
 }
@@ -49,10 +54,15 @@ void Engine::mainLoop(){
 	ALLEGRO_TIMER* timer = al_create_timer(1.000 / _maxFrameRate);
 	ALLEGRO_EVENT_QUEUE* timerQueue = al_create_event_queue();
 	al_register_event_source(timerQueue, al_get_timer_event_source(timer));
-	al_start_timer(timer);
+	
+
+	double frametimes[5] = {0, 0, 0, 0, 0};
+	int frametimeHead = 0;
 
 	ALLEGRO_EVENT event;
+	al_start_timer(timer);
 	while(_running){
+		auto start = std::chrono::system_clock::now();
 		al_wait_for_event(timerQueue, &event);
 		switch(event.type){
 			case ALLEGRO_EVENT_TIMER:
@@ -65,7 +75,25 @@ void Engine::mainLoop(){
 				}
 				cleanup();
 				break;
+
 		}
+		auto end = std::chrono::system_clock::now();
+		std::chrono::duration<double> diff = (end-start);
+		double averageFramerate = 0;
+		frametimes[frametimeHead] = diff.count();
+		_deltaTime = diff.count();
+
+		for(int i = 0; i < 5; i++){
+			averageFramerate += frametimes[i];
+		}
+		averageFramerate /= 5;
+		_framerate = 1/averageFramerate;
+		frametimeHead = (frametimeHead + 1) % 5;
+		/*
+		std::cout << "The delta time is " << _deltaTime << std::endl;
+		std::cout << "The frame rate is " << _framerate << std::endl;
+		//std::cout << "Time for this frame is " << diff.count() << " expected time is " << 1.000/_maxFrameRate  << " the difference is " << diff.count() - 1.000/_maxFrameRate << std::endl;
+		*/
 	}
 }
 

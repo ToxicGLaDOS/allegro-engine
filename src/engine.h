@@ -32,6 +32,9 @@ class Engine{
 		Camera * _camera = nullptr;
 		unsigned int _maxFrameRate;
 		bool _running = true;	
+		double _framerate = 0;
+		double _deltaTime = 0;
+
 
 		void draw();
 		void checkCollisions();

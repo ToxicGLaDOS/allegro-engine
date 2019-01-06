@@ -12,6 +12,7 @@ bool rectCircleCollision(const Vector2& r_pos, const Vector2& r_size, const Vect
 bool rectRectCollision(const Vector2& r1_pos, const Vector2& r1_size, const Vector2& r2_pos, const Vector2& r2_size);
 bool circleCircleCollision(const Vector2& c1_pos, double r1, const Vector2& c2_pos, double r2);
 bool polygonPolygonCollision(const std::vector<Vector2>& poly1, const std::vector<Vector2>&poly2);
+Vector2 minimumTranslationVector(const std::vector<Vector2>& poly1, const std::vector<Vector2>&poly2);
 #endif
 
 

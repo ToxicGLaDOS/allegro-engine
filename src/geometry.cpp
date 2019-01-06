@@ -1,5 +1,6 @@
 #include"vector2.h"
 #include<math.h>
+#include<float.h>
 #include<stdio.h>
 #include<vector>
 #include<allegro5/allegro.h>
@@ -205,6 +206,91 @@ bool polygonPolygonCollision(const std::vector<Vector2>& poly1, const std::vecto
 		Vector2 direction = p2 - p1;
 		normals.push_back(Vector2(direction.y(), -direction.x()).normalized());
 	}
+	
+	Vector2 minAxis = normals[0];
+	double minOverlap = DBL_MAX;
+	
+	for(Vector2 normal : normals){
+		double min_proj_poly1 = poly1[0].dot(normal);
+		double max_proj_poly1 = poly1[0].dot(normal);
+		for(Vector2 v : poly1){
+			double cur_proj1 = v.dot(normal);
+			if(cur_proj1 < min_proj_poly1){
+				min_proj_poly1 = cur_proj1;
+			}
+			if(cur_proj1 > max_proj_poly1){
+				max_proj_poly1 = cur_proj1;
+			}
+		}
+		
+		
+		double min_proj_poly2 = poly2[0].dot(normal);
+		double max_proj_poly2 = poly2[0].dot(normal);
+		
+		for(Vector2 v : poly2){
+			double cur_proj2 = v.dot(normal);
+			if(cur_proj2 < min_proj_poly2){
+				min_proj_poly2 = cur_proj2;
+			}
+			if(cur_proj2 > max_proj_poly2){
+				max_proj_poly2 = cur_proj2;
+			}
+		}
+		double overlap1 = max_proj_poly2 - min_proj_poly1;
+		double overlap2 = max_proj_poly1 - min_proj_poly2;
+		// Calculate the min of the two overlaps
+		double overlap = (overlap1 < overlap2) ? overlap1 : overlap2;
+		
+		if(overlap < 0){
+			return false;
+		}
+	}
+	return true;
+
+}
+
+Vector2 polygonCenter(std::vector<Vector2> points){
+        Vector2 first = points[0];
+        double minx = first.x(), miny = first.y(), maxx = first.x(), maxy = first.y();
+        for(Vector2 v : points){
+                if(v.x() > maxx)
+                        maxx = v.x();
+                if(v.x() < minx)
+                        minx = v.x();
+                if(v.y() > maxy)
+                        maxy = v.y();
+                if(v.y() < miny)
+                        miny = v.y();
+        }
+        Vector2 center = Vector2((maxx + minx) / 2, (maxy + miny) /2);
+        return center;
+}
+
+
+Vector2 minimumTranslationVector(const std::vector<Vector2>& poly1, const std::vector<Vector2>& poly2){
+	std::vector<Vector2> normals;
+	Vector2 poly1Center = polygonCenter(poly1);
+	Vector2 poly2Center = polygonCenter(poly2);
+
+	for(int i = 0; i < poly1.size(); i++){
+		Vector2 p1 = poly1[i];
+		Vector2 p2 = poly1[(i + 1) % poly1.size()];
+		
+		Vector2 direction = p2 - p1;
+		normals.push_back(Vector2(direction.y(), -direction.x()).normalized());
+	}
+
+	for(int i = 0; i < poly2.size(); i++){
+		Vector2 p1 = poly2[i];
+		Vector2 p2 = poly2[(i + 1) % poly2.size()];
+		
+		Vector2 direction = p2 - p1;
+		normals.push_back(Vector2(direction.y(), -direction.x()).normalized());
+	}
+	
+	Vector2 minAxis = Vector2(0, 0);
+	double minOverlap = DBL_MAX;
+	double epsilon = .0001;
 
 	for(Vector2 normal : normals){
 		double min_proj_poly1 = poly1[0].dot(normal);
@@ -232,11 +318,28 @@ bool polygonPolygonCollision(const std::vector<Vector2>& poly1, const std::vecto
 				max_proj_poly2 = cur_proj2;
 			}
 		}
-
-		if(max_proj_poly2 < min_proj_poly1 || max_proj_poly1 < min_proj_poly2){
-			return false;
+		double overlap1 = max_proj_poly2 - min_proj_poly1;
+		double overlap2 = max_proj_poly1 - min_proj_poly2;
+		// Calculate the min of the two overlaps
+		double overlap = (overlap1 < overlap2) ? overlap1 : overlap2;
+	
+		// If this is true they are not colliding
+		if(overlap < 0){
+			// Maybe this should be NULL
+			return Vector2(0, 0);
+		}
+		else{
+			// In this case poly2 is on the "left"
+			if(overlap < minOverlap){
+				minOverlap = overlap;
+				minAxis = normal;
+			}
+			Vector2 poly2ToPoly1 = poly1Center - poly2Center;
+		       	if(poly2ToPoly1.dot(minAxis) < 0){
+				minAxis = minAxis * -1;
+			}	
 		}
 	}
-	return true;
+	return minAxis * (minOverlap + epsilon);
 
 }

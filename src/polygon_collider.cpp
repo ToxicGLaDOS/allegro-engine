@@ -49,6 +49,7 @@ void PolygonCollider::makeBitmap(){
 }
 
 bool PolygonCollider::collides(Collider* other) const{
+	Vector2 mtv = minimumTranslationVector(vertices(), other->vertices());
 	return polygonPolygonCollision(vertices(), other->vertices());
 }
 

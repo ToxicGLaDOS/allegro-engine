@@ -20,4 +20,5 @@ void MyPolygon::update(){
 }
 
 void MyPolygon::onCollision(Collider* other){
+	//printf("Position: %s\n", ((std::string)_transform.position()).c_str());
 }

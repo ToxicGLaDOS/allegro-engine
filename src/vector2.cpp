@@ -1,6 +1,7 @@
 #include "vector2.h"
 #include "geometry.h"
 #include<math.h>
+#include<string>
 
 Vector2::Vector2()
 	: _x(0)
@@ -9,6 +10,16 @@ Vector2::Vector2()
 Vector2::Vector2(double x, double y)
 	: _x(x)
 	, _y(y){}
+
+// Cast to string operator
+Vector2::operator std::string() const{
+	std::string s("(");
+	s.append(std::to_string(_x));
+	s.append(", ");
+	s.append(std::to_string(_y));
+	s.append(")");
+	return s;
+}
 
 void Vector2::operator=(const Vector2 & other){
 	_x = other.x();

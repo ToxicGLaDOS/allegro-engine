@@ -1,10 +1,13 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
+#include<string>
+
 class Vector2{
 	public:
 		Vector2();
 		Vector2(double x, double y);
+		operator std::string() const;
 		void operator=(const Vector2& other);
 		bool operator==(const Vector2& other) const;
 		Vector2 operator-(const Vector2& other) const;

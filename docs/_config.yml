@@ -209,6 +209,11 @@ defaults:
                         path: "_data-members/polygon_collider"
                 values:
                         class: polygoncollider
+        -
+                scope:
+                        path: "_data-members/collision"
+                values:
+                        class: collision
 
 
 

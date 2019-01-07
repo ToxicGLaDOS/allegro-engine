@@ -12,7 +12,7 @@ Creates a text object with the following properties.
 
 `text` - The content of the text
 
-`fontPath` - The relative path starting from `resources` to the font
+`fontPath` - The relative path starting from `resources` to the font. If this path does not lead to a file a `ResourceLoadException` will be thrown
 
 `size` - The size in pixels of the text
 

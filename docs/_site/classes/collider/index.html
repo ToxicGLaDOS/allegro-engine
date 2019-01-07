@@ -71,18 +71,17 @@
 <h1 id="public-functions">Public functions</h1>
 
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">virtual</span> <span class="kt">void</span> <span class="n">calcVertices</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span> 
-<span class="k">virtual</span> <span class="kt">bool</span> <span class="n">collides</span><span class="p">(</span><span class="n">Collider</span> <span class="o">*</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span> 
-<span class="n">Collider</span><span class="p">(</span><span class="k">const</span> <span class="n">Transform</span><span class="o">&amp;</span> <span class="n">transform</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span> 
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">virtual</span> <span class="kt">bool</span> <span class="n">collides</span><span class="p">(</span><span class="n">Collider</span> <span class="o">*</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span> 
+<span class="n">Collider</span><span class="p">(</span><span class="k">const</span> <span class="n">Transform</span><span class="o">&amp;</span> <span class="n">transform</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">solid</span> <span class="o">=</span> <span class="nb">false</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">fixed</span> <span class="o">=</span> <span class="nb">false</span><span class="p">)</span> 
 <span class="kt">void</span> <span class="n">draw</span><span class="p">()</span> <span class="k">const</span> 
+<span class="kt">bool</span> <span class="n">fixed</span><span class="p">()</span> <span class="k">const</span> 
 <span class="k">virtual</span> <span class="kt">void</span> <span class="n">onCollision</span><span class="p">(</span><span class="n">Collider</span><span class="o">*</span> <span class="n">other</span><span class="p">)</span> 
 <span class="kt">void</span> <span class="n">setDraw</span><span class="p">(</span><span class="kt">bool</span> <span class="n">draw</span><span class="p">)</span> 
+<span class="kt">bool</span> <span class="n">solid</span><span class="p">()</span> <span class="k">const</span> 
 <span class="k">virtual</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span> <span class="n">vertices</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span> </code></pre></figure>
 
 
 <ul>
-
-	<li><a href=/allegro-engine/methods/calcvertices/>calcVertices</a></li>
 
 	<li><a href=/allegro-engine/methods/collides/>Collides</a></li>
 
@@ -90,9 +89,13 @@
 
 	<li><a href=/allegro-engine/methods/draw/>draw</a></li>
 
+	<li><a href=/allegro-engine/methods/fixed/>fixed</a></li>
+
 	<li><a href=/allegro-engine/methods/oncollision/>onCollision</a></li>
 
 	<li><a href=/allegro-engine/methods/setdraw/>setDraw</a></li>
+
+	<li><a href=/allegro-engine/methods/solid/>solid</a></li>
 
 	<li><a href=/allegro-engine/methods/vertices/>vertices</a></li>
 
@@ -102,12 +105,18 @@
 
 
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="n">_draw</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="n">_draw</span> 
+<span class="kt">bool</span> <span class="n">_fixed</span> 
+<span class="kt">bool</span> <span class="n">_solid</span> </code></pre></figure>
 
 
 <ul>
 
 	<li><a href=/allegro-engine/data-members/draw/>_draw</a></li>
+
+	<li><a href=/allegro-engine/data-members/fixed/>_fixed</a></li>
+
+	<li><a href=/allegro-engine/data-members/solid/>_solid</a></li>
 
 </ul>
 

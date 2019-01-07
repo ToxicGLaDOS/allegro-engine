@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>operator=</title>
-  <meta name="description" content="DescriptionSets one vector equal to another.">
+  <title>operator==</title>
+  <meta name="description" content="DescriptionReturns whether two Vector2s contents are the same. Because of floating point imprecision this will not likely be very useful in its current state...">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
   <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/methods/operator/">
@@ -56,11 +56,11 @@
       <div class="wrapper">
         <div class="body">
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">Vector2</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span></code></pre></figure>
   
   <div class="function-description">
     <h1 id="description">Description</h1>
-<p>Sets one vector equal to another.</p>
+<p>Returns whether two <code class="highlighter-rouge">Vector2</code>s contents are the same. Because of floating point imprecision this will not likely be very useful in its current state. Currently it checks to make sure that both <code class="highlighter-rouge">Vector2</code>s have exactly the same x and y values. In the future this will probably be changed to be an approximate equality.</p>
 
   </div>
 </div>

@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>_original_vertices</title>
-  <meta name="description" content="Description">
+  <title>_solid</title>
+  <meta name="description" content="DescriptionWhether this Collider is solid or not. Can be accessed using the solid method. For a description of what being solid means check out ctor in Colli...">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/data-members/original-vertices/">
+  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/data-members/solid/">
   <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
 </head>
 
@@ -56,14 +56,11 @@
       <div class="wrapper">
         <div class="body">
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span> <span class="n">_original_vertices</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="n">_solid</span></code></pre></figure>
   
   <div class="function-description">
     <h1 id="description">Description</h1>
-
-<p>The original set of vertices passed into the constructor of this <code class="highlighter-rouge">PolygonCollider</code>.</p>
-
-<p>We need to keep track of these because any transformation, like rotation or scaling, will compound if we apply them to the already transformed vertices.</p>
+<p>Whether this <code class="highlighter-rouge">Collider</code> is solid or not. Can be accessed using the <code class="highlighter-rouge">solid</code> method. For a description of what being solid means check out <code class="highlighter-rouge">ctor</code> in <code class="highlighter-rouge">Collider</code>.</p>
 
   </div>
 </div>

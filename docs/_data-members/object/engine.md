@@ -1,6 +1,6 @@
 ---
 title: _engine
-definition: Engine* _engine
+definition: Engine* _engine = NULL
 ---
 
 # Description

@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>calcVertices</title>
-  <meta name="description" content="WARNINGYou do not need to call this function manually. Calling this function is handled by Engine. However, for completeness it will be described here.">
+  <title>fixed</title>
+  <meta name="description" content="DescriptionReturns whether this Collider is marked fixed. For a description of what fixed means check out ctor in Collider.">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/methods/calcvertices/">
+  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/methods/fixed/">
   <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
 </head>
 
@@ -56,14 +56,11 @@
       <div class="wrapper">
         <div class="body">
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">void</span> <span class="n">calcVertices</span><span class="p">()</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="n">fixed</span><span class="p">()</span> <span class="k">const</span></code></pre></figure>
   
   <div class="function-description">
-    <h1 id="warning">WARNING</h1>
-<p>You do not need to call this function manually. Calling this function is handled by <code class="highlighter-rouge">Engine</code>. However, for completeness it will be described here.</p>
-
-<h1 id="description">Description</h1>
-<p>Calculates where all the vertices should be for the polygon that represents this <code class="highlighter-rouge">RectCollider</code>. This is just a step we have to take before each collision detection cycle and is handled automatically before collision detection by <code class="highlighter-rouge">Engine</code>.</p>
+    <h1 id="description">Description</h1>
+<p>Returns whether this <code class="highlighter-rouge">Collider</code> is marked fixed. For a description of what fixed means check out <code class="highlighter-rouge">ctor</code> in <code class="highlighter-rouge">Collider</code>.</p>
 
   </div>
 </div>

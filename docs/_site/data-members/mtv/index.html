@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>collides</title>
-  <meta name="description" content="DescriptionReturns true if this PolygonCollider overlaps with the other collider. It should be noted that if two colliders are touching each other, but not o...">
+  <title>mtv</title>
+  <meta name="description" content="DescriptionThe Minimum Translation Vector (MTV) for the collision. This Vector2 gives the minimum distance and direction needed for one collider to move so t...">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/methods/collides/">
+  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/data-members/mtv/">
   <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
 </head>
 
@@ -56,12 +56,11 @@
       <div class="wrapper">
         <div class="body">
 
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="n">collides</span><span class="p">(</span><span class="n">Collider</span> <span class="o">*</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">Vector2</span> <span class="n">mtv</span></code></pre></figure>
   
   <div class="function-description">
     <h1 id="description">Description</h1>
-<p>Returns true if this <code class="highlighter-rouge">PolygonCollider</code> overlaps with the <code class="highlighter-rouge">other</code> collider. It should be noted that if two colliders are touching each other, but not overlapping this will return false. Additionally, if one collider is completly contained within the other collider this method will return <code class="highlighter-rouge">false</code>.</p>
-
+<p>The Minimum Translation Vector (MTV) for the collision. This <code class="highlighter-rouge">Vector2</code> gives the minimum distance and direction needed for one collider to move so that it will be no longer colliding with the other collider anymore. This vector is always relative to the first polygon in the argument list of the <code class="highlighter-rouge">minimumTranslationVector</code> method. Meaning if you want to know how much to move the second polygon you need to negate this vector.</p>
 
   </div>
 </div>

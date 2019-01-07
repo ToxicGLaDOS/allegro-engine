@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>collides</title>
-  <meta name="description" content="DescriptionReturns true if this PolygonCollider overlaps with the other collider. It should be noted that if two colliders are touching each other, but not o...">
+  <title>Collision</title>
+  <meta name="description" content="Collision is a small struct returned when checking for collisions. It packages up a small amount of data about the collision so that the collision can be res...">
 
   <link rel="stylesheet" href="/allegro-engine/css/main.css">
-  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/methods/collides/">
+  <link rel="canonical" href="http://smit8397.github.io/allegro-engine//allegro-engine/classes/collision/">
   <link rel="alternate" type="application/rss+xml" title="Allegro-engine" href="http://smit8397.github.io/allegro-engine//allegro-engine/feed.xml">
 </head>
 
@@ -54,17 +54,45 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="body">
-
-<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="n">collides</span><span class="p">(</span><span class="n">Collider</span> <span class="o">*</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span></code></pre></figure>
-  
-  <div class="function-description">
-    <h1 id="description">Description</h1>
-<p>Returns true if this <code class="highlighter-rouge">PolygonCollider</code> overlaps with the <code class="highlighter-rouge">other</code> collider. It should be noted that if two colliders are touching each other, but not overlapping this will return false. Additionally, if one collider is completly contained within the other collider this method will return <code class="highlighter-rouge">false</code>.</p>
+        
 
 
-  </div>
-</div>
+
+
+
+
+
+<h1>Collision</h1>
+
+<p><code class="highlighter-rouge">Collision</code> is a small struct returned when checking for collisions. It packages up a small amount of data about the collision so that the collision can be resolved.</p>
+
+
+
+<h1 id="public-functions">Public functions</h1>
+
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"></code></pre></figure>
+
+
+<ul>
+
+</ul>
+
+<h1 id="data-members">Data Members</h1>
+
+
+
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">bool</span> <span class="n">collided</span> 
+<span class="n">Vector2</span> <span class="n">mtv</span> </code></pre></figure>
+
+
+<ul>
+
+	<li><a href=/allegro-engine/data-members/collided/>collided</a></li>
+
+	<li><a href=/allegro-engine/data-members/mtv/>mtv</a></li>
+
+</ul>
 
       </div>
     </div>

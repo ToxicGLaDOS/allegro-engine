@@ -1,18 +1,17 @@
 ---
 title: ctor
-signature: "RectCollider()\nRectCollider(const Transform& transform, const Vector2& size, const std::string& name)"
+signature: "RectCollider(const Transform& transform, const Vector2& size, const std::string& name, bool solid = false, bool fixed = false)"
 ---
 
 # Description
-Creates a `RectCollider` with the given transform with the given size and name. The position component of `transform` refers to the top left corner of the `RectCollider`, `size` refers to the dimensions of the rectangle, and `name` refers to the name that you want to give this `RectCollider`. If no arguments are given to the constructor then both position and size will be assumed to be (0, 0) and the name will be an empty string.
+Creates a `RectCollider` with the given transform with the given size and name. The position component of `transform` refers to the top left corner of the `RectCollider`, `size` refers to the dimensions of the rectangle, and `name` refers to the name that you want to give this `RectCollider`. 
 
 # Example
 ``` c++
 // A RectCollider at (20, 10) with width of 40 and height of 50 named "rc1".
+// The RectCollider will be a non solid and non fixed
 RectCollider rc1 = RectCollider(Transform(Vector2(20, 10)), Vector2(40, 50), "rc1");
 
-RectCollider rc2;
-
-// Same as rc2
-RectCollider rc3 = RectCollider(Transform(Vector2(0, 0)), Vector2(0, 0), "");
+// This one is solid and fixed
+RectCollider rc2 = RectCollider(Transform(Vector2(0, 0)), Vector2(100, 10), "rc2", true, true);
 ```

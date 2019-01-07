@@ -113,8 +113,10 @@
 
 <figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">Camera</span><span class="o">*</span> <span class="n">_camera</span> 
 <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Collider</span><span class="o">*&gt;</span> <span class="n">_colliders</span> 
+<span class="kt">double</span> <span class="n">_deltaTime</span> 
 <span class="n">ALLEGRO_DISPLAY</span> <span class="o">*</span> <span class="n">_display</span> 
 <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Drawable</span><span class="o">*&gt;</span> <span class="n">_drawables</span> 
+<span class="kt">double</span> <span class="n">_framerate</span> <span class="o">=</span> <span class="mi">0</span> 
 <span class="kt">int</span> <span class="n">_height</span> 
 <span class="n">Input</span><span class="o">*</span> <span class="n">_input</span> 
 <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">_maxFrameRate</span> 
@@ -129,9 +131,13 @@
 
 	<li><a href=/allegro-engine/data-members/colliders/>_colliders</a></li>
 
+	<li><a href=/allegro-engine/data-members/deltatime/>_deltaTime</a></li>
+
 	<li><a href=/allegro-engine/data-members/display/>_display</a></li>
 
 	<li><a href=/allegro-engine/data-members/drawables/>_drawables</a></li>
+
+	<li><a href=/allegro-engine/data-members/framerate/>_framerate</a></li>
 
 	<li><a href=/allegro-engine/data-members/height/>_height</a></li>
 

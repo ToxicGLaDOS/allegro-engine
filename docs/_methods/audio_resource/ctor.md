@@ -15,3 +15,5 @@ Creates an `AudioResource` that will play the file that `path` points to. This c
 `loop` - false
 
 Of course you can change any of these using `setVolume`, `setPan` etc.
+
+Passing a path to a non-existent file will throw a `ResourceLoadException`.

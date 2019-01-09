@@ -13,9 +13,7 @@
 #include<iostream>
 
 Engine::Engine(int width, int height, unsigned int maxFrameRate)
-	: _width(width)
-	, _height(height)
-	, _maxFrameRate(maxFrameRate){
+	: _maxFrameRate(maxFrameRate){
 
 	if(!al_init()){
 		throw AllegroInitException("Allegro failed to initalize!");
@@ -43,6 +41,8 @@ Engine::Engine(int width, int height, unsigned int maxFrameRate)
 	al_set_new_display_flags(ALLEGRO_WINDOWED | ALLEGRO_RESIZABLE);
 
 	_display = al_create_display(width, height);
+	_height = al_get_display_height(_display);
+	_width = al_get_display_width(_display);
 	_input = new Input();
 }
 

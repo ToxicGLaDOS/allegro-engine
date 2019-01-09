@@ -98,6 +98,12 @@ void Engine::mainLoop(){
 				al_acknowledge_resize(_display);
 				_width = event.display.width;
 				_height = event.display.height;
+			case ALLEGRO_EVENT_DISPLAY_CLOSE:
+				_running = false;
+				al_destroy_timer(timer);
+				al_destroy_event_queue(timerQueue);
+				destroyDisplay();
+
 
 		}
 		/*

@@ -40,6 +40,7 @@ Engine::Engine(int width, int height, unsigned int maxFrameRate)
 	}
 	al_set_new_display_option(ALLEGRO_VSYNC, 2, ALLEGRO_SUGGEST);
 	al_set_new_display_refresh_rate(maxFrameRate);
+	al_set_new_display_flags(ALLEGRO_WINDOWED | ALLEGRO_RESIZABLE);
 
 	_display = al_create_display(width, height);
 	_input = new Input();
@@ -54,18 +55,19 @@ void Engine::mainLoop(){
 	ALLEGRO_TIMER* timer = al_create_timer(1.000 / _maxFrameRate);
 	ALLEGRO_EVENT_QUEUE* timerQueue = al_create_event_queue();
 	al_register_event_source(timerQueue, al_get_timer_event_source(timer));
-	
+	al_register_event_source(timerQueue, al_get_display_event_source(_display));
 
 	double frametimes[5] = {0, 0, 0, 0, 0};
 	int frametimeHead = 0;
+	auto start = std::chrono::system_clock::now();
 
 	ALLEGRO_EVENT event;
 	al_start_timer(timer);
 	while(_running){
-		auto start = std::chrono::system_clock::now();
 		al_wait_for_event(timerQueue, &event);
 		switch(event.type){
 			case ALLEGRO_EVENT_TIMER:
+				{
 				update();
 				if(_input->keyPressed("escape")){	
 					_running = false;
@@ -74,21 +76,30 @@ void Engine::mainLoop(){
 					destroyDisplay();
 				}
 				cleanup();
+				// Timing stuff
+				auto end = std::chrono::system_clock::now();
+				std::chrono::duration<double> diff = (end-start);
+				double averageFramerate = 0;
+				frametimes[frametimeHead] = diff.count();
+				_deltaTime = diff.count();
+
+				for(int i = 0; i < 5; i++){
+					averageFramerate += frametimes[i];
+				}
+				averageFramerate /= 5;
+				_framerate = 1/averageFramerate;
+				frametimeHead = (frametimeHead + 1) % 5;
+				
+				start = std::chrono::system_clock::now();
 				break;
+				}
+			case ALLEGRO_EVENT_DISPLAY_RESIZE:
+				//printf("x,y,width,height: (%d, %d, %d, %d)\n",event.display.x,event.display.y,event.display.width,event.display.height);
+				al_acknowledge_resize(_display);
+				_width = event.display.width;
+				_height = event.display.height;
 
 		}
-		auto end = std::chrono::system_clock::now();
-		std::chrono::duration<double> diff = (end-start);
-		double averageFramerate = 0;
-		frametimes[frametimeHead] = diff.count();
-		_deltaTime = diff.count();
-
-		for(int i = 0; i < 5; i++){
-			averageFramerate += frametimes[i];
-		}
-		averageFramerate /= 5;
-		_framerate = 1/averageFramerate;
-		frametimeHead = (frametimeHead + 1) % 5;
 		/*
 		std::cout << "The delta time is " << _deltaTime << std::endl;
 		std::cout << "The frame rate is " << _framerate << std::endl;
@@ -207,6 +218,14 @@ void Engine::checkCollisions(){
 			}
 		}
 	}
+}
+
+double Engine::framerate() const{
+	return _framerate;
+}
+
+double Engine::deltaTime() const{
+	return _deltaTime;
 }
 
 int Engine::screenWidth() const{

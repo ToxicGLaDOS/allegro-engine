@@ -19,7 +19,10 @@ class Engine{
 
 		int screenWidth() const;
 		int screenHeight() const;
-		
+		double framerate() const;
+		double deltaTime() const;
+
+
 		Camera* camera() const;
 		Input* input() const;
 	protected:

@@ -11,8 +11,8 @@ VertWallCollider::VertWallCollider(const Transform& trans, const Vector2& size, 
 
 void VertWallCollider::onCollision(Collider* other){
 	if(other->name() == "Ball collider"){
-		int width = _engine->screenWidth();
-		int height = _engine->screenHeight();
+		int width = _engine->camera()->size().x();
+		int height = _engine->camera()->size().y();
 		other->parent()->moveTo(Vector2(width/2,-height/2));
 		_hitSound->play();
 		int score = std::stoi(_score->text());

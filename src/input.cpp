@@ -9,6 +9,10 @@ Input::Input(){
 	if(!al_install_mouse()){
 		throw AllegroInitException("Mouse failed to install!");
 	}
+	if(!al_install_joystick()){
+		throw AllegroInitException("Joystick failed to install!");
+	}
+	printf("Num joysticks: %d\n", al_get_num_joysticks());
 	_numAxes = al_get_mouse_num_axes();
 	_numButtons = al_get_mouse_num_buttons();
 

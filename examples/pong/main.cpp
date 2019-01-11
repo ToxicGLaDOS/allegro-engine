@@ -2,10 +2,12 @@
 #include<string>
 #include"engine.h"
 #include"sprite.h"
+#include"animated_sprite.h"
 #include"text.h"
 #include"ball_motion.h"
 #include"image_resource.h"
 #include"audio_resource.h"
+#include"animation_resource.h"
 #include"circle_collider.h"
 #include"horz_wall_collider.h"
 #include"vert_wall_collider.h"
@@ -22,6 +24,8 @@ int width = 1000, height = 1000;
 int main(int argc, char **argv){
 	Engine engine = Engine(width, height, 60);	
 	Camera camera = Camera(Vector2(0, 0), Vector2(width, height), "main camera");
+
+	AnimationResource ballAnim = AnimationResource("ball");
 	
 	ImageResource paddle_image = ImageResource("paddle.png");
 	ImageResource ball_image = ImageResource("ball.png");
@@ -49,8 +53,9 @@ int main(int argc, char **argv){
 	
 	P1Paddle paddle1 = P1Paddle(p1_start, 5, paddle_image, "Player1 paddle");
 	P2Paddle paddle2 = P2Paddle(p2_start, 5, paddle_image, "Player2 paddle");
-	Sprite ball = Sprite(ball_start, ball_image, "Ball");
-
+	//Sprite ball = Sprite(ball_start, ball_image, "Ball");
+	AnimatedSprite ball = AnimatedSprite(ball_start, ballAnim, 1, "Ball", true);
+	ball.play();
 
 	PaddleCollider p1_collider = PaddleCollider(p1_start, paddle_size, "P1 collider", &bounce_sound);
 	PaddleCollider p2_collider = PaddleCollider(p2_start, paddle_size, "P2 collider", &bounce_sound);

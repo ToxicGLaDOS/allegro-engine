@@ -10,6 +10,8 @@
 class Drawable : public Object{
 	public:
 		Drawable(const Transform& transform, const std::string& name);
+		Drawable(const Drawable& other);
+		void registerWithEngine(Engine* engine);
 		virtual ALLEGRO_BITMAP * getBitmap() const = 0;
 	protected:
 };

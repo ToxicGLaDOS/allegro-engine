@@ -1,4 +1,5 @@
 #include"collider.h"
+#include"engine.h"
 
 Collider::Collider(const Transform& transform, const std::string& name, bool solid/*=false*/, bool fixed/*=false*/)
 	: Drawable(transform, name)
@@ -6,6 +7,9 @@ Collider::Collider(const Transform& transform, const std::string& name, bool sol
 	, _fixed(fixed){}
 
 
+void Collider::registerWithEngine(Engine* engine){
+	engine->register_collider(this);
+}
 
 void Collider::setDraw(bool draw){
 	_draw = draw;

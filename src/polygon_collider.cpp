@@ -10,6 +10,10 @@ PolygonCollider::PolygonCollider(const Transform& trans, std::vector<Vector2> po
 	makeBitmap();
 }
 
+Object* PolygonCollider::clone(){
+	return new PolygonCollider(*this);
+}
+
 void PolygonCollider::makeBitmap(){
 	Vector2 first = _vertices[0];
 	double minx = first.x(), miny = first.y(), maxx = first.x(), maxy = first.y();

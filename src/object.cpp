@@ -2,11 +2,22 @@
 #include<iostream>
 #include "vector2.h"
 #include "exceptions.h"
-
+#include "engine.h"
 
 Object::Object(const Transform& transform, const std::string& name)
 	: _name(name)
 	, _transform(transform){}
+
+Object::Object(const Object& other)
+	: _name(other.name())
+	, _transform(other.transform())
+	, _engine(other._engine){
+}
+
+Object* Object::clone(){
+	// Calls copy ctor
+	return new Object(*this);
+}
 
 Object::~Object(){
 	for(Object * obj : _children){
@@ -33,6 +44,23 @@ void Object::moveTo(const Vector2& position){
 void Object::moveBy(const Vector2& by){
 	_transform.setPosition(_transform.position() + by);
 	propagate_movement(by);
+}
+
+void Object::rotateTo(double angle){
+	_transform.setRotation(angle);
+	// TODO: propagate rotation
+}
+
+void Object::rotateBy(double angle){
+	_transform.setRotation(_transform.rotation() + angle);
+}
+
+void Object::scaleTo(const Vector2& scale){
+	_transform.setScale(scale);
+}
+
+void Object::scaleBy(const Vector2& scale){
+	_transform.setScale(_transform.scale() + scale);
 }
 
 void Object::attach(Object* parent){
@@ -76,6 +104,11 @@ bool Object::isParentOf(Object* child){
 		}
 	}
 	return false;
+}
+
+
+void Object::registerWithEngine(Engine* engine){
+	engine->register_object(this);
 }
 
 void Object::setEngine(Engine* engine){

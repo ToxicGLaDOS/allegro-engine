@@ -2,6 +2,7 @@
 #include<string>
 #include"engine.h"
 #include"sprite.h"
+#include"prefab.h"
 #include"animated_sprite.h"
 #include"text.h"
 #include"ball_motion.h"

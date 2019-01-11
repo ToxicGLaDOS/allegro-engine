@@ -1,11 +1,12 @@
 add_library(engine 
 	object.cpp
+	prefab.cpp
 	drawable.cpp
 	sprite.cpp
 	animated_sprite.cpp
 	text.cpp
 	collider.cpp
-	engine.h engine.cpp
+	engine.cpp
 	camera.cpp
 	geometry.cpp
 	rect_collider.cpp

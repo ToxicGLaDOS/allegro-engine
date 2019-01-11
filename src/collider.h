@@ -12,6 +12,8 @@ class Collider : public Drawable{
 		Collider(const Transform& transform, const std::string& name, bool solid = false, bool fixed = false);
 		virtual bool collides(Collider * other) const = 0;
 		virtual std::vector<Vector2> vertices() const = 0;
+		
+		void registerWithEngine(Engine* engine);
 		// Called once every frame by engine
 		// right before collisions
 		virtual void onCollision(Collider* other);

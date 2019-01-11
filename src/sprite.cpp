@@ -6,6 +6,9 @@ Sprite::Sprite(const Transform& transform, const ImageResource& image, const std
 	: Drawable(transform, name)
 	, _img(image){}
 
+Object* Sprite::clone(){
+	return new Sprite(*this);
+}
 
 ALLEGRO_BITMAP * Sprite::getBitmap() const{
 	return _img.bitmap();

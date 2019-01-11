@@ -13,16 +13,23 @@ class Engine;
 class Object{
 	public:
 		Object(const Transform& pos, const std::string& name);
+		Object(const Object& other);
 		~Object();
+		virtual Object* clone();
 		Transform transform() const;
 		void moveTo(const Vector2& pos);	
 		void moveBy(const Vector2& by);
+		void rotateTo(double angle);
+		void rotateBy(double angle);
+		void scaleTo(const Vector2& scale);
+		void scaleBy(const Vector2& scale);
 		void attach(Object* parent);
 		bool isParentOf(Object* child);
 		Object* findChildWithName(const std::string& name) const;
 		Object* parent() const;
 		std::string name() const;
 		std::vector <Object*> children() const;
+		virtual void registerWithEngine(Engine* engine);
 		void setEngine(Engine* engine);
 		virtual void update();
 	protected:

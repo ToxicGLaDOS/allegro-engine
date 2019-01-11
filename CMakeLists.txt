@@ -8,6 +8,7 @@ add_subdirectory(examples/pong)
 add_subdirectory(examples/hello_world)
 add_subdirectory(examples/polygon-test)
 add_subdirectory(examples/circles)
+add_subdirectory(examples/platformer)
 
 if(${buildTests})
 	add_subdirectory(tests)

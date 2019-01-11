@@ -9,6 +9,7 @@ add_subdirectory(examples/hello_world)
 add_subdirectory(examples/polygon-test)
 add_subdirectory(examples/circles)
 add_subdirectory(examples/platformer)
+add_subdirectory(examples/rotation-test)
 
 if(${buildTests})
 	add_subdirectory(tests)

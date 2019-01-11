@@ -17,13 +17,13 @@ int main(int argc, char **argv){
 	tileCollider.attach(&tileSprite);
 
 	Prefab tilePrefab = Prefab(&tileSprite, &engine);
-	
+/*	
 	for(int x = 0; x < 500; x+=50){
 		for(int y = 0; y > -500; y-= 50){
 			Object* obj = tilePrefab.instantiate(Transform(Vector2(x, y)));
 		}
 	}
-	
+*/	
 
 	engine.register_camera(&camera);
 	engine.mainLoop();

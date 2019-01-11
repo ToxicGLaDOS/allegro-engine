@@ -23,6 +23,7 @@ class Object{
 		void rotateBy(double angle);
 		void scaleTo(const Vector2& scale);
 		void scaleBy(const Vector2& scale);
+		const Object* root() const;
 		void attach(Object* parent);
 		bool isParentOf(Object* child);
 		Object* findChildWithName(const std::string& name) const;
@@ -35,10 +36,13 @@ class Object{
 	protected:
 		Engine* _engine = NULL;
 		Transform _transform;
+		Transform _originalTransform;
 		std::vector <Object*> _children;
 		Object* _parent = NULL;
 		std::string _name;
 	private:
+		void propagate_scale(const Vector2& scale);
+		void propagate_rotation(double angle);
 		void propagate_movement(const Vector2& by);	
 };
 
